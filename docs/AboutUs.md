@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Teoh Kian Shen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kianshenteoh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kianshenteoh)]
+[[portfolio](team/kianshenteoh.md)]
 
-- Role: Project Advisor
+* Role: Developer
+* Responsibilities: UI
 
 ### Jane Doe
 
@@ -38,11 +38,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Data
 
-### Jean Doe
+### Andre Keh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lanturn567.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/lanturn567)]
 [[portfolio](team/johndoe.md)]
 
 - Role: Developer
