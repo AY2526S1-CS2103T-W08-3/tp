@@ -8,4 +8,4 @@ title: About Us
 ### John Doe
 ### Joseph Guanawan
 
-<img src="images/Joseph.png" width="200px">
+<img src="images/gunawanjoseph.png" width="200px">
