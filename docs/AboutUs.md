@@ -6,6 +6,6 @@ title: About Us
 ## Project team
 
 ### John Doe
-### Joseph Guanawan
+### Joseph Gunawan
 
 <img src="images/gunawanjoseph.png" width="200px">
