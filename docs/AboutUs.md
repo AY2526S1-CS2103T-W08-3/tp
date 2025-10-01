@@ -13,47 +13,49 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/gunawanjoseph.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/gunawanjoseph)]
+[[github](https://github.com/gunawanjoseph)]
+[[portfolio](team/gunawanjoseph.md)]
 
-* Role: Project Advisor
 
-### Jane Doe
+### Teoh Kian Shen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kianshenteoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/gunawanjoseph)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/gunawanjoseph)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/gunawanjoseph)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/gunawanjoseph)]
+[[github](https://github.com/kianshenteoh)]
+[[portfolio](team/kianshenteoh.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+
+### Daniel Loo Kang Le
+
+<img src="images/zzdlklzz.png" width="200px">
+
+[[github](http://github.com/zzdlklzz)]
+[[portfolio](team/zzdlklzz.md)]
+
+- Role: Team Lead
+- Responsibilities: UI
+
+
+### Andre Keh
+
+<img src="images/lanturn567.png" width="200px">
+
+[[github](http://github.com/lanturn567)]
+[[portfolio](team/lanturn567.md)]
+
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
+
+
+### Wang Yuanchi
+
+<img src="images/wangyuanchi.png" width="200px">
+
+[[github](http://github.com/wangyuanchi)]
+[[portfolio](team/wangyuanchi.md)]
+
+- Role: Software Engineer
+- Responsibilities: Code Quality
