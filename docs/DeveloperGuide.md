@@ -262,10 +262,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Manage 20–50 students and parents
-* Are fast typists
-* Work primarily on laptops
-* Often handle administrative tasks offline between lessons
+* manage 20–50 students and parents
+* are fast typists
+* work primarily on laptops
+* often handle administrative tasks offline between lessons
 
 
 **Value proposition**:
@@ -274,21 +274,21 @@ Private tutors waste time juggling spreadsheets, chats, and notes to manage stud
 
 A typing-first address book for private tutors lets them:
 
-* Pull up student/parent details instantly
-* Group contacts by level/subject/class
-* Keep brief lesson/fee notes
+* pull up student/parent details instantly
+* group contacts by level/subject/class
+* keep brief lesson/fee notes
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                     | So that I can…​                                                        |
-| -------- | --------------- | -------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | Private tutor   | add students and their administrative details | keep track of and contact my students easily                            |
-| `* * *`  | Private tutor   | delete students                  | get rid of students I am no longer teaching                             |
-| `* * *`  | Private tutor   | search for a student             | find out their details easily                                           |
-| `* * *`  | Private tutor   | list students by class           | prepare individualised content and comments for them                   |
+| Priority | As a …​       | I want to …​                     | So that I can…​                                                        |
+| -------- |---------------| -------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | private tutor | add students and their administrative details | keep track of and contact my students easily                            |
+| `* * *`  | private tutor | delete students                  | get rid of students I am no longer teaching                             |
+| `* * *`  | private tutor | search for a student             | find out their details easily                                           |
+| `* * *`  | private tutor | list students by class           | prepare individualised content and comments for them                   |
 
 *{More to be added}*
 
