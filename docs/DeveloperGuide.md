@@ -262,13 +262,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- Manage 20–50 students and parents
+- Are fast typists
+- Work primarily on laptops
+- Often handle administrative tasks offline between lessons
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+Private tutors waste time juggling spreadsheets, chats, and notes to manage students and parents. 
+
+A typing-first address book for private tutors lets them:
+- Pull up student/parent details instantly
+- Group contacts by level/subject/class
+- Keep brief lesson/fee notes
 
 
 ### User stories
