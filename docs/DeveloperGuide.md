@@ -262,19 +262,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- Manage 20–50 students and parents
-- Are fast typists
-- Work primarily on laptops
-- Often handle administrative tasks offline between lessons
+* Manage 20–50 students and parents
+* Are fast typists
+* Work primarily on laptops
+* Often handle administrative tasks offline between lessons
 
 
-**Value proposition**: 
+**Value proposition**:
+
 Private tutors waste time juggling spreadsheets, chats, and notes to manage students and parents. 
 
 A typing-first address book for private tutors lets them:
-- Pull up student/parent details instantly
-- Group contacts by level/subject/class
-- Keep brief lesson/fee notes
+
+* Pull up student/parent details instantly
+* Group contacts by level/subject/class
+* Keep brief lesson/fee notes
 
 
 ### User stories
