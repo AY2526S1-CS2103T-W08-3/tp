@@ -281,14 +281,12 @@ A typing-first address book for private tutors lets them:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​        | I want to …​                     | So that I can…​                                                        |
+| -------- | --------------- | -------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | Private tutor   | add students and their administrative details | keep track of and contact my students easily                            |
+| `* * *`  | Private tutor   | delete students                  | get rid of students I am no longer teaching                             |
+| `* * *`  | Private tutor   | search for a student             | find out their details easily                                           |
+| `* * *`  | Private tutor   | list students by class           | prepare individualised content and comments for them                   |
 
 *{More to be added}*
 
