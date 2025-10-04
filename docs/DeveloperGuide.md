@@ -294,30 +294,116 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EduLink` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add student**
+
+**Guarantees**
+
+* Student records are stored in the system with a unique ID.
+* All data is validated and normalized.
+* Tutor sees a confirmation message with student details.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Tutor chooses to add new student.
+2. EduLink validates the data provided.
+3. EduLink assigns a unique ID to the student.
+4. EduLink stores the student record.
+5. EduLink displays a success message showing the student details.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Any field fails validation.
+  * 2a1. EduLink shows an error. 
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+* 4a. Error on storing student record.
+  * 4a1. EduLink displays an error.
 
-    * 3a1. AddressBook shows an error message.
+    Use case ends.
 
-      Use case resumes at step 2.
+**Use case: UC02 - Delete student**
+
+**Preconditions**
+
+* At least one student exists in the system.
+
+**Guarantees**
+
+* Student record is removed from the system.
+* Tutor sees a confirmation message with deleted student details.
+
+**MSS**
+
+1. Tutor chooses to delete a particular student from the system.
+2. EduLink searches for and displays a list of matching students.
+3. EduLink prompts Tutor to select a student.
+4. Tutor chooses the desired student to delete.
+5. EduLink displays confirmation message.
+6. Tutor confirms delete action.
+7. EduLink deletes the student.
+8. EduLink displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No student matches the given name.
+  * 2a1. EduLink displays an error.
+    
+    Use case ends.
+
+* 4a. Tutor chooses invalid student.
+  * 4a1. EduLink displays an error.
+
+    Use case resumes from step 3.
+
+* 6a. Tutor chooses not to confirm delete action.
+  * 6a1. EduLink displays cancellation message
+
+    Use case ends.
+* *a. Tutor chooses to cancel the delete action at any time.
+  * *a1. EduLink displays cancellation message
+    
+    Use case ends.
+
+**Use case: UC03 - Find student**
+
+**MSS**
+
+1. Tutor searches for student. 
+2. EduLink searches for all students matching the name. 
+3. EduLink displays all matching students with their details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No student matches the name.
+  * 2a1. EduLink shows an error.
+    
+    Use case ends.
+
+**Use case: UC04 - List students**
+
+**MSS**
+
+1. Tutor chooses to display list of students. 
+2. EduLink retrieves all students. 
+3. EduLink displays the full list of students.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There are no students added yet.
+  * 2a1. EduLink shows an error.
+
+    Use case ends.
 
 *{More to be added}*
 
