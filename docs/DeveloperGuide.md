@@ -262,27 +262,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* manage 20–50 students and parents
+* are fast typists
+* work primarily on laptops
+* often handle administrative tasks offline between lessons
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+Private tutors waste time juggling spreadsheets, chats, and notes to manage students and parents. 
+
+A typing-first address book for private tutors lets them:
+
+* pull up student/parent details instantly
+* group contacts by level/subject/class
+* keep brief lesson/fee notes
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​       | I want to …​                     | So that I can…​                                                        |
+| -------- |---------------| -------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | private tutor | add students and their administrative details | keep track of and contact my students easily                            |
+| `* * *`  | private tutor | delete students                  | get rid of students I am no longer teaching                             |
+| `* * *`  | private tutor | search for a student             | find out their details easily                                           |
+| `* * *`  | private tutor | list students by class           | prepare individualised content and comments for them                   |
 
 *{More to be added}*
 
