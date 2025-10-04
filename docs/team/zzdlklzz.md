@@ -27,11 +27,8 @@ Given below are my contributions to the project.
     * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
-    * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added use cases for MVP specification (Pull request [\#38]())
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
