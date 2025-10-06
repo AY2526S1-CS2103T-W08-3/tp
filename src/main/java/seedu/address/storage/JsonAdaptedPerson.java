@@ -106,9 +106,6 @@ class JsonAdaptedPerson {
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
         }
-        if (!Note.isValidNote(note)) {
-            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
-        }
         final Note modelNote = new Note(note);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

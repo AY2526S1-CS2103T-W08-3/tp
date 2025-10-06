@@ -23,7 +23,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_NOTE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -105,11 +104,6 @@ public class ParserUtilTest {
     @Test
     public void parseNote_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseNote((String) null));
-    }
-
-    @Test
-    public void parseNote_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseNote(INVALID_NOTE));
     }
 
     @Test

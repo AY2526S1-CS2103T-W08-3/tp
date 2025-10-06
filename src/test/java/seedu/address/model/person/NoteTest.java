@@ -14,24 +14,9 @@ public class NoteTest {
     }
 
     @Test
-    public void constructor_invalidNote_throwsIllegalArgumentException() {
-        String invalidNote = "";
-        assertThrows(IllegalArgumentException.class, () -> new Note(invalidNote));
-    }
-
-    @Test
     public void isValidNote() {
         // null note
-        assertThrows(NullPointerException.class, () -> Note.isValidNote(null));
-
-        // invalid note
-        assertFalse(Note.isValidNote("")); // empty string
-        assertFalse(Note.isValidNote(" ")); // spaces only
-
-        // valid note
-        assertTrue(Note.isValidNote("Needs help with homework"));
-        assertTrue(Note.isValidNote("-")); // one character
-        assertTrue(Note.isValidNote("Excellent student; top of class; participates actively; tutoring")); // long note
+        assertThrows(NullPointerException.class, () -> new Note(null));
     }
 
     @Test

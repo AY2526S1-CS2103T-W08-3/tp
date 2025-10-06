@@ -20,7 +20,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_NOTE = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "";
     public static final Integer DEFAULT_USERID = 2103;
 
     private UserId userId;
