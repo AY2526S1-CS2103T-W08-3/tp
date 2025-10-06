@@ -29,9 +29,9 @@ public class NoteTest {
         assertFalse(Note.isValidNote(" ")); // spaces only
 
         // valid note
-        assertTrue(Note.isValidNote("Blk 456, Den Road, #01-355"));
+        assertTrue(Note.isValidNote("Needs help with homework"));
         assertTrue(Note.isValidNote("-")); // one character
-        assertTrue(Note.isValidNote("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long note
+        assertTrue(Note.isValidNote("Excellent student; top of class; participates actively; tutoring")); // long note
     }
 
     @Test
