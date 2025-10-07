@@ -35,8 +35,13 @@ class JsonAdaptedLesson {
 
     /**
      * Converts this Jackson-friendly adapted Lesson object into the model's {@code Lesson} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
     public Lesson toModelType() throws IllegalValueException {
+        if (lessonName == null) {
+            throw new IllegalValueException(String.format("Lesson name cannot be null"));
+        }
         return new Lesson(lessonName);
     }
 
