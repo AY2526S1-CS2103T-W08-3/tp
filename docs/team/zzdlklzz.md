@@ -9,6 +9,8 @@ Private tutors waste time juggling spreadsheets, chats, and notes to manage stud
 
 Given below are my contributions to the project.
 
+{only project management section is correctly updated}
+
 * **New Feature**: Added the ability to undo/redo previous commands.
     * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
     * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
@@ -19,19 +21,20 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link]()
 
+{Pull request links to be added}
+
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Set up GitHub team organization and repository, including codecov integration 
+    * Set up initial project page
+    * Helped remove traces of AB3 (Pull requests [\#37]())
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
     * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
-    * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added use cases for MVP specification (Pull request [\#38]())
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
