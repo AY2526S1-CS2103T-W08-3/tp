@@ -6,6 +6,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "note" : "Attentive student, submits homework on time",
+    "lessons": [ ],
     "tags" : [ "friends" ]
   }, {
     "userId": 2103,
@@ -13,6 +14,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "note" : "Needs to improve attendance",
+    "lessons": [ ],
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "userId": 2103,
@@ -20,6 +22,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "note" : "Talented in physics",
+    "lessons": [ ],
     "tags" : [ ]
   }, {
     "userId": 2103,
@@ -27,6 +30,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "note" : "Struggles with concentration",
+    "lessons": [ ],
     "tags" : [ "friends" ]
   }, {
     "userId": 2103,
@@ -34,6 +38,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "note" : "Quick learner",
+    "lessons": [ ],
     "tags" : [ ]
   }, {
     "userId": 2103,
@@ -41,6 +46,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "note" : "Creative thinker",
+    "lessons": [ ],
     "tags" : [ ]
   }, {
     "userId": 2103,
@@ -48,6 +54,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "note" : "Athletic and active",
+    "lessons": [ ],
     "tags" : [ ]
   } ]
 }

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,17 +26,20 @@ public class Person {
     // Data fields
     private final Note note;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Lesson> lessons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(UserId userId, Name name, Phone phone, Email email, Note note, Set<Tag> tags) {
+    public Person(UserId userId, Name name, Phone phone, Email email, Note note,
+            Set<Lesson> lessons, Set<Tag> tags) {
         requireAllNonNull(userId, name, phone, email, note, tags);
         this.userId = userId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.note = note;
+        this.lessons.addAll(lessons);
         this.tags.addAll(tags);
     }
 
@@ -57,6 +61,14 @@ public class Person {
 
     public Note getNote() {
         return note;
+    }
+
+    /**
+     * Returns an immutable lesson set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Lesson> getLessons() {
+        return Collections.unmodifiableSet(lessons);
     }
 
     /**
