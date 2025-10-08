@@ -8,6 +8,8 @@ import seedu.address.model.lesson.Lesson;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
+ *
+ * TODO: Change when Lesson changes.
  */
 class JsonAdaptedLesson {
 

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Lesson in the address book.
  * Guarantees: immutable; is always valid.
+ *
+ * TODO: Add more fields to better represent Lesson data.
  */
 public class Lesson {
 

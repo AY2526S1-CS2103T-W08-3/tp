@@ -26,8 +26,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -83,13 +83,14 @@ public class AddCommandParserTest {
 
         // multiple notes
         assertParseFailure(parser, NOTE_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_NOTE));
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + NOTE_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_NOTE, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_STUDENT_NOTE,
+                                PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
 
@@ -107,7 +108,7 @@ public class AddCommandParserTest {
 
         // invalid note
         assertParseFailure(parser, INVALID_NOTE_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_NOTE));
 
         // valid value followed by invalid value
 
@@ -125,7 +126,7 @@ public class AddCommandParserTest {
 
         // invalid note
         assertParseFailure(parser, validExpectedPersonString + INVALID_NOTE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STUDENT_NOTE));
     }
 
     @Test

@@ -61,6 +61,8 @@ public class SampleDataUtil {
 
     /**
      * Returns a lesson set containing the list of strings given.
+     *
+     * TODO: Change this to match the new Lesson once it changes.
      */
     public static Set<Lesson> getLessonSet(String... strings) {
         return Arrays.stream(strings)
