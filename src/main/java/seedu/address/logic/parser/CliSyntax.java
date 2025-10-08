@@ -12,5 +12,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_STUDENT_NOTE = new Prefix("sn/");
     public static final Prefix PREFIX_LESSON = new Prefix("l/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_DAY = new Prefix("d/");
+    public static final Prefix PREFIX_STARTTIME = new Prefix("st/");
+    public static final Prefix PREFIX_ENDTIME = new Prefix("et/");
+    public static final Prefix PREFIX_VENUE = new Prefix("v/");
+    public static final Prefix PREFIX_LESSON_NOTE = new Prefix("/ln");
 
 }
