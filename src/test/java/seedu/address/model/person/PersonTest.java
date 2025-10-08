@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -95,5 +96,22 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", note=" + ALICE.getNote() + ", lessons=" + ALICE.getLessons()
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    /**
+     * Asserts that two {@link Person} objects are equal in all user-facing fields,
+     * ignoring their {@code UserId} (which may differ due to random generation).
+     *
+     * @param expected The expected person.
+     * @param actual The actual person parsed from command.
+     */
+    public static void assertEqualPersonIgnoringUserId(Person expected, Person actual) {
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPhone(), actual.getPhone());
+        assertEquals(expected.getEmail(), actual.getEmail());
+        assertEquals(expected.getNote(), actual.getNote());
+        assertEquals(expected.getTags(), actual.getTags());
+        assertEquals(expected.getLessons(), actual.getLessons());
+        assertNotNull(actual.getUserId());
     }
 }
