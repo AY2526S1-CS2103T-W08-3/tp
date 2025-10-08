@@ -3,11 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.UserId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,22 +21,27 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "";
+    public static final Integer DEFAULT_USERID = 2103;
 
+    private UserId userId;
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Note note;
+    private Set<Lesson> lessons;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
+        userId = new UserId(DEFAULT_USERID);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        note = new Note(DEFAULT_NOTE);
+        lessons = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -42,11 +49,21 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        userId = personToCopy.getUserId();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        note = personToCopy.getNote();
+        lessons = new HashSet<>(personToCopy.getLessons());
         tags = new HashSet<>(personToCopy.getTags());
+    }
+
+    /**
+     * Sets the {@code userId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withUserId(Integer userId) {
+        this.userId = new UserId(userId);
+        return this;
     }
 
     /**
@@ -54,6 +71,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLessons(String ... lessons) {
+        this.lessons = SampleDataUtil.getLessonSet(lessons);
         return this;
     }
 
@@ -66,10 +91,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Note} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
         return this;
     }
 
@@ -90,7 +115,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(userId, name, phone, email, note, lessons, tags);
     }
 
 }

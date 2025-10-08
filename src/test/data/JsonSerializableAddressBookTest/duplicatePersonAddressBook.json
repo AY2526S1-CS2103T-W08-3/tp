@@ -1,14 +1,18 @@
 {
   "persons": [ {
+    "userId": 2103,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "note": "Attentive student, submits homework on time",
+    "lessons": [ ],
     "tags": [ "friends" ]
   }, {
+    "userId": 2103,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "note": "Athletic and active",
+    "lessons": [ ]
   } ]
 }
