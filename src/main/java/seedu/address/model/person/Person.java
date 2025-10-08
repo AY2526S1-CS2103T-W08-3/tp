@@ -30,7 +30,7 @@ public class Person {
 
     /**
      * Every field must not be null
-     * This constructor is only exclusively used by storage
+     * This constructor is only exclusively used by storage and edit person
      */
     public Person(UserId userId, Name name, Phone phone, Email email, Note note, Set<Lesson> lessons, Set<Tag> tags) {
         requireAllNonNull(userId, name, phone, email, note, tags);
