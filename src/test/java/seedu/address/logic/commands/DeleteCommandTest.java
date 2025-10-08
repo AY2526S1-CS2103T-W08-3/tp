@@ -36,7 +36,8 @@ public class DeleteCommandTest {
         Name nameToFilter = DUPLICATE_NAME;
         DeleteCommand deleteCommand = new DeleteCommand(nameToFilter, null);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_LIST_PERSONS_WITH_NAME, nameToFilter, nameToFilter);
+        String expectedMessage = String.format(
+                DeleteCommand.MESSAGE_LIST_PERSONS_WITH_NAME, nameToFilter, nameToFilter);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(new ContainsNamePredicate(nameToFilter.fullName));
@@ -48,7 +49,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_nameAndIndex_validIndex_deletesCorrectPerson() {
+    public void execute_nameAndIndex_validIndexDeletesCorrectPerson() {
         Name nameToFilter = DUPLICATE_NAME;
         Index indexToDelete = INDEX_FIRST_PERSON; // 1-based index in filtered list
         Person personToDelete = model.getFilteredPersonList().get(indexToDelete.getZeroBased());

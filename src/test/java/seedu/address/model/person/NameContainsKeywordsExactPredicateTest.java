@@ -19,14 +19,17 @@ public class NameContainsKeywordsExactPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsExactPredicate firstPredicate = new NameContainsKeywordsExactPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsExactPredicate secondPredicate = new NameContainsKeywordsExactPredicate(secondPredicateKeywordList);
+        NameContainsKeywordsExactPredicate firstPredicate =
+                new NameContainsKeywordsExactPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsExactPredicate secondPredicate =
+                new NameContainsKeywordsExactPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsExactPredicate firstPredicateCopy = new NameContainsKeywordsExactPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsExactPredicate firstPredicateCopy =
+                new NameContainsKeywordsExactPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,7 +45,8 @@ public class NameContainsKeywordsExactPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsExactPredicate predicate = new NameContainsKeywordsExactPredicate(Collections.singletonList("Alice"));
+        NameContainsKeywordsExactPredicate predicate =
+                new NameContainsKeywordsExactPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -61,7 +65,8 @@ public class NameContainsKeywordsExactPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsExactPredicate predicate = new NameContainsKeywordsExactPredicate(Collections.emptyList());
+        NameContainsKeywordsExactPredicate predicate =
+                new NameContainsKeywordsExactPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Non-matching keyword
@@ -69,7 +74,9 @@ public class NameContainsKeywordsExactPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and note, but does not match name
-        predicate = new NameContainsKeywordsExactPredicate(Arrays.asList("12345", "alice@email.com", "Good", "student"));
+        predicate = new NameContainsKeywordsExactPredicate(
+                Arrays.asList("12345", "alice@email.com", "Good", "student"));
+
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withNote("Good student").build()));
     }
