@@ -33,7 +33,8 @@ public class NameContainsKeywordsExactPredicate implements Predicate<Person> {
             return false;
         }
 
-        NameContainsKeywordsExactPredicate otherNameContainsKeywordsExactPredicate = (NameContainsKeywordsExactPredicate) other;
+        NameContainsKeywordsExactPredicate otherNameContainsKeywordsExactPredicate =
+                (NameContainsKeywordsExactPredicate) other;
         return keywords.equals(otherNameContainsKeywordsExactPredicate.keywords);
     }
 

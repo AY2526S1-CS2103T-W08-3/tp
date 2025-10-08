@@ -7,9 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    /** The integer value of the user ID. */
-    public final Integer value;
     public static final int USER_ID_LENGTH = 4;
+    public final Integer value;
 
     /**
      * Constructs a {@code UserId} with the specified integer value.

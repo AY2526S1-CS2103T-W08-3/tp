@@ -27,13 +27,16 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " Bob " + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons with " +
-            "name: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
+    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons with "
+            + "name: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
     public static final String MESSAGE_NO_USERS_FOUND = "There are no persons matching the name: \"%s\".";
 
     private final Name name;
     private final Index targetIndex; // null if no target index provided to delete
 
+    /**
+     * Creates a DeleteCommand to delete the specified {@code Person}
+     */
     public DeleteCommand(Name name, Index targetIndex) {
         this.name = name;
         this.targetIndex = targetIndex;
