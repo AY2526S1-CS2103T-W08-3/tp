@@ -9,17 +9,17 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class NameContainsKeywordsExactPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public NameContainsKeywordsExactPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordExactIgnoreCase(person.getName().fullName, keyword));
     }
 
     @Override
@@ -29,12 +29,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof NameContainsKeywordsExactPredicate)) {
             return false;
         }
 
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        NameContainsKeywordsExactPredicate otherNameContainsKeywordsExactPredicate = (NameContainsKeywordsExactPredicate) other;
+        return keywords.equals(otherNameContainsKeywordsExactPredicate.keywords);
     }
 
     @Override
