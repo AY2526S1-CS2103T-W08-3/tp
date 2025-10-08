@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import java.util.Random;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.Random;
 
 /**
  * Represents a Person's unique user ID in the address book.

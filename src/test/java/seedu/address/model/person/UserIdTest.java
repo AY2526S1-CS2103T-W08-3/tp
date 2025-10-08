@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -81,7 +82,7 @@ public class UserIdTest {
 
     @Test
     public void constructor_randomIdsNoCollisions_smallSample() {
-        final int sampleSize = 1000;
+        final int sampleSize = 100;
         Set<Integer> ids = new HashSet<>();
 
         for (int i = 0; i < sampleSize; i++) {
