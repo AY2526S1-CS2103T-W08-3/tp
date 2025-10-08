@@ -43,7 +43,10 @@ public class AddLessonCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("lesson created");
+        requireNonNull(model);
+
+
+        return new CommandResult("Lesson Created!");
     }
 
     @Override

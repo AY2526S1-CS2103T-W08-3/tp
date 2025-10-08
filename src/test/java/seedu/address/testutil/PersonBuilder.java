@@ -74,13 +74,6 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withLessons(String ... lessons) {
-        this.lessons = SampleDataUtil.getLessonSet(lessons);
-        return this;
-    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.

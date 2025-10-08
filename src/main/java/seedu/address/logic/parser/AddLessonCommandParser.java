@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Day;
@@ -15,13 +14,8 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.UserId;
-import seedu.address.model.tag.Tag;
+
 
 public class AddLessonCommandParser implements Parser<AddLessonCommand> {
 

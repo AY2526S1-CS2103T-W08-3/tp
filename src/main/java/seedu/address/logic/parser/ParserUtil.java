@@ -95,30 +95,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String lesson} into a {@code Lesson}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code lesson} is invalid.
-     */
-    public static Lesson parseLesson(String lesson) throws ParseException {
-        requireNonNull(lesson);
-        String trimmedLesson = lesson.trim();
-        return new Lesson(trimmedLesson);
-    }
-
-    /**
-     * Parses {@code Collection<String> lessons} into a {@code Set<Lesson>}.
-     */
-    public static Set<Lesson> parseLessons(Collection<String> lessons) throws ParseException {
-        requireNonNull(lessons);
-        final Set<Lesson> lessonSet = new HashSet<>();
-        for (String lessonName : lessons) {
-            lessonSet.add(parseLesson(lessonName));
-        }
-        return lessonSet;
-    }
-
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

@@ -59,16 +59,6 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    /**
-     * Returns a lesson set containing the list of strings given.
-     *
-     * TODO: Change this to match the new Lesson once it changes.
-     */
-    public static Set<Lesson> getLessonSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Lesson::new)
-                .collect(Collectors.toSet());
-    }
 
     /**
      * Returns a tag set containing the list of strings given.
