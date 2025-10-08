@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 : new Note("");
         Set<Lesson> lessonList = ParserUtil.parseLessons(argMultimap.getAllValues(PREFIX_LESSON));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        UserId userId = new UserId(2103);
+        UserId userId = new UserId();
 
         Person person = new Person(userId, name, phone, email, note, lessonList, tagList);
 
