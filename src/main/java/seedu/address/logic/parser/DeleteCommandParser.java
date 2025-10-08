@@ -28,6 +28,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 throw new ParseException("");
             }
 
+            // Case: first argument is a pure number → invalid name
+            if (argParts.length == 1 && argParts[0].matches("\\d+")) {
+                throw new ParseException("");
+            }
+
             Name name = ParserUtil.parseName(argParts[0]);
 
             if (argParts.length == 1) {

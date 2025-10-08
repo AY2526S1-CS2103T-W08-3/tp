@@ -29,6 +29,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons with " +
             "name: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
+    public static final String MESSAGE_NO_USERS_FOUND = "There are no persons matching the name: \"%s\".";
 
     private final Name name;
     private final Index targetIndex; // null if no target index provided to delete
@@ -45,6 +46,11 @@ public class DeleteCommand extends Command {
 
         model.updateFilteredPersonList(new ContainsNamePredicate(name.toString()));
         List<Person> lastShownList = model.getFilteredPersonList();
+
+        // List is empty
+        if (lastShownList.isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_NO_USERS_FOUND, name));
+        }
 
         // No delete index provided, display list and message without deleting
         if (targetIndex == null) {
