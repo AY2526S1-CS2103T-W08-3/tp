@@ -29,10 +29,10 @@ public class Person {
     private final Set<Lesson> lessons = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must not be null
+     * This constructor is only exclusively used by storage and edit person
      */
-    public Person(UserId userId, Name name, Phone phone, Email email, Note note,
-            Set<Lesson> lessons, Set<Tag> tags) {
+    public Person(UserId userId, Name name, Phone phone, Email email, Note note, Set<Lesson> lessons, Set<Tag> tags) {
         requireAllNonNull(userId, name, phone, email, note, tags);
         this.userId = userId;
         this.name = name;
@@ -40,6 +40,19 @@ public class Person {
         this.email = email;
         this.note = note;
         this.lessons.addAll(lessons);
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field except lesson must not be null
+     */
+    public Person(UserId userId, Name name, Phone phone, Email email, Note note, Set<Tag> tags) {
+        requireAllNonNull(userId, name, phone, email, note, tags);
+        this.userId = userId;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.note = note;
         this.tags.addAll(tags);
     }
 
