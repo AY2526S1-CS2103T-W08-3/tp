@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +24,8 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final String DUPLICATE_NAME = "Alice";
+    public static final Name DUPLICATE_NAME = new Name("Alice");
+    public static final Name UNIQUE_NAME = new Name("Benson");
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withNote("Attentive student, submits homework on time").withEmail("alice@example.com")
