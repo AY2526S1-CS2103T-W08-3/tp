@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Random;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -19,6 +21,14 @@ public class UserId {
     public UserId(Integer userId) {
         requireNonNull(userId);
         value = userId;
+    }
+
+    /**
+     * Constructs a {@code UserId} with a randomly generated 16-bit integer value.
+     */
+    public UserId() {
+        Random random = new Random();
+        this.value = random.nextInt(1 << 16); // generates 0–65535
     }
 
     /**
