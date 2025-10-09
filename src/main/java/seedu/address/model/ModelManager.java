@@ -125,6 +125,8 @@ public class ModelManager implements Model {
         return addressBook.hasLesson(lesson);
     }
 
+    // TODO implement other lesson features (e.g. delete)
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

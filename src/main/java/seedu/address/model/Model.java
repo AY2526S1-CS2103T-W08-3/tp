@@ -100,6 +100,8 @@ public interface Model {
      */
     boolean hasLesson(Lesson lesson);
 
+    // TODO implement other lesson features (e.g. delete, set)
+
     /**
      * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
