@@ -28,7 +28,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.person.PersonTest.assertEqualPersonIgnoringUserId;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -47,22 +47,28 @@ public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
-
+    public void parse_allFieldsPresent_success() throws Exception {
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + STUDENT_NOTE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        String inputWithWhitespace = PREAMBLE_WHITESPACE
+                + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENT_NOTE_DESC_BOB + TAG_DESC_FRIEND;
 
+        AddCommand command = parser.parse(inputWithWhitespace);
+        Person actualPerson = command.getPerson();
+        assertEqualPersonIgnoringUserId(expectedPerson, actualPerson);
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENT_NOTE_DESC_BOB + TAG_DESC_HUSBAND
-                        + TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+        String inputMultipleTags = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + STUDENT_NOTE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND;
+
+        AddCommand commandMultiple = parser.parse(inputMultipleTags);
+        Person actualPersonMultiple = commandMultiple.getPerson();
+        assertEqualPersonIgnoringUserId(expectedPersonMultipleTags, actualPersonMultiple);
     }
+
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
@@ -122,12 +128,18 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_optionalFieldsMissing_success() throws Exception {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + STUDENT_NOTE_DESC_AMY,
-                new AddCommand(expectedPerson));
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + STUDENT_NOTE_DESC_AMY;
+
+        AddCommand command = parser.parse(userInput);
+        Person person = command.getPerson();
+
+        // Compare all fields except for UserId
+        assertEqualPersonIgnoringUserId(expectedPerson, person);
     }
+
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
