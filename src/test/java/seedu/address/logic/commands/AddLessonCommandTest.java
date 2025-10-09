@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -53,6 +54,23 @@ public class AddLessonCommandTest {
         assertEquals(String.format(AddLessonCommand.MESSAGE_SUCCESS, Messages.format(validLesson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validLesson), modelStub.lessonsAdded);
+    }
+
+    @Test
+    public void execute_duplicateLesson_throwsCommandException() {
+        Lesson validLesson = new Lesson(
+                new LessonId(1001),
+                Day.MON,
+                new Time("1400"),
+                new Time("1600"),
+                new Venue("Blk 123 Computing Dr 1"),
+                new Note("Algebra basics")
+        );
+        AddLessonCommand addLessonCommand = new AddLessonCommand(validLesson);
+        ModelStub modelStub = new ModelStubWithLesson(validLesson);
+
+        assertThrows(CommandException.class,
+                AddLessonCommand.MESSAGE_DUPLICATE_LESSON, () -> addLessonCommand.execute(modelStub));
     }
 
     @Test
@@ -192,6 +210,24 @@ public class AddLessonCommandTest {
         @Override
         public ObservableList<Lesson> getFilteredLessonList() {
             throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    /**
+     * A Model stub that contains a single lesson.
+     */
+    private class ModelStubWithLesson extends ModelStub {
+        private final Lesson lesson;
+
+        ModelStubWithLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            this.lesson = lesson;
+        }
+
+        @Override
+        public boolean hasLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            return this.lesson.isSameLesson(lesson);
         }
     }
 
