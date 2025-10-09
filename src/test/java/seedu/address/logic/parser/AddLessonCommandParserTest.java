@@ -23,9 +23,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_SCIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -130,11 +130,11 @@ public class AddLessonCommandParserTest {
 
         // multiple start times
         assertParseFailure(parser, STARTTIME_DESC_SCIENCE + validExpectedLessonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_STARTTIME));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_START_TIME));
 
         // multiple end times
         assertParseFailure(parser, ENDTIME_DESC_SCIENCE + validExpectedLessonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ENDTIME));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_END_TIME));
 
         // multiple venues
         assertParseFailure(parser, VENUE_DESC_SCIENCE + validExpectedLessonString,
@@ -148,7 +148,7 @@ public class AddLessonCommandParserTest {
         assertParseFailure(parser,
                 validExpectedLessonString + DAY_DESC_SCIENCE + STARTTIME_DESC_SCIENCE
                         + ENDTIME_DESC_SCIENCE + validExpectedLessonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DAY, PREFIX_STARTTIME,
-                        PREFIX_ENDTIME, PREFIX_VENUE, PREFIX_LESSON_NOTE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DAY, PREFIX_START_TIME,
+                        PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE));
     }
 }

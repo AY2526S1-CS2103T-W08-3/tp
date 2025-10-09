@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.stream.Stream;
@@ -31,19 +31,19 @@ public class AddLessonCommandParser implements Parser<AddLessonCommand> {
      */
     public AddLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_STARTTIME,
-                PREFIX_ENDTIME, PREFIX_VENUE, PREFIX_LESSON_NOTE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_START_TIME,
+                PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DAY, PREFIX_STARTTIME, PREFIX_ENDTIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DAY, PREFIX_START_TIME, PREFIX_END_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLessonCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DAY, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_VENUE,
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DAY, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_VENUE,
                 PREFIX_LESSON_NOTE);
         Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
-        Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_STARTTIME).get());
-        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_ENDTIME).get());
+        Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
+        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
         Venue venue = argMultimap.getValue(PREFIX_VENUE).isPresent()
                 ? ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get())
                 : new Venue("");

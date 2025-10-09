@@ -25,6 +25,8 @@ class JsonAdaptedLesson {
 
     /**
      * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
+     *
+     * TODO include JsonAdaptedPerson into this class
      */
     @JsonCreator
     public JsonAdaptedLesson(@JsonProperty("lessonId") Integer lessonId,
@@ -79,7 +81,12 @@ class JsonAdaptedLesson {
         }
 
         final LessonId modelLessonId = new LessonId(lessonId);
-        final Day modelDay = Day.fromString(day);
+        final Day modelDay;
+        try {
+            modelDay = Day.fromString(day);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(Day.MESSAGE_CONSTRAINTS);
+        }
         final Time modelStartTime = new Time(startTime);
         final Time modelEndTime = new Time(endTime);
         final Venue modelVenue = new Venue(venue);

@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
@@ -65,10 +65,10 @@ public class CommandTestUtil {
 
     public static final String DAY_DESC_MATH = " " + PREFIX_DAY + VALID_DAY_MATH;
     public static final String DAY_DESC_SCIENCE = " " + PREFIX_DAY + VALID_DAY_SCIENCE;
-    public static final String STARTTIME_DESC_MATH = " " + PREFIX_STARTTIME + VALID_STARTTIME_MATH;
-    public static final String STARTTIME_DESC_SCIENCE = " " + PREFIX_STARTTIME + VALID_STARTTIME_SCIENCE;
-    public static final String ENDTIME_DESC_MATH = " " + PREFIX_ENDTIME + VALID_ENDTIME_MATH;
-    public static final String ENDTIME_DESC_SCIENCE = " " + PREFIX_ENDTIME + VALID_ENDTIME_SCIENCE;
+    public static final String STARTTIME_DESC_MATH = " " + PREFIX_START_TIME + VALID_STARTTIME_MATH;
+    public static final String STARTTIME_DESC_SCIENCE = " " + PREFIX_START_TIME + VALID_STARTTIME_SCIENCE;
+    public static final String ENDTIME_DESC_MATH = " " + PREFIX_END_TIME + VALID_ENDTIME_MATH;
+    public static final String ENDTIME_DESC_SCIENCE = " " + PREFIX_END_TIME + VALID_ENDTIME_SCIENCE;
     public static final String VENUE_DESC_MATH = " " + PREFIX_VENUE + VALID_VENUE_MATH;
     public static final String VENUE_DESC_SCIENCE = " " + PREFIX_VENUE + VALID_VENUE_SCIENCE;
     public static final String LESSON_NOTE_DESC_MATH = " " + PREFIX_LESSON_NOTE + VALID_LESSON_NOTE_MATH;
@@ -79,8 +79,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DAY_DESC = " " + PREFIX_DAY + "ABC"; // invalid day
-    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "25:00"; // invalid time
-    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "2500"; // invalid time
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_START_TIME + "25:00"; // invalid time
+    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_END_TIME + "2500"; // invalid time
     public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE; // empty venue not allowed when specified
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

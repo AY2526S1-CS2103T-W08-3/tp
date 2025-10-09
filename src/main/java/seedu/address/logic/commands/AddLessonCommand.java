@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -23,14 +23,14 @@ public class AddLessonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to the address book. "
             + "Parameters: "
             + PREFIX_DAY + "DAY "
-            + PREFIX_STARTTIME + "STARTTIME "
-            + PREFIX_ENDTIME + "ENDTIME "
+            + PREFIX_START_TIME + "STARTTIME "
+            + PREFIX_END_TIME + "ENDTIME "
             + PREFIX_VENUE + "VENUE "
             + PREFIX_LESSON_NOTE + "LESSONNOTE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DAY + "Tue "
-            + PREFIX_STARTTIME + "1500 "
-            + PREFIX_ENDTIME + "1700 "
+            + PREFIX_START_TIME + "1500 "
+            + PREFIX_END_TIME + "1700 "
             + PREFIX_VENUE + "Ang Mo Kio Block 52 #12-34 "
             + PREFIX_LESSON_NOTE + "English Lesson ";
 
