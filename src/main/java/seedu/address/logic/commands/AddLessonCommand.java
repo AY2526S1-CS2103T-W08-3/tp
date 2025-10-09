@@ -45,7 +45,7 @@ public class AddLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-
+        model.addLesson(toAdd);
         return new CommandResult("Lesson Created!");
     }
 

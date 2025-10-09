@@ -27,6 +27,10 @@ public class Lesson {
 
     private final Set<Person> students = new HashSet<>();
 
+    /**
+     * Initializes a Lesson object
+     * Every field must not be null
+     */
     public Lesson(LessonId lessonId, Day day, Time startTime, Time endTime, Venue venue, Note note) {
         requireAllNonNull(lessonId, day, startTime, endTime, venue, note);
         this.lessonId = lessonId;
@@ -37,29 +41,19 @@ public class Lesson {
         this.note = note;
     }
 
-    public Day getDay() {
-        return day;
+    /**
+     * Returns true if both lessons have the same id.
+     * This defines a weaker notion of equality between two lessons.
+     */
+    public boolean isSameLesson(Lesson otherLesson) {
+        if (otherLesson == this) {
+            return true;
+        }
+
+        return otherLesson != null
+                && otherLesson.getLessonId().equals(getLessonId());
     }
 
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public Venue getVenue() {
-        return venue;
-    }
-
-    public LessonId getLessonId() {
-        return lessonId;
-    }
-
-    public Note getNote() {
-        return note;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -99,6 +93,30 @@ public class Lesson {
                 .add("venue", venue)
                 .add("note", note)
                 .toString();
+    }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public LessonId getLessonId() {
+        return lessonId;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
 }
