@@ -37,12 +37,10 @@ public class AddLessonCommandParser implements Parser<AddLessonCommand> {
                 ? ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get())
                 : new Venue("");
         Note note = argMultimap.getValue(PREFIX_LESSON_NOTE).isPresent()
-                ? ParserUtil.parseNote(argMultimap.getValue(PREFIX_STUDENT_NOTE).get())
+                ? ParserUtil.parseNote(argMultimap.getValue(PREFIX_LESSON_NOTE).get())
                 : new Note("");
 
-        // TODO implement non-hardcoded lesson ID
-        LessonId lessonId = new LessonId(2103);
-
+        LessonId lessonId = new LessonId();
 
         Lesson lesson = new Lesson(lessonId, day, startTime, endTime, venue, note);
 

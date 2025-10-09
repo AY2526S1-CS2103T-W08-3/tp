@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -49,7 +50,8 @@ public class AddLessonCommandTest {
 
         CommandResult commandResult = new AddLessonCommand(validLesson).execute(modelStub);
 
-        assertEquals("Lesson Created!", commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddLessonCommand.MESSAGE_SUCCESS, Messages.format(validLesson)),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validLesson), modelStub.lessonsAdded);
     }
 
@@ -178,6 +180,11 @@ public class AddLessonCommandTest {
         }
 
         @Override
+        public boolean hasLesson(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredLessonList(Predicate<Lesson> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -198,6 +205,12 @@ public class AddLessonCommandTest {
         public void addLesson(Lesson lesson) {
             requireNonNull(lesson);
             lessonsAdded.add(lesson);
+        }
+
+        @Override
+        public boolean hasLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            return lessonsAdded.stream().anyMatch(lesson::isSameLesson);
         }
 
         @Override

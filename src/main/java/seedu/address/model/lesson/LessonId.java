@@ -2,11 +2,15 @@ package seedu.address.model.lesson;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Random;
+
 /**
  * Represents a Lesson's unique user ID in the address book.
  * Guarantees: immutable; is always valid (non-null).
  */
 public class LessonId {
+    public static final int LESSON_ID_LENGTH = 6;
+    public static final int MAX_LESSON_ID = 999999;
     public final Integer value;
 
     /**
@@ -17,6 +21,14 @@ public class LessonId {
     public LessonId(Integer lessonId) {
         requireNonNull(lessonId);
         value = lessonId;
+    }
+
+    /**
+     * Constructs a {@code LessonId} with a randomly generated integer value.
+     */
+    public LessonId() {
+        Random random = new Random();
+        this.value = random.nextInt(MAX_LESSON_ID); // generates 0–999999
     }
 
     /**

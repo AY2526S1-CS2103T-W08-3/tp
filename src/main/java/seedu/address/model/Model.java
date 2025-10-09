@@ -96,6 +96,11 @@ public interface Model {
     void addLesson(Lesson lesson);
 
     /**
+     * Returns true if a lesson with the same identity as {@code lesson} exists in the address book.
+     */
+    boolean hasLesson(Lesson lesson);
+
+    /**
      * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

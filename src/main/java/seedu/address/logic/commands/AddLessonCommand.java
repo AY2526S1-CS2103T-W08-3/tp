@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 
 /**
@@ -31,6 +34,9 @@ public class AddLessonCommand extends Command {
             + PREFIX_VENUE + "Ang Mo Kio Block 52 #12-34 "
             + PREFIX_LESSON_NOTE + "English Lesson ";
 
+    public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
+    public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in the address book";
+
     private final Lesson toAdd;
 
     /**
@@ -45,8 +51,12 @@ public class AddLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.hasLesson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+        }
+
         model.addLesson(toAdd);
-        return new CommandResult("Lesson Created!");
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override
