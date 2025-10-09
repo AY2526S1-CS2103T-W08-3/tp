@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddLessonCommand;
@@ -14,7 +13,7 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
-import seedu.address.model.person.Note;
+import seedu.address.model.note.Note;
 
 
 public class AddLessonCommandParser implements Parser<AddLessonCommand> {

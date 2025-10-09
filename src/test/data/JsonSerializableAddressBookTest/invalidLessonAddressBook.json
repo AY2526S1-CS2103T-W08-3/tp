@@ -1,0 +1,12 @@
+{
+  "_comment": "AddressBook save file with an invalid lesson (invalid time format)",
+  "persons" : [ ],
+  "lessons" : [ {
+    "lessonId": 1001,
+    "day" : "MON",
+    "startTime" : "invalid_time",
+    "endTime" : "1600",
+    "venue" : "Blk 123 Computing Dr 1",
+    "note" : "Algebra basics"
+  } ]
+}

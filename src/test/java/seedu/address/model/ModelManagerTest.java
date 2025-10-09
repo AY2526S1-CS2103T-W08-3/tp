@@ -15,8 +15,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.TypicalLessons;
 
 public class ModelManagerTest {
 
@@ -91,6 +93,28 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void addLesson_validLesson_success() {
+        Lesson lesson = TypicalLessons.MATH_LESSON;
+        modelManager.addLesson(lesson);
+        assertTrue(modelManager.getFilteredLessonList().contains(lesson));
+    }
+
+    @Test
+    public void addLesson_nullLesson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addLesson(null));
+    }
+
+    @Test
+    public void getFilteredLessonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredLessonList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredLessonList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredLessonList(null));
     }
 
     @Test

@@ -9,7 +9,7 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
-import seedu.address.model.person.Note;
+import seedu.address.model.note.Note;
 
 /**
  * Jackson-friendly version of {@link Lesson}.

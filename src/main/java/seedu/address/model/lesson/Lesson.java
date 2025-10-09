@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Note;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
 
 /**
