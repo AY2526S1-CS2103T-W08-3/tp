@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,24 +25,45 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
+    public static final Name DUPLICATE_NAME = new Name("Daniel");
+    public static final Index INDEX_DUPLICATE_NAME = Index.fromOneBased(4);
+    public static final Name UNIQUE_NAME = new Name("Benson");
+
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withNote("Attentive student, submits homework on time").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withUserId(1).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withNote("Needs to improve attendance")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withUserId(2).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withNote("Talented in physics").build();
+            .withEmail("heinz@example.com").withNote("Talented in physics")
+            .withUserId(3).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withNote("Struggles with concentration").withTags("friends").build();
+            .withEmail("cornelia@example.com").withNote("Struggles with concentration").withTags("friends")
+            .withUserId(4).build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withNote("Quick learner").build();
+            .withEmail("werner@example.com").withNote("Quick learner")
+            .withUserId(5).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withNote("Creative thinker").build();
+            .withEmail("lydia@example.com").withNote("Creative thinker")
+            .withUserId(6).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withNote("Athletic and active").build();
+            .withEmail("anna@example.com").withNote("Athletic and active")
+            .withUserId(7).build();
+    public static final Person DANIEL_2 = new PersonBuilder().withName("Daniel Tan")
+            .withNote("Attentive student, submits homework on time").withEmail("daniel@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withUserId(8).build();
+    public static final Person DANIEL_3 = new PersonBuilder().withName("Daniel Goh")
+            .withNote("Attentive student, submits homework on time").withEmail("daniel@example.com")
+            .withPhone("94351253")
+            .withTags("friends")
+            .withUserId(9).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -71,6 +94,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, DANIEL_2, DANIEL_3));
     }
 }
