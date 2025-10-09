@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DAY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_VENUE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_NOTE_DESC_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_NOTE_DESC_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -27,9 +26,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
@@ -40,7 +39,6 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
 import seedu.address.model.note.Note;
-import seedu.address.testutil.LessonBuilder;
 
 public class AddLessonCommandParserTest {
     private AddLessonCommandParser parser = new AddLessonCommandParser();
