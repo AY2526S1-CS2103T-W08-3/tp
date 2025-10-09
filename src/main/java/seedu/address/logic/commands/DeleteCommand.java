@@ -10,7 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.ContainsNamePredicate;
+import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -46,7 +46,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         requireNonNull(name);
 
-        model.updateFilteredPersonList(new ContainsNamePredicate(name.toString()));
+        model.updateFilteredPersonList(new NameContainsKeywordPredicate(name.toString()));
         List<Person> lastShownList = model.getFilteredPersonList();
 
         // List is empty

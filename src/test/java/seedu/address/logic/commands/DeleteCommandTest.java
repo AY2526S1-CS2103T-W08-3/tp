@@ -20,7 +20,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ContainsNamePredicate;
+import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -41,7 +41,7 @@ public class DeleteCommandTest {
                 DeleteCommand.MESSAGE_LIST_PERSONS_WITH_NAME, nameToFilter, nameToFilter);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new ContainsNamePredicate(nameToFilter.fullName));
+        expectedModel.updateFilteredPersonList(new NameContainsKeywordPredicate(nameToFilter.fullName));
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
 
@@ -62,7 +62,7 @@ public class DeleteCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         // Filter by name and delete
-        expectedModel.updateFilteredPersonList(new ContainsNamePredicate(nameToFilter.fullName));
+        expectedModel.updateFilteredPersonList(new NameContainsKeywordPredicate(nameToFilter.fullName));
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

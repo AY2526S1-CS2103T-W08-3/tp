@@ -11,21 +11,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class ContainsNamePredicateTest {
+public class NameContainsKeywordPredicateTest {
 
     @Test
     public void equals() {
         String first = "first";
         String second = "second";
 
-        ContainsNamePredicate firstPredicate = new ContainsNamePredicate(first);
-        ContainsNamePredicate secondPredicate = new ContainsNamePredicate(second);
+        NameContainsKeywordPredicate firstPredicate = new NameContainsKeywordPredicate(first);
+        NameContainsKeywordPredicate secondPredicate = new NameContainsKeywordPredicate(second);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ContainsNamePredicate firstPredicateCopy = new ContainsNamePredicate(first);
+        NameContainsKeywordPredicate firstPredicateCopy = new NameContainsKeywordPredicate(first);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,19 +41,19 @@ public class ContainsNamePredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        ContainsNamePredicate predicate = new ContainsNamePredicate("Alice");
+        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Alice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // More than one keyword
-        predicate = new ContainsNamePredicate("alice tan");
+        predicate = new NameContainsKeywordPredicate("alice tan");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Tan Xiao Ming").build()));
 
         // Subset string matching
-        predicate = new ContainsNamePredicate("lic");
+        predicate = new NameContainsKeywordPredicate("lic");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keyword
-        predicate = new ContainsNamePredicate("Ice");
+        predicate = new NameContainsKeywordPredicate("Ice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
     }
@@ -61,7 +61,7 @@ public class ContainsNamePredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        ContainsNamePredicate predicate = new ContainsNamePredicate("Carol");
+        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Carol");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and note, but does not match name
@@ -69,7 +69,7 @@ public class ContainsNamePredicateTest {
                 .withEmail("alice@email.com").withNote("Good student").build();
         List<String> keywords = Arrays.asList("12345", "alice@email.com", "Good", "student");
         keywords.forEach((keyword) -> {
-            ContainsNamePredicate testPredicate = new ContainsNamePredicate(keyword);
+            NameContainsKeywordPredicate testPredicate = new NameContainsKeywordPredicate(keyword);
             assertFalse(testPredicate.test(person));
         });
     }
@@ -77,9 +77,9 @@ public class ContainsNamePredicateTest {
     @Test
     public void toStringMethod() {
         String keyword = "keyword";
-        ContainsNamePredicate predicate = new ContainsNamePredicate(keyword);
+        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate(keyword);
 
-        String expected = ContainsNamePredicate.class.getCanonicalName() + "{name=" + keyword + "}";
+        String expected = NameContainsKeywordPredicate.class.getCanonicalName() + "{name=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
 }

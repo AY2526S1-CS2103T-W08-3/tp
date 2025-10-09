@@ -10,10 +10,10 @@ import seedu.address.commons.util.ToStringBuilder;
  * String does not have to be an exact match.
  * Test returns true as long as input String is a subsequence of {@code Name}
  */
-public class ContainsNamePredicate implements Predicate<Person> {
+public class NameContainsKeywordPredicate implements Predicate<Person> {
     private final String name;
 
-    public ContainsNamePredicate(String name) {
+    public NameContainsKeywordPredicate(String name) {
         this.name = name;
     }
 
@@ -29,11 +29,11 @@ public class ContainsNamePredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ContainsNamePredicate)) {
+        if (!(other instanceof NameContainsKeywordPredicate)) {
             return false;
         }
 
-        return ((ContainsNamePredicate) other).name.equals(name);
+        return ((NameContainsKeywordPredicate) other).name.equals(name);
     }
 
     @Override
