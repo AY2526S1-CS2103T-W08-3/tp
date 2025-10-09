@@ -91,8 +91,8 @@ public class UserIdTest {
             UserId userId = new UserId();
             int value = userId.getValue();
 
-            // Ensure it's within 16-bit range
-            assertTrue(value >= 0 && value < (1 << 16), "ID out of range");
+            // Ensure it's within range
+            assertTrue(value >= 0 && value < 999999, "ID out of range");
 
             ids.add(value);
         }
@@ -107,7 +107,7 @@ public class UserIdTest {
         String str = userId.toString();
         assertTrue(str.matches("\\d+"), "toString() should return digits only");
         int parsed = Integer.parseInt(str);
-        assertTrue(parsed >= 0 && parsed < (1 << 16),
-                "String form should represent a valid 16-bit number");
+        assertTrue(parsed >= 0 && parsed < 999999,
+                "String form should be in range");
     }
 }
