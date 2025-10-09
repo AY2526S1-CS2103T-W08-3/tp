@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UserId;
@@ -51,6 +51,8 @@ public class SampleDataUtil {
         };
     }
 
+    // TODO create sample lessons and integrate into UI
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -59,16 +61,6 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    /**
-     * Returns a lesson set containing the list of strings given.
-     *
-     * TODO: Change this to match the new Lesson once it changes.
-     */
-    public static Set<Lesson> getLessonSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Lesson::new)
-                .collect(Collectors.toSet());
-    }
 
     /**
      * Returns a tag set containing the list of strings given.

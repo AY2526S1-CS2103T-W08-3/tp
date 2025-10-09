@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -61,7 +61,8 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getLessons().stream()
-                .sorted(Comparator.comparing(lesson -> lesson.lessonName))
-                .forEach(lesson -> lessons.getChildren().add(new Label(lesson.lessonName)));
+                .sorted(Comparator.comparing(lesson -> lesson.getDay()))
+                .forEach(lesson -> lessons.getChildren().add(
+                        new Label(lesson.getDay() + " " + lesson.getStartTime() + "-" + lesson.getEndTime())));
     }
 }

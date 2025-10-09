@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalLessons.MATH_LESSON;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,67 +22,100 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
+import seedu.address.model.lesson.Time;
+import seedu.address.model.lesson.Venue;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddLessonCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullLesson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddLessonCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_lessonAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingLessonAdded modelStub = new ModelStubAcceptingLessonAdded();
+        Lesson validLesson = new Lesson(
+                new LessonId(1001),
+                Day.MON,
+                new Time("1400"),
+                new Time("1600"),
+                new Venue("Blk 123 Computing Dr 1"),
+                new Note("Algebra basics")
+        );
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddLessonCommand(validLesson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddLessonCommand.MESSAGE_SUCCESS, Messages.format(validLesson)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validLesson), modelStub.lessonsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateLesson_throwsCommandException() {
+        Lesson validLesson = new Lesson(
+                new LessonId(1001),
+                Day.MON,
+                new Time("1400"),
+                new Time("1600"),
+                new Venue("Blk 123 Computing Dr 1"),
+                new Note("Algebra basics")
+        );
+        AddLessonCommand addLessonCommand = new AddLessonCommand(validLesson);
+        ModelStub modelStub = new ModelStubWithLesson(validLesson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddLessonCommand.MESSAGE_DUPLICATE_LESSON, () -> addLessonCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Lesson mathLesson = new Lesson(
+                new LessonId(1001),
+                Day.MON,
+                new Time("1400"),
+                new Time("1600"),
+                new Venue("Blk 123 Computing Dr 1"),
+                new Note("Algebra basics")
+        );
+        Lesson englishLesson = new Lesson(
+                new LessonId(1002),
+                Day.TUE,
+                new Time("1000"),
+                new Time("1200"),
+                new Venue("Blk 456 English Ave 2"),
+                new Note("Grammar review")
+        );
+        AddLessonCommand addMathCommand = new AddLessonCommand(mathLesson);
+        AddLessonCommand addEnglishCommand = new AddLessonCommand(englishLesson);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addMathCommand.equals(addMathCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddLessonCommand addMathCommandCopy = new AddLessonCommand(mathLesson);
+        assertTrue(addMathCommand.equals(addMathCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addMathCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addMathCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different lesson -> returns false
+        assertFalse(addMathCommand.equals(addEnglishCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddLessonCommand addLessonCommand = new AddLessonCommand(MATH_LESSON);
+        String expected = AddLessonCommand.class.getCanonicalName() + "{toAdd=" + MATH_LESSON + "}";
+        assertEquals(expected, addLessonCommand.toString());
     }
 
     /**
@@ -181,39 +214,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single lesson.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithLesson extends ModelStub {
+        private final Lesson lesson;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            this.lesson = lesson;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            return this.lesson.isSameLesson(lesson);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the lesson being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingLessonAdded extends ModelStub {
+        final ArrayList<Lesson> lessonsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void addLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            lessonsAdded.add(lesson);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public boolean hasLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            return lessonsAdded.stream().anyMatch(lesson::isSameLesson);
         }
 
         @Override
@@ -221,5 +254,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

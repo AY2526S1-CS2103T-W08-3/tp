@@ -9,7 +9,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -22,20 +21,6 @@ public class SampleDataUtilTest {
         assertEquals(samplePersons.length, addressBook.getPersonList().size());
     }
 
-    @Test
-    public void getLessonSet_emptyArray_returnsEmptySet() {
-        Set<Lesson> lessons = SampleDataUtil.getLessonSet();
-        assertNotNull(lessons);
-        assertTrue(lessons.isEmpty());
-    }
-
-    @Test
-    public void getLessonSet_validLessons_returnsCorrectSet() {
-        Set<Lesson> lessons = SampleDataUtil.getLessonSet("Math", "English", "English");
-        assertEquals(2, lessons.size());
-        assertTrue(lessons.contains(new Lesson("Math")));
-        assertTrue(lessons.contains(new Lesson("English")));
-    }
 
     @Test
     public void getTagSet_emptyArray_returnsEmptySet() {

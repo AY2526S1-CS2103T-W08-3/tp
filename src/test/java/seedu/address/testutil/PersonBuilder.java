@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UserId;
@@ -74,13 +74,6 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code lessons} into a {@code Set<Lesson>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withLessons(String ... lessons) {
-        this.lessons = SampleDataUtil.getLessonSet(lessons);
-        return this;
-    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.

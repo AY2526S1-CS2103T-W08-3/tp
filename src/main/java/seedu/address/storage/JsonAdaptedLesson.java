@@ -1,38 +1,58 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
+import seedu.address.model.lesson.Time;
+import seedu.address.model.lesson.Venue;
+import seedu.address.model.note.Note;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
- *
- * TODO: Change when Lesson changes.
  */
 class JsonAdaptedLesson {
 
-    private final String lessonName;
+    private final Integer lessonId;
+    private final String day;
+    private final String startTime;
+    private final String endTime;
+    private final String venue;
+    private final String note;
 
     /**
-     * Constructs a {@code JsonAdaptedLesson} with the given {@code lessonName}.
+     * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
+     *
+     * TODO include JsonAdaptedPerson into this class
      */
     @JsonCreator
-    public JsonAdaptedLesson(String lessonName) {
-        this.lessonName = lessonName;
+    public JsonAdaptedLesson(@JsonProperty("lessonId") Integer lessonId,
+                             @JsonProperty("day") String day,
+                             @JsonProperty("startTime") String startTime,
+                             @JsonProperty("endTime") String endTime,
+                             @JsonProperty("venue") String venue,
+                             @JsonProperty("note") String note) {
+        this.lessonId = lessonId;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.venue = venue;
+        this.note = note;
     }
 
     /**
      * Converts a given {@code Lesson} into this class for Jackson use.
      */
     public JsonAdaptedLesson(Lesson source) {
-        lessonName = source.lessonName;
-    }
-
-    @JsonValue
-    public String getlessonName() {
-        return lessonName;
+        lessonId = source.getLessonId().value;
+        day = source.getDay().toString();
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
+        venue = source.getVenue().toString();
+        note = source.getNote().toString();
     }
 
     /**
@@ -41,10 +61,38 @@ class JsonAdaptedLesson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
     public Lesson toModelType() throws IllegalValueException {
-        if (lessonName == null) {
-            throw new IllegalValueException(String.format("Lesson name cannot be null"));
+        if (lessonId == null) {
+            throw new IllegalValueException("Lesson ID cannot be null");
         }
-        return new Lesson(lessonName);
+        if (day == null || !Day.isValidDay(day)) {
+            throw new IllegalValueException(Day.MESSAGE_CONSTRAINTS);
+        }
+        if (startTime == null || !Time.isValidTime(startTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        }
+        if (endTime == null || !Time.isValidTime(endTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        }
+        if (venue == null) {
+            throw new IllegalValueException("Venue cannot be null");
+        }
+        if (note == null) {
+            throw new IllegalValueException("Note cannot be null");
+        }
+
+        final LessonId modelLessonId = new LessonId(lessonId);
+        final Day modelDay;
+        try {
+            modelDay = Day.fromString(day);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(Day.MESSAGE_CONSTRAINTS);
+        }
+        final Time modelStartTime = new Time(startTime);
+        final Time modelEndTime = new Time(endTime);
+        final Venue modelVenue = new Venue(venue);
+        final Note modelNote = new Note(note);
+
+        return new Lesson(modelLessonId, modelDay, modelStartTime, modelEndTime, modelVenue, modelNote);
     }
 
 }

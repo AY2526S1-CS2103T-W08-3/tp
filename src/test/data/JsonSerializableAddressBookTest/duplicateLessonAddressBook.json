@@ -1,0 +1,19 @@
+{
+  "_comment": "AddressBook save file with duplicate lessons (same lessonId)",
+  "persons" : [ ],
+  "lessons" : [ {
+    "lessonId": 1001,
+    "day" : "MON",
+    "startTime" : "1400",
+    "endTime" : "1600",
+    "venue" : "Blk 123 Computing Dr 1",
+    "note" : "Algebra basics"
+  }, {
+    "lessonId": 1001,
+    "day" : "TUE",
+    "startTime" : "1000",
+    "endTime" : "1200",
+    "venue" : "Different Venue",
+    "note" : "Different note"
+  } ]
+}

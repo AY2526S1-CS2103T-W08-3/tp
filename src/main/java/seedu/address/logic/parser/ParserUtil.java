@@ -9,10 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.Day;
+import seedu.address.model.lesson.Time;
+import seedu.address.model.lesson.Venue;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -92,30 +94,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String lesson} into a {@code Lesson}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code lesson} is invalid.
-     */
-    public static Lesson parseLesson(String lesson) throws ParseException {
-        requireNonNull(lesson);
-        String trimmedLesson = lesson.trim();
-        return new Lesson(trimmedLesson);
-    }
-
-    /**
-     * Parses {@code Collection<String> lessons} into a {@code Set<Lesson>}.
-     */
-    public static Set<Lesson> parseLessons(Collection<String> lessons) throws ParseException {
-        requireNonNull(lessons);
-        final Set<Lesson> lessonSet = new HashSet<>();
-        for (String lessonName : lessons) {
-            lessonSet.add(parseLesson(lessonName));
-        }
-        return lessonSet;
-    }
-
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -140,5 +118,47 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String day} into a {@code Day}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(trimmedDay)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        return Day.fromString(trimmedDay);
+    }
+
+    /**
+     * Parses a (@code String time) into a {@code Time}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code Venye}
+     * Leading and trailing whitespaces will be trimmed
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        return new Venue(trimmedVenue);
     }
 }
