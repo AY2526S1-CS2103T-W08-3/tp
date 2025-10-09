@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Random;
+
 /**
  * Represents a Person's unique user ID in the address book.
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    public static final int USER_ID_LENGTH = 4;
+    public static final int USER_ID_LENGTH = 6;
+    public static final int MAX_USER_ID = 999999;
     public final Integer value;
 
     /**
@@ -19,6 +22,14 @@ public class UserId {
     public UserId(Integer userId) {
         requireNonNull(userId);
         value = userId;
+    }
+
+    /**
+     * Constructs a {@code UserId} with a randomly generated 16-bit integer value.
+     */
+    public UserId() {
+        Random random = new Random();
+        this.value = random.nextInt(MAX_USER_ID); // generates 0–999999
     }
 
     /**
