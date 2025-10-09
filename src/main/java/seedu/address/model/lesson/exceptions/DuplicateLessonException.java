@@ -1,6 +1,5 @@
 package seedu.address.model.lesson.exceptions;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * Signals that the operation will result in duplicate Lessons (if they have the same identity)

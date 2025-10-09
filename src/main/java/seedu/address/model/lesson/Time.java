@@ -7,6 +7,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a Time instance
+ */
 public class Time {
 
     public static final String MESSAGE_CONSTRAINTS = "Time should be in 24-hour format HHMM (e.g. 0930)";

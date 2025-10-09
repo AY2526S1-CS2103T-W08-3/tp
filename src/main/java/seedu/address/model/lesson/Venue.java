@@ -2,6 +2,9 @@ package seedu.address.model.lesson;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Venue instance
+ */
 public class Venue {
 
     public final String value;
