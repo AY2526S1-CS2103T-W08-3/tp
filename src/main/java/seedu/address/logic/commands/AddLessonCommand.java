@@ -80,4 +80,8 @@ public class AddLessonCommand extends Command {
                 .add("toAdd", toAdd)
                 .toString();
     }
+
+    public Lesson getLesson() {
+        return toAdd;
+    }
 }

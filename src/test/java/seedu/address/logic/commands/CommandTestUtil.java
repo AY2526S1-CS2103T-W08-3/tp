@@ -2,11 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,6 +41,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_DAY_MATH = "MON";
+    public static final String VALID_DAY_SCIENCE = "TUE";
+    public static final String VALID_STARTTIME_MATH = "1400";
+    public static final String VALID_STARTTIME_SCIENCE = "1000";
+    public static final String VALID_ENDTIME_MATH = "1600";
+    public static final String VALID_ENDTIME_SCIENCE = "1200";
+    public static final String VALID_VENUE_MATH = "Blk 123 Computing Dr 1";
+    public static final String VALID_VENUE_SCIENCE = "Blk 456 Science Ave 2";
+    public static final String VALID_LESSON_NOTE_MATH = "Algebra basics";
+    public static final String VALID_LESSON_NOTE_SCIENCE = "Chemistry review";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -47,10 +63,25 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String DAY_DESC_MATH = " " + PREFIX_DAY + VALID_DAY_MATH;
+    public static final String DAY_DESC_SCIENCE = " " + PREFIX_DAY + VALID_DAY_SCIENCE;
+    public static final String STARTTIME_DESC_MATH = " " + PREFIX_STARTTIME + VALID_STARTTIME_MATH;
+    public static final String STARTTIME_DESC_SCIENCE = " " + PREFIX_STARTTIME + VALID_STARTTIME_SCIENCE;
+    public static final String ENDTIME_DESC_MATH = " " + PREFIX_ENDTIME + VALID_ENDTIME_MATH;
+    public static final String ENDTIME_DESC_SCIENCE = " " + PREFIX_ENDTIME + VALID_ENDTIME_SCIENCE;
+    public static final String VENUE_DESC_MATH = " " + PREFIX_VENUE + VALID_VENUE_MATH;
+    public static final String VENUE_DESC_SCIENCE = " " + PREFIX_VENUE + VALID_VENUE_SCIENCE;
+    public static final String LESSON_NOTE_DESC_MATH = " " + PREFIX_LESSON_NOTE + VALID_LESSON_NOTE_MATH;
+    public static final String LESSON_NOTE_DESC_SCIENCE = " " + PREFIX_LESSON_NOTE + VALID_LESSON_NOTE_SCIENCE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DAY_DESC = " " + PREFIX_DAY + "ABC"; // invalid day
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "25:00"; // invalid time
+    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "2500"; // invalid time
+    public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE; // empty venue not allowed when specified
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
