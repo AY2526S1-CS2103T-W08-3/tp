@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -24,7 +25,8 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Name DUPLICATE_NAME = new Name("Alice");
+    public static final Name DUPLICATE_NAME = new Name("Daniel");
+    public static final Index INDEX_DUPLICATE_NAME = Index.fromOneBased(4);
     public static final Name UNIQUE_NAME = new Name("Benson");
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
@@ -52,13 +54,13 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withNote("Athletic and active")
             .withUserId(7).build();
-    public static final Person ALICE_2 = new PersonBuilder().withName("Alice Tan")
-            .withNote("Attentive student, submits homework on time").withEmail("alice@example.com")
+    public static final Person DANIEL_2 = new PersonBuilder().withName("Daniel Tan")
+            .withNote("Attentive student, submits homework on time").withEmail("daniel@example.com")
             .withPhone("94351253")
             .withTags("friends")
             .withUserId(8).build();
-    public static final Person ALICE_3 = new PersonBuilder().withName("Alice Goh")
-            .withNote("Attentive student, submits homework on time").withEmail("alice@example.com")
+    public static final Person DANIEL_3 = new PersonBuilder().withName("Daniel Goh")
+            .withNote("Attentive student, submits homework on time").withEmail("daniel@example.com")
             .withPhone("94351253")
             .withTags("friends")
             .withUserId(9).build();
@@ -92,6 +94,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, ALICE_2, ALICE_3));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, DANIEL_2, DANIEL_3));
     }
 }

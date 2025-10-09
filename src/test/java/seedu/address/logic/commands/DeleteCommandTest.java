@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.DUPLICATE_NAME;
+import static seedu.address.testutil.TypicalPersons.INDEX_DUPLICATE_NAME;
 import static seedu.address.testutil.TypicalPersons.UNIQUE_NAME;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -51,10 +52,9 @@ public class DeleteCommandTest {
     @Test
     public void execute_nameAndIndex_validIndexDeletesCorrectPerson() {
         Name nameToFilter = DUPLICATE_NAME;
-        Index indexToDelete = INDEX_FIRST_PERSON; // 1-based index in filtered list
-        Person personToDelete = model.getFilteredPersonList().get(indexToDelete.getZeroBased());
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_DUPLICATE_NAME.getZeroBased());
 
-        DeleteCommand deleteCommand = new DeleteCommand(nameToFilter, indexToDelete);
+        DeleteCommand deleteCommand = new DeleteCommand(nameToFilter, INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
