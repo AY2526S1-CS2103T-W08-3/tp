@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons with "
-            + "name: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
+            + "containing: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
 
     private final Name name;
     private final Index targetIndex; // null if no target index provided to delete
