@@ -28,7 +28,7 @@ public class UserId {
      */
     public UserId() {
         Random random = new Random();
-        this.value = random.nextInt(1 << 16); // generates 0–65535
+        this.value = random.nextInt(999999); // generates 0–999999
     }
 
     /**

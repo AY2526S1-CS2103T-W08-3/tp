@@ -65,13 +65,14 @@ public class UserIdTest {
     }
 
     @Test
-    public void constructor_randomIdWithin16BitRange_success() {
+    public void constructor_randomIdWithinRange_success() {
         UserId userId = new UserId();
         int value = userId.getValue();
-        assertTrue(value >= 0 && value < (1 << 16),
-                "Generated ID should be within 16-bit range (0–65535)");
+        assertTrue(value >= 0 && value < 999999,
+                "Generated ID should be within 16-bit range (0–999999)");
     }
 
+    // TODO make the test deterministic consistent with changing UserId implementation
     @Test
     public void constructor_randomIdsUsuallyDifferent() {
         UserId id1 = new UserId();
@@ -80,6 +81,7 @@ public class UserIdTest {
                 "Randomly generated IDs should usually differ");
     }
 
+    // TODO make the test deterministic consistent with changing UserId implementation
     @Test
     public void constructor_randomIdsNoCollisions_smallSample() {
         final int sampleSize = 100;
