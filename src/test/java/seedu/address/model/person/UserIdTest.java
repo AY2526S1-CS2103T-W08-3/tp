@@ -34,7 +34,7 @@ public class UserIdTest {
     @Test
     public void toString_returnsCorrectString() {
         UserId userId = new UserId(2103);
-        assertEquals("2103", userId.toString());
+        assertEquals("002103", userId.toString());
     }
 
     @Test
