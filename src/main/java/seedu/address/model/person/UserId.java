@@ -9,7 +9,8 @@ import java.util.Random;
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    /** The integer value of the user ID. */
+    public static final int USER_ID_LENGTH = 6;
+    public static final int MAX_USER_ID = 999999;
     public final Integer value;
 
     /**
@@ -28,7 +29,7 @@ public class UserId {
      */
     public UserId() {
         Random random = new Random();
-        this.value = random.nextInt(999999); // generates 0–999999
+        this.value = random.nextInt(MAX_USER_ID); // generates 0–999999
     }
 
     /**
@@ -43,11 +44,13 @@ public class UserId {
     /**
      * Returns the string representation of this user ID.
      *
-     * @return The user ID value as a String.
+     * @return The user ID value as a padded 4-digit String.
      */
     @Override
     public String toString() {
-        return value.toString();
+        int len = value.toString().length();
+        int zerosToPad = USER_ID_LENGTH - len;
+        return "0".repeat(Math.max(0, zerosToPad)) + value;
     }
 
     /**
