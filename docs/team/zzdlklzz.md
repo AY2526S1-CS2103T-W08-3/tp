@@ -29,6 +29,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Updated delete command flow to match updated use case (Pull request [\#51]())
+    * Added new predicate to filter by UserId instead of Name
 
 * **Documentation**:
     * Developer Guide:
