@@ -16,12 +16,19 @@ public class UserId {
     /**
      * Constructs a {@code UserId} with the specified integer value.
      *
-     * @param userId A valid user ID integer. Must not be null.
+     * @param userId A valid user ID integer. Must not be null and must be less than or equal to MAX_USER_ID
      * @throws NullPointerException if {@code userId} is null.
      */
     public UserId(Integer userId) {
         requireNonNull(userId);
-        value = userId;
+
+        // Initialize with a random user id if input is greater than MAX_USER_ID
+        if (userId.compareTo(MAX_USER_ID) > 0) {
+            Random random = new Random();
+            value = random.nextInt(MAX_USER_ID);
+        } else {
+            value = userId;
+        }
     }
 
     /**
