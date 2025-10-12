@@ -4,7 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

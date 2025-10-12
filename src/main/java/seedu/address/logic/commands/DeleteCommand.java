@@ -11,8 +11,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 
 /**
  * Deletes a person identified by name using it's displayed index from the filtered name list of the address book.
