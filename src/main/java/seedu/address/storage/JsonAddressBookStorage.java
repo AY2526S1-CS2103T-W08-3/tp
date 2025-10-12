@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.UserId;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -48,6 +49,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAddressBook.class);
         if (!jsonAddressBook.isPresent()) {
+            // Initialise static field in UserId Class
+            UserId.setMaxUserId(0);
             return Optional.empty();
         }
 

@@ -28,6 +28,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -75,12 +76,16 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
+        // Initialise Max User Id
+        UserId.setMaxUserId(0);
         assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
     public void execute_storageThrowsAdException_throwsCommandException() {
+        // Initialise Max User Id
+        UserId.setMaxUserId(0);
         assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
     }

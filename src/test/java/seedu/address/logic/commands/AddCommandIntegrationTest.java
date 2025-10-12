@@ -13,6 +13,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -24,6 +25,13 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        // Ensure any auto-generated user IDs start above all existing IDs
+        int maxId = TypicalPersons.getTypicalPersons().stream()
+                .mapToInt(p -> p.getUserId().value)
+                .max()
+                .orElse(0);
+        PersonBuilder.initialiseUserId(maxId + 1);
     }
 
     @Test

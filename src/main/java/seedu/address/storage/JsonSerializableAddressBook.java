@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -57,11 +58,15 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        int maxId = -1;
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
+            // Track the largest existing ID
+            maxId = Math.max(maxId, person.getUserId().value);
             addressBook.addPerson(person);
         }
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
@@ -71,7 +76,10 @@ class JsonSerializableAddressBook {
             }
             addressBook.addLesson(lesson);
         }
+
+        // Update static max ID tracker for future persons
+        UserId.setMaxUserId(maxId + 1);
+
         return addressBook;
     }
-
 }

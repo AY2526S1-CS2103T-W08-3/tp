@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -11,8 +10,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 
 public class UserIdTest {
@@ -68,7 +65,7 @@ public class UserIdTest {
     }
 
     @Test
-    public void constructor_IdsDifferent() throws IllegalValueException {
+    public void constructor_idsDifferent_oneSample() {
         UserId.setMaxUserId(0);
         UserId id1 = new UserId();
         UserId id2 = new UserId();
@@ -77,7 +74,7 @@ public class UserIdTest {
     }
 
     @Test
-    public void constructor_IdsDifferent_smallSample() throws IllegalValueException {
+    public void constructor_idsDifferent_multipleSamples() {
         final int sampleSize = 100;
         Set<Integer> ids = new HashSet<>();
 
@@ -95,7 +92,7 @@ public class UserIdTest {
     }
 
     @Test
-    public void toString_returnsNumericString() throws IllegalValueException {
+    public void toString_returnsNumericString() {
         UserId userId = new UserId();
         String str = userId.toString();
         assertTrue(str.matches("\\d+"), "toString() should return digits only");

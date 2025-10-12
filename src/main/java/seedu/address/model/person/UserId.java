@@ -2,14 +2,14 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.exceptions.UserIdNotInitialisedException;
 
 /**
  * Represents a Person's unique user ID in the address book.
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    public static int MAX_USER_ID = -1;
+    private static int MAX_USER_ID = -1;
     public final Integer value;
 
     /**
@@ -28,9 +28,9 @@ public class UserId {
      * Constructs a {@code UserId} with a randomly generated 16-bit integer value.
      * For generating new Persons.
      */
-    public UserId() throws IllegalValueException {
+    public UserId() {
         if (MAX_USER_ID < 0) {
-            throw new IllegalValueException("Max User ID is negative. Initialise before using this constructor.");
+            throw new UserIdNotInitialisedException();
         }
         this.value = MAX_USER_ID;
         MAX_USER_ID += 1;
@@ -46,6 +46,15 @@ public class UserId {
             throw new IllegalArgumentException("Max User ID cannot be negative.");
         }
         MAX_USER_ID = userId;
+    }
+
+    /**
+     * Gets the integer value of the static field MAX_USER_ID.
+     *
+     * @return The Max User ID value as an Integer.
+     */
+    public static Integer getMaxUserId() {
+        return MAX_USER_ID;
     }
 
     /**
