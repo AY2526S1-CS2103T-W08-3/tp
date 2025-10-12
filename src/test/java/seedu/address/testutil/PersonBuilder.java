@@ -23,7 +23,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_NOTE = "";
     public static final Integer DEFAULT_USERID = 0;
-    private static boolean isInitialised = false;
 
     private UserId userId;
     private Name name;
@@ -37,11 +36,6 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        if (!isInitialised) {
-            UserId.setMaxUserId(0);
-            isInitialised = true;
-        }
-
         userId = new UserId();
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
@@ -65,14 +59,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Initialises the UserId class with {@code userId}
-     */
-    public static void initialiseUserId(Integer userId) {
-        UserId.setMaxUserId(userId);
-        isInitialised = true;
-    }
-
-    /**
      * Sets the {@code userId} of the {@code Person} that we are building.
      */
     public PersonBuilder withUserId(Integer userId) {
@@ -87,7 +73,6 @@ public class PersonBuilder {
         this.name = new Name(name);
         return this;
     }
-
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.

@@ -33,43 +33,52 @@ public class TypicalPersons {
             .withNote("Attentive student, submits homework on time").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
+            .withUserId(1)
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withNote("Needs to improve attendance")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
+            .withUserId(2)
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withNote("Talented in physics")
+            .withUserId(3)
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withNote("Struggles with concentration").withTags("friends")
+            .withUserId(4)
             .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withNote("Quick learner")
+            .withUserId(5)
             .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withNote("Creative thinker")
+            .withUserId(6)
             .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withNote("Athletic and active")
+            .withUserId(7)
             .build();
     public static final Person DANIEL_2 = new PersonBuilder().withName("Daniel Tan")
             .withNote("Attentive student, submits homework on time").withEmail("daniel@example.com")
             .withPhone("94351253")
             .withTags("friends")
+            .withUserId(8)
             .build();
     public static final Person DANIEL_3 = new PersonBuilder().withName("Daniel Goh")
             .withNote("Attentive student, submits homework on time").withEmail("daniel@example.com")
             .withPhone("94351253")
             .withTags("friends")
+            .withUserId(9)
             .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withNote("Enjoys group work").build();
+            .withEmail("stefan@example.com").withNote("Enjoys group work").withUserId(10).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withNote("Quiet but diligent").build();
+            .withEmail("hans@example.com").withNote("Quiet but diligent").withUserId(11).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

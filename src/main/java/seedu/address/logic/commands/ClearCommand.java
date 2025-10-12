@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.UserId;
 
 /**
  * Clears the address book.
@@ -20,8 +19,6 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
 
-        //Reset MaxUserId in UserId Class to 0
-        UserId.setMaxUserId(0);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

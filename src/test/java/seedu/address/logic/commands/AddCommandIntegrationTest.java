@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,14 +23,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-        // Ensure any auto-generated user IDs start above all existing IDs
-        int maxId = TypicalPersons.getTypicalPersons().stream()
-                .mapToInt(p -> p.getUserId().value)
-                .max()
-                .orElse(0);
-        PersonBuilder.initialiseUserId(maxId + 1);
+        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test

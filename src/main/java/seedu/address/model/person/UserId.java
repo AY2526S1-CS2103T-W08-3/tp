@@ -9,7 +9,7 @@ import seedu.address.model.person.exceptions.UserIdNotInitialisedException;
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    private static int MAX_USER_ID = -1;
+    private static int maxUserId = -1;
     public final Integer value;
 
     /**
@@ -29,15 +29,15 @@ public class UserId {
      * For generating new Persons.
      */
     public UserId() {
-        if (MAX_USER_ID < 0) {
+        if (maxUserId < 0) {
             throw new UserIdNotInitialisedException();
         }
-        this.value = MAX_USER_ID;
-        MAX_USER_ID += 1;
+        this.value = maxUserId;
+        maxUserId += 1;
     }
 
     /**
-     * Sets the integer value of the static field MAX_USER_ID.
+     * maxUserId
      *
      * @param userId The user ID value as an Integer.
      */
@@ -45,7 +45,7 @@ public class UserId {
         if (userId < 0) {
             throw new IllegalArgumentException("Max User ID cannot be negative.");
         }
-        MAX_USER_ID = userId;
+        maxUserId = userId;
     }
 
     /**
@@ -53,7 +53,7 @@ public class UserId {
      *
      */
     static void resetForTest() {
-        MAX_USER_ID = -1;
+        maxUserId = -1;
     }
 
     /**
@@ -62,7 +62,7 @@ public class UserId {
      * @return The Max User ID value as an Integer.
      */
     public static Integer getMaxUserId() {
-        return MAX_USER_ID;
+        return maxUserId;
     }
 
     /**
