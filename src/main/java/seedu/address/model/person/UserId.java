@@ -2,19 +2,19 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Random;
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Person's unique user ID in the address book.
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    public static final int USER_ID_LENGTH = 6;
-    public static final int MAX_USER_ID = 999999;
+    public static int MAX_USER_ID = -1;
     public final Integer value;
 
     /**
      * Constructs a {@code UserId} with the specified integer value.
+     * For copying of already generated Persons.
      *
      * @param userId A valid user ID integer. Must not be null.
      * @throws NullPointerException if {@code userId} is null.
@@ -26,10 +26,26 @@ public class UserId {
 
     /**
      * Constructs a {@code UserId} with a randomly generated 16-bit integer value.
+     * For generating new Persons.
      */
-    public UserId() {
-        Random random = new Random();
-        this.value = random.nextInt(MAX_USER_ID); // generates 0–999999
+    public UserId() throws IllegalValueException {
+        if (MAX_USER_ID < 0) {
+            throw new IllegalValueException("Max User ID is negative. Initialise before using this constructor.");
+        }
+        this.value = MAX_USER_ID;
+        MAX_USER_ID += 1;
+    }
+
+    /**
+     * Sets the integer value of the static field MAX_USER_ID.
+     *
+     * @param userId The user ID value as an Integer.
+     */
+    public static void setMaxUserId(Integer userId) {
+        if (userId < 0) {
+            throw new IllegalArgumentException("Max User ID cannot be negative.");
+        }
+        MAX_USER_ID = userId;
     }
 
     /**
@@ -44,13 +60,11 @@ public class UserId {
     /**
      * Returns the string representation of this user ID.
      *
-     * @return The user ID value as a padded 4-digit String.
+     * @return The user ID value as a String
      */
     @Override
     public String toString() {
-        int len = value.toString().length();
-        int zerosToPad = USER_ID_LENGTH - len;
-        return "0".repeat(Math.max(0, zerosToPad)) + value;
+        return value.toString();
     }
 
     /**

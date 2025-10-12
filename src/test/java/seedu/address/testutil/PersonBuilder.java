@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Email;
@@ -22,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_NOTE = "";
-    public static final Integer DEFAULT_USERID = 2103;
+    public static final Integer DEFAULT_USERID = 0;
 
     private UserId userId;
     private Name name;
@@ -35,7 +36,7 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public PersonBuilder() throws IllegalValueException {
         userId = new UserId();
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);

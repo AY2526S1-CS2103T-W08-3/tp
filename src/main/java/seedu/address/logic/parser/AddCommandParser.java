@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.note.Note;
@@ -49,7 +50,13 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ? ParserUtil.parseNote(argMultimap.getValue(PREFIX_STUDENT_NOTE).get())
                 : new Note("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        UserId userId = new UserId();
+
+        UserId userId;
+        try {
+            userId = new UserId();
+        } catch (IllegalValueException e) {
+            throw new ParseException("Failed to generate User ID: " + e.getMessage());
+        }
 
         Person person = new Person(userId, name, phone, email, note, tagList);
 
