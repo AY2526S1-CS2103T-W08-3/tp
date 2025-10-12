@@ -112,4 +112,10 @@ public class UserIdTest {
     public void setMaxUserId_invalidUserId() {
         assertThrows(IllegalArgumentException.class, () -> UserId.setMaxUserId(-1));
     }
+
+    @Test
+    public void getMaxUserId_returnsCorrectValue() {
+        UserId.setMaxUserId(0);
+        assertEquals(0, UserId.getMaxUserId());
+    }
 }
