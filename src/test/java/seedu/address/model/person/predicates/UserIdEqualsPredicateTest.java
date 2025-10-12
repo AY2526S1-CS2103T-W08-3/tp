@@ -19,6 +19,7 @@ public class UserIdEqualsPredicateTest {
 
         UserIdEqualsPredicate firstPredicate = new UserIdEqualsPredicate(firstId);
         UserIdEqualsPredicate secondPredicate = new UserIdEqualsPredicate(secondId);
+        UserIdEqualsPredicate firstPredicateFromInt = new UserIdEqualsPredicate(1);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -26,6 +27,9 @@ public class UserIdEqualsPredicateTest {
         // same values -> returns true
         UserIdEqualsPredicate firstPredicateCopy = new UserIdEqualsPredicate(new UserId(1));
         assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        // instantiated from int but same user id -> returns true
+        assertTrue(firstPredicate.equals(firstPredicateFromInt));
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));

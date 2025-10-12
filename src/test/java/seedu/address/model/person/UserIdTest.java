@@ -26,6 +26,15 @@ public class UserIdTest {
     }
 
     @Test
+    public void constructor_inputGreaterThanMax_generatesRandomId() {
+        int tooLarge = UserId.MAX_USER_ID + 1;
+        UserId userId = new UserId(tooLarge);
+        int value = userId.getValue();
+        assertTrue(value >= 0 && value < UserId.MAX_USER_ID,
+                "Generated ID should be within 0–MAX_USER_ID when input exceeds MAX_USER_ID");
+    }
+
+    @Test
     public void getValue_returnsCorrectValue() {
         UserId userId = new UserId(2103);
         assertEquals(2103, userId.getValue());
