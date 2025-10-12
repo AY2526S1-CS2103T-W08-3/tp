@@ -49,6 +49,14 @@ public class UserId {
     }
 
     /**
+     * Resets the integer value of the static field MAX_USER_ID to -1.
+     *
+     */
+    static void resetForTest() {
+        MAX_USER_ID = -1;
+    }
+
+    /**
      * Gets the integer value of the static field MAX_USER_ID.
      *
      * @return The Max User ID value as an Integer.

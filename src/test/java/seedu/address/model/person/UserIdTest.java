@@ -10,9 +10,16 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.exceptions.UserIdNotInitialisedException;
 
 
 public class UserIdTest {
+
+    @Test
+    public void constructor_invalidUserId_failure() {
+        UserId.resetForTest();
+        assertThrows(UserIdNotInitialisedException.class, () -> new UserId());
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -93,11 +100,16 @@ public class UserIdTest {
 
     @Test
     public void toString_returnsNumericString() {
+        UserId.setMaxUserId(0);
         UserId userId = new UserId();
         String str = userId.toString();
         assertTrue(str.matches("\\d+"), "toString() should return digits only");
         int parsed = Integer.parseInt(str);
-        assertTrue(parsed >= 0,
-                "String form should be in range");
+        assertEquals(0, parsed, "String form should be in range");
+    }
+
+    @Test
+    public void setMaxUserId_invalidUserId() {
+        assertThrows(IllegalArgumentException.class, () -> UserId.setMaxUserId(-1));
     }
 }

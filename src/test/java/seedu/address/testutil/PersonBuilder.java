@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_NOTE = "";
     public static final Integer DEFAULT_USERID = 0;
-    private static boolean IS_INITIALISED = false;
+    private static boolean isInitialised = false;
 
     private UserId userId;
     private Name name;
@@ -37,9 +37,9 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        if (!IS_INITIALISED) {
+        if (!isInitialised) {
             UserId.setMaxUserId(0);
-            IS_INITIALISED = true;
+            isInitialised = true;
         }
 
         userId = new UserId();
@@ -69,7 +69,7 @@ public class PersonBuilder {
      */
     public static void initialiseUserId(Integer userId) {
         UserId.setMaxUserId(userId);
-        IS_INITIALISED = true;
+        isInitialised = true;
     }
 
     /**
