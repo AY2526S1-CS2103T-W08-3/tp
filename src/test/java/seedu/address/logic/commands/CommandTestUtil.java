@@ -22,7 +22,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
+import seedu.address.model.person.UserId;
+import seedu.address.model.person.predicates.UserIdEqualsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -148,10 +149,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String fullName = person.getName().fullName;
+        final UserId userId = person.getUserId();
 
-        // TODO create a new Predicate class that filters by UserId
-        model.updateFilteredPersonList(new NameContainsKeywordPredicate(fullName));
+        model.updateFilteredPersonList(new UserIdEqualsPredicate(userId));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
