@@ -10,6 +10,7 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UserId;
 
 /**
  * Wraps all data at the address-book level
@@ -33,7 +34,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         lessons = new UniqueLessonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        UserId.setMaxUserId(0);
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}

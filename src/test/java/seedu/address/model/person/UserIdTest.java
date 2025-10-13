@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -11,8 +10,16 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.exceptions.UserIdNotInitialisedException;
+
 
 public class UserIdTest {
+
+    @Test
+    public void constructor_invalidUserId_failure() {
+        UserId.resetForTest();
+        assertThrows(UserIdNotInitialisedException.class, () -> new UserId());
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -43,7 +50,7 @@ public class UserIdTest {
     @Test
     public void toString_returnsCorrectString() {
         UserId userId = new UserId(2103);
-        assertEquals("002103", userId.toString());
+        assertEquals("2103", userId.toString());
     }
 
     @Test
@@ -74,49 +81,50 @@ public class UserIdTest {
     }
 
     @Test
-    public void constructor_randomIdWithinRange_success() {
-        UserId userId = new UserId();
-        int value = userId.getValue();
-        assertTrue(value >= 0 && value < 999999,
-                "Generated ID should be within 16-bit range (0–999999)");
-    }
-
-    // TODO make the test deterministic consistent with changing UserId implementation
-    @Test
-    public void constructor_randomIdsUsuallyDifferent() {
+    public void constructor_idsDifferent_oneSample() {
+        UserId.setMaxUserId(0);
         UserId id1 = new UserId();
         UserId id2 = new UserId();
-        assertNotEquals(id1.getValue(), id2.getValue(),
-                "Randomly generated IDs should usually differ");
+        assertEquals(0, id1.getValue(), "User Id of first user should be 0.");
+        assertEquals(1, id2.getValue(), "User Id of second user should be 1.");
     }
 
-    // TODO make the test deterministic consistent with changing UserId implementation
     @Test
-    public void constructor_randomIdsNoCollisions_smallSample() {
+    public void constructor_idsDifferent_multipleSamples() {
         final int sampleSize = 100;
         Set<Integer> ids = new HashSet<>();
+
+        UserId.setMaxUserId(0);
 
         for (int i = 0; i < sampleSize; i++) {
             UserId userId = new UserId();
             int value = userId.getValue();
-
-            // Ensure it's within range
-            assertTrue(value >= 0 && value < 999999, "ID out of range");
-
+            assertTrue(value >= 0, "ID out of range");
             ids.add(value);
         }
 
         // No duplicates should exist
-        assertTrue(ids.size() == sampleSize, "Random IDs should be unique in this sample");
+        assertEquals(sampleSize, ids.size(), "IDs should be unique in this sample");
     }
 
     @Test
     public void toString_returnsNumericString() {
+        UserId.setMaxUserId(0);
         UserId userId = new UserId();
         String str = userId.toString();
         assertTrue(str.matches("\\d+"), "toString() should return digits only");
         int parsed = Integer.parseInt(str);
-        assertTrue(parsed >= 0 && parsed < 999999,
-                "String form should be in range");
+        assertEquals(0, parsed, "String form should be in range");
+    }
+
+    @Test
+    public void setMaxUserId_invalidUserId() {
+        assertThrows(IllegalArgumentException.class, () -> UserId.setMaxUserId(-1));
+    }
+
+    @Test
+    public void getMaxUserId_returnsCorrectValue() {
+        UserId.setMaxUserId(0);
+        assertEquals(0, UserId.getMaxUserId());
     }
 }

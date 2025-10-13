@@ -2,19 +2,19 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Random;
+import seedu.address.model.person.exceptions.UserIdNotInitialisedException;
 
 /**
  * Represents a Person's unique user ID in the address book.
  * Guarantees: immutable; is always valid (non-null).
  */
 public class UserId {
-    public static final int USER_ID_LENGTH = 6;
-    public static final int MAX_USER_ID = 999999;
+    private static int maxUserId = -1;
     public final Integer value;
 
     /**
      * Constructs a {@code UserId} with the specified integer value.
+     * For copying of already generated Persons.
      *
      * @param userId A valid user ID integer. Must not be null and must be less than or equal to MAX_USER_ID
      * @throws NullPointerException if {@code userId} is null.
@@ -33,10 +33,43 @@ public class UserId {
 
     /**
      * Constructs a {@code UserId} with a randomly generated 16-bit integer value.
+     * For generating new Persons.
      */
     public UserId() {
-        Random random = new Random();
-        this.value = random.nextInt(MAX_USER_ID); // generates 0–999999
+        if (maxUserId < 0) {
+            throw new UserIdNotInitialisedException();
+        }
+        this.value = maxUserId;
+        maxUserId += 1;
+    }
+
+    /**
+     * maxUserId
+     *
+     * @param userId The user ID value as an Integer.
+     */
+    public static void setMaxUserId(Integer userId) {
+        if (userId < 0) {
+            throw new IllegalArgumentException("Max User ID cannot be negative.");
+        }
+        maxUserId = userId;
+    }
+
+    /**
+     * Resets the integer value of the static field MAX_USER_ID to -1.
+     *
+     */
+    static void resetForTest() {
+        maxUserId = -1;
+    }
+
+    /**
+     * Gets the integer value of the static field MAX_USER_ID.
+     *
+     * @return The Max User ID value as an Integer.
+     */
+    public static Integer getMaxUserId() {
+        return maxUserId;
     }
 
     /**
@@ -51,13 +84,11 @@ public class UserId {
     /**
      * Returns the string representation of this user ID.
      *
-     * @return The user ID value as a padded 4-digit String.
+     * @return The user ID value as a String
      */
     @Override
     public String toString() {
-        int len = value.toString().length();
-        int zerosToPad = USER_ID_LENGTH - len;
-        return "0".repeat(Math.max(0, zerosToPad)) + value;
+        return value.toString();
     }
 
     /**
