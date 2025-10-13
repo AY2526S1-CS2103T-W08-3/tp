@@ -21,14 +21,7 @@ public class UserId {
      */
     public UserId(Integer userId) {
         requireNonNull(userId);
-
-        // Initialize with a random user id if input is greater than MAX_USER_ID
-        if (userId.compareTo(MAX_USER_ID) > 0) {
-            Random random = new Random();
-            value = random.nextInt(MAX_USER_ID);
-        } else {
-            value = userId;
-        }
+        value = userId;
     }
 
     /**
