@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Panel containing the list of persons.
@@ -35,7 +35,7 @@ public class LessonListPanel extends UiPart<Region> {
      */
     class LessonListViewCell extends ListCell<Lesson> {
         @Override
-        protected void updateItem(Lesson person, boolean empty) {
+        protected void updateItem(Lesson lesson, boolean empty) {
             super.updateItem(lesson, empty);
 
             if (empty || lesson == null) {
