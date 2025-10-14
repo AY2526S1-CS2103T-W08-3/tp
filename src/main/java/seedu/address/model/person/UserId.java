@@ -16,7 +16,7 @@ public class UserId {
      * Constructs a {@code UserId} with the specified integer value.
      * For copying of already generated Persons.
      *
-     * @param userId A valid user ID integer. Must not be null.
+     * @param userId A valid user ID integer. Must not be null and must be less than or equal to MAX_USER_ID
      * @throws NullPointerException if {@code userId} is null.
      */
     public UserId(Integer userId) {
