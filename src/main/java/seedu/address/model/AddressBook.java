@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.UniqueLessonList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -34,8 +35,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         lessons = new UniqueLessonList();
     }
 
+    /**
+     * Initializes an address book and sets the max user and lesson id to 0.
+     */
     public AddressBook() {
         UserId.setMaxUserId(0);
+        LessonId.setMaxLessonId(0);
     }
 
     /**

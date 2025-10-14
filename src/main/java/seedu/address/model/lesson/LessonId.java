@@ -2,15 +2,14 @@ package seedu.address.model.lesson;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Random;
+import seedu.address.model.lesson.exceptions.LessonIdNotInitialisedException;
 
 /**
- * Represents a Lesson's unique user ID in the address book.
+ * Represents a Lesson's unique lesson ID in the address book.
  * Guarantees: immutable; is always valid (non-null).
  */
 public class LessonId {
-    public static final int LESSON_ID_LENGTH = 6;
-    public static final int MAX_LESSON_ID = 999999;
+    private static int maxLessonId = -1;
     public final Integer value;
 
     /**
@@ -27,8 +26,35 @@ public class LessonId {
      * Constructs a {@code LessonId} with a randomly generated integer value.
      */
     public LessonId() {
-        Random random = new Random();
-        this.value = random.nextInt(MAX_LESSON_ID); // generates 0–999999
+        if (maxLessonId < 0) {
+            throw new LessonIdNotInitialisedException();
+        }
+        this.value = maxLessonId;
+        maxLessonId += 1;
+    }
+
+    /**
+     * Sets the maximum lesson ID
+     */
+    public static void setMaxLessonId(Integer lessonId) {
+        if (lessonId < 0) {
+            throw new IllegalArgumentException("Max Lesson ID cannot be negative.");
+        }
+        maxLessonId = lessonId;
+    }
+
+    /**
+     * Resets the integer value of maxLessonId to -1.
+     */
+    static void resetForTest() {
+        maxLessonId = -1;
+    }
+
+    /**
+     * Returns the integer value of the maxLessonId
+     */
+    public static Integer getMaxLessonId() {
+        return maxLessonId;
     }
 
     /**

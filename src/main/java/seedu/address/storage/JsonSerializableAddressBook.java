@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
 
@@ -58,15 +59,16 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        int maxId = -1;
+        int maxUserId = -1;
+        int maxLessonId = -1;
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            // Track the largest existing ID
-            maxId = Math.max(maxId, person.getUserId().value);
+            // Track the largest existing user ID
+            maxUserId = Math.max(maxUserId, person.getUserId().value);
             addressBook.addPerson(person);
         }
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
@@ -74,11 +76,14 @@ class JsonSerializableAddressBook {
             if (addressBook.hasLesson(lesson)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LESSON);
             }
+            // Track the largest existing lesson ID
+            maxLessonId = Math.max(maxLessonId, lesson.getLessonId().value);
             addressBook.addLesson(lesson);
         }
 
-        // Update static max ID tracker for future persons
-        UserId.setMaxUserId(maxId + 1);
+        // Update static max ID tracker for future persons and lessons
+        UserId.setMaxUserId(maxUserId + 1);
+        LessonId.setMaxLessonId(maxLessonId + 1);
 
         return addressBook;
     }
