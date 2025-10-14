@@ -14,7 +14,7 @@ import seedu.address.model.lesson.Lesson;
  * Panel containing the list of persons.
  */
 public class LessonListPanel extends UiPart<Region> {
-    //TODO: LessonListPanel.fxml
+
     private static final String FXML = "LessonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(LessonListPanel.class);
 
