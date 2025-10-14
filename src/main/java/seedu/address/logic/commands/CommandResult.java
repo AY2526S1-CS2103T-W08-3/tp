@@ -19,6 +19,12 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** All lessons should be shown to the user */
+    private final boolean showLessons;
+
+    /** All persons should be shown to the user */
+    private final boolean showPersons;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -77,6 +83,14 @@ public class CommandResult {
                 .add("showHelp", showHelp)
                 .add("exit", exit)
                 .toString();
+    }
+
+    public boolean isShowLessons() {
+        return showLessons;
+    }
+
+    public boolean isShowPersons() {
+        return showPersons;
     }
 
 }

@@ -45,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane lessonlistPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -113,6 +116,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        lessonlistPanel = new LessonListPanel(logic.getFilteredLessonList());
+        lessonlistPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -121,6 +127,26 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Swap the placeholder content of this window to persons
+     */
+    private void showPersonPanel() {
+        personListPanelPlaceholder.setVisible(true);
+        personListPanelPlaceholder.setManaged(true);
+        lessonListPanelPlaceholder.setVisible(false);
+        lessonlistPanelPlaceholder.setManaged(false);
+    }
+
+    /**
+     * Swap the placeholder content of this window to lessons
+     */
+    private void showLessonPanel() {
+        personListPanelPlaceholder.setVisible(false);
+        personListPanelPlaceholder.setManaged(false);
+        lessonListPanelPlaceholder.setVisible(true);
+        lessonlistPanelPlaceholder.setManaged(true);
     }
 
     /**
@@ -163,10 +189,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +199,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            
+            if (commandResult.isShowLessons()) {
+                showLessonsPanel();
+            } else if (commandResult.isShowPersons()) {
+                showPersonsPanel();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
