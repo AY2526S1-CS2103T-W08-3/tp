@@ -22,24 +22,31 @@ public class CommandResult {
     /** All lessons should be shown to the user */
     private final boolean showLessons;
 
-    /** All persons should be shown to the user */
-    private final boolean showPersons;
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser, showHelp, exit},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false);
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showLessons) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showLessons = showLessons;
     }
+
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -87,10 +94,6 @@ public class CommandResult {
 
     public boolean isShowLessons() {
         return showLessons;
-    }
-
-    public boolean isShowPersons() {
-        return showPersons;
     }
 
 }

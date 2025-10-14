@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private LessonListPanel lessonListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -114,10 +115,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         lessonlistPanel = new LessonListPanel(logic.getFilteredLessonList());
-        lessonlistPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
+
+        //default view = persons
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -133,20 +134,14 @@ public class MainWindow extends UiPart<Stage> {
      * Swap the placeholder content of this window to persons
      */
     private void showPersonPanel() {
-        personListPanelPlaceholder.setVisible(true);
-        personListPanelPlaceholder.setManaged(true);
-        lessonListPanelPlaceholder.setVisible(false);
-        lessonlistPanelPlaceholder.setManaged(false);
+        personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
     }
 
     /**
      * Swap the placeholder content of this window to lessons
      */
     private void showLessonPanel() {
-        personListPanelPlaceholder.setVisible(false);
-        personListPanelPlaceholder.setManaged(false);
-        lessonListPanelPlaceholder.setVisible(true);
-        lessonlistPanelPlaceholder.setManaged(true);
+        personListPanelPlaceholder.getChildren().setAll(lessonListPanel.getRoot());
     }
 
     /**
