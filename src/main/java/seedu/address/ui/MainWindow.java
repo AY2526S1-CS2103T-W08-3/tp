@@ -43,10 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane lessonListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
         lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
 
         //default view = persons
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -134,14 +131,14 @@ public class MainWindow extends UiPart<Stage> {
      * Swap the placeholder content of this window to persons
      */
     private void showPersonsPanel() {
-        personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
     }
 
     /**
      * Swap the placeholder content of this window to lessons
      */
     private void showLessonsPanel() {
-        personListPanelPlaceholder.getChildren().setAll(lessonListPanel.getRoot());
+        listPanelPlaceholder.getChildren().setAll(lessonListPanel.getRoot());
     }
 
     /**

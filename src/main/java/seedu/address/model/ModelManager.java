@@ -151,11 +151,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Lesson> getFilteredLessonList() {
+        logger.info("get filtered lesson");
         return filteredLessons;
     }
 
     @Override
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+        logger.info("update filtereed lesson list");
         requireNonNull(predicate);
         filteredLessons.setPredicate(predicate);
     }
