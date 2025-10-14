@@ -28,8 +28,8 @@ public class Person {
     private final Note note;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Lesson> lessons = new HashSet<>();
-    
-    /** 
+
+    /**
      * Every field must not be null
      * This constructor is only exclusively used by storage and edit person
      */
