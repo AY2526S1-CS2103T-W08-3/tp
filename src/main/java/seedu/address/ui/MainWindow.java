@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane lessonlistPanelPlaceholder;
+    private StackPane lessonListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        lessonlistPanel = new LessonListPanel(logic.getFilteredLessonList());
+        lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
 
         //default view = persons
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -133,14 +133,14 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Swap the placeholder content of this window to persons
      */
-    private void showPersonPanel() {
+    private void showPersonsPanel() {
         personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
     }
 
     /**
      * Swap the placeholder content of this window to lessons
      */
-    private void showLessonPanel() {
+    private void showLessonsPanel() {
         personListPanelPlaceholder.getChildren().setAll(lessonListPanel.getRoot());
     }
 
@@ -194,10 +194,10 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            
+
             if (commandResult.isShowLessons()) {
                 showLessonsPanel();
-            } else if (commandResult.isShowPersons()) {
+            } else {
                 showPersonsPanel();
             }
 
