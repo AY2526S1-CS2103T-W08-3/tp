@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -10,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -151,5 +153,40 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void getFilteredLessonList_initiallyEmpty_returnsEmptyList() {
+        assertEquals(0, modelManager.getFilteredLessonList().size());
+    }
+
+    @Test
+    public void updateFilteredLessonList_filtersByPredicate_keepsOnlyMatches() {
+        Lesson l1 = TypicalLessons.MATH_LESSON;
+        Lesson l2 = TypicalLessons.SCIENCE_LESSON;
+        modelManager.addLesson(l1);
+        modelManager.addLesson(l2);
+
+        Predicate<Lesson> onlyL1 = lesson -> lesson.equals(l1);
+        modelManager.updateFilteredLessonList(onlyL1);
+
+        assertEquals(1, modelManager.getFilteredLessonList().size());
+        assertTrue(modelManager.getFilteredLessonList().contains(l1));
+    }
+
+    @Test
+    public void updateFilteredLessonList_showAll_restoresAllLessons() {
+        Lesson l1 = TypicalLessons.MATH_LESSON;
+        Lesson l2 = TypicalLessons.SCIENCE_LESSON;
+        modelManager.addLesson(l1);
+        modelManager.addLesson(l2);
+
+        modelManager.updateFilteredLessonList(lesson -> false);
+        assertEquals(0, modelManager.getFilteredLessonList().size());
+
+        modelManager.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        assertEquals(2, modelManager.getFilteredLessonList().size());
+        assertTrue(modelManager.getFilteredLessonList().contains(l1));
+        assertTrue(modelManager.getFilteredLessonList().contains(l2));
     }
 }

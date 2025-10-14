@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.note.Note;
@@ -154,5 +156,18 @@ public class LessonTest {
                 + "}";
 
         assertEquals(expected, lesson.toString());
+    }
+
+    @Test
+    public void getStudents_newLesson_emptyAndUnmodifiable() {
+        Lesson lesson = new Lesson(VALID_LESSON_ID, VALID_DAY,
+                VALID_START_TIME, VALID_END_TIME, VALID_VENUE, VALID_NOTE);
+        Set<?> students = lesson.getStudents();
+        //Initially empty
+        assertTrue(students.isEmpty());
+        //Unmodifiable
+        assertThrows(UnsupportedOperationException.class, () -> students.add(null));
+        assertThrows(UnsupportedOperationException.class, () -> students.remove(null));
+        assertThrows(UnsupportedOperationException.class, () -> students.clear());
     }
 }
