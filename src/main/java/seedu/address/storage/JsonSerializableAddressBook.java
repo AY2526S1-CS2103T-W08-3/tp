@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +15,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -57,6 +62,9 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        HashMap<UserId, Person> idToPerson = new HashMap<>();
+        HashMap<LessonId, Lesson> idToLesson = new HashMap<>();
+
         int maxUserId = -1;
         int maxLessonId = -1;
 
@@ -68,6 +76,7 @@ class JsonSerializableAddressBook {
             // Track the largest existing user ID
             maxUserId = Math.max(maxUserId, person.getUserId().value);
             addressBook.addPerson(person);
+            idToPerson.put(person.getUserId(), person);
         }
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
             Lesson lesson = jsonAdaptedLesson.toModelType();
@@ -77,6 +86,26 @@ class JsonSerializableAddressBook {
             // Track the largest existing lesson ID
             maxLessonId = Math.max(maxLessonId, lesson.getLessonId().value);
             addressBook.addLesson(lesson);
+            idToLesson.put(lesson.getLessonId(), lesson);
+        }
+
+        // Update the placeholder Person and Lesson objects with the actual ones
+        for (Person person : addressBook.getPersonList()) {
+            Set<Lesson> placeholderLessons = new HashSet<>(person.getLessons());
+
+            for (Lesson placeholderLesson : placeholderLessons) {
+                person.replaceLesson(placeholderLesson,
+                    idToLesson.get(placeholderLesson.getLessonId()));
+            }
+        }
+
+        for (Lesson lesson : addressBook.getLessonList()) {
+            Set<Person> placeholderStudents = new HashSet<>(lesson.getStudents());
+
+            for (Person placeholderStudent : placeholderStudents) {
+                lesson.replaceStudent(placeholderStudent,
+                    idToPerson.get(placeholderStudent.getUserId()));
+            }
         }
 
         // Update static max ID tracker for future persons and lessons

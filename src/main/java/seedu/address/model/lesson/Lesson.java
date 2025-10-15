@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
@@ -17,6 +18,11 @@ import seedu.address.model.person.Person;
  *
  */
 public class Lesson {
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Cannot replace student as it is not found.";
+    private static final Day PLACEHOLDER_DAY = Day.MON;
+    private static final Time PLACEHOLDER_TIME = new Time("0000");
+    private static final Venue PLACEHOLDER_VENUE = new Venue("placeholder");
+    private static final Note PLACEHOLDER_NOTE = new Note("placeholder");
 
     private final LessonId lessonId;
     private final Day day;
@@ -29,7 +35,7 @@ public class Lesson {
 
     /**
      * Initializes a Lesson object
-     * Every field must not be null
+     * Every field except students must not be null
      */
     public Lesson(LessonId lessonId, Day day, Time startTime, Time endTime, Venue venue, Note note) {
         requireAllNonNull(lessonId, day, startTime, endTime, venue, note);
@@ -39,6 +45,27 @@ public class Lesson {
         this.endTime = endTime;
         this.venue = venue;
         this.note = note;
+    }
+
+    /**
+     * Initializes a Lesson object
+     * Every field must not be null
+     */
+    public Lesson(LessonId lessonId, Day day, Time startTime, Time endTime, Venue venue,
+            Note note, Set<Person> students) {
+        requireAllNonNull(lessonId, day, startTime, endTime, venue, note, students);
+        this.lessonId = lessonId;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.venue = venue;
+        this.note = note;
+        this.students.addAll(students);
+    }
+
+    public static Lesson getPlaceholderLesson(LessonId lessonId) {
+        return new Lesson(lessonId, PLACEHOLDER_DAY, PLACEHOLDER_TIME, PLACEHOLDER_TIME,
+                PLACEHOLDER_VENUE, PLACEHOLDER_NOTE);
     }
 
     /**
@@ -121,6 +148,22 @@ public class Lesson {
      */
     public Set<Person> getStudents() {
         return Collections.unmodifiableSet(students);
+    }
+
+    /**
+     * Replaces a student in the lesson with a new student.
+     *
+     * @param studentToReplace the student to be replaced
+     * @param replacedStudent the new student
+     * @throws IllegalValueException if the student to replace is not found in the lesson
+     */
+    public void replaceStudent(Person studentToReplace, Person replacedStudent) throws IllegalValueException {
+        if (!students.contains(studentToReplace)) {
+            throw new IllegalValueException(MESSAGE_STUDENT_NOT_FOUND);
+        }
+
+        students.remove(studentToReplace);
+        students.add(replacedStudent);
     }
 
     public Note getNote() {
