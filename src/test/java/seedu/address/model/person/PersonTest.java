@@ -99,19 +99,36 @@ public class PersonTest {
     }
 
     /**
-     * Asserts that two {@link Person} objects are equal in all user-facing fields,
-     * ignoring their {@code UserId} (which may differ due to random generation).
+     * Asserts that two {@link Person} objects are equal in all user-facing fields.
      *
      * @param expected The expected person.
      * @param actual The actual person parsed from command.
      */
-    public static void assertEqualPersonIgnoringUserId(Person expected, Person actual) {
+    public static void assertEqualPerson(Person expected, Person actual) {
+        assertEquals(expected.getUserId(), actual.getUserId());
         assertEquals(expected.getName(), actual.getName());
         assertEquals(expected.getPhone(), actual.getPhone());
         assertEquals(expected.getEmail(), actual.getEmail());
         assertEquals(expected.getNote(), actual.getNote());
         assertEquals(expected.getTags(), actual.getTags());
         assertEquals(expected.getLessons(), actual.getLessons());
+    }
+
+    /**
+     * Asserts that two {@link Person} objects are equal in all user-facing fields,
+     * except the userId.
+     *
+     * @param expected The expected person.
+     * @param actual The actual person parsed from command.
+     */
+    public static void assertEqualPersonIgnoringUserId(Person expected, Person actual) {
+        assertNotNull(expected.getUserId());
         assertNotNull(actual.getUserId());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPhone(), actual.getPhone());
+        assertEquals(expected.getEmail(), actual.getEmail());
+        assertEquals(expected.getNote(), actual.getNote());
+        assertEquals(expected.getTags(), actual.getTags());
+        assertEquals(expected.getLessons(), actual.getLessons());
     }
 }

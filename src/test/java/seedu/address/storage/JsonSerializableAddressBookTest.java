@@ -13,10 +13,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonTest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonTest;
-import seedu.address.testutil.TypicalLessons;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalAddressBook;
 
 public class JsonSerializableAddressBookTest {
 
@@ -33,17 +33,17 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        ObservableList<Person> typicalPersons = typicalPersonsAddressBook.getPersonList();
-        ObservableList<Person> addressBookFromFilePersons = typicalPersonsAddressBook.getPersonList();
+        AddressBook typicalAddressBook = TypicalAddressBook.getTypicalAddressBook();
+        ObservableList<Person> typicalPersons = typicalAddressBook.getPersonList();
+        ObservableList<Person> addressBookPersons = addressBookFromFile.getPersonList();
 
-        assertEquals(typicalPersons.size(), addressBookFromFilePersons.size(),
+        assertEquals(typicalPersons.size(), addressBookPersons.size(),
                 "AddressBooks differ in number of persons");
 
         for (int i = 0; i < typicalPersons.size(); i++) {
             Person expectedPerson = typicalPersons.get(i);
-            Person actualPerson = addressBookFromFilePersons.get(i);
-            PersonTest.assertEqualPersonIgnoringUserId(expectedPerson, actualPerson);
+            Person actualPerson = addressBookPersons.get(i);
+            PersonTest.assertEqualPerson(expectedPerson, actualPerson);
         }
     }
 
@@ -67,14 +67,18 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_LESSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        ObservableList<Lesson> lessonsFromFile = addressBookFromFile.getLessonList();
+        AddressBook typicalAddressBook = TypicalAddressBook.getTypicalAddressBook();
+        ObservableList<Lesson> typicalLessons = typicalAddressBook.getLessonList();
+        ObservableList<Lesson> addressBookLessons = addressBookFromFile.getLessonList();
 
-        assertEquals(3, lessonsFromFile.size(), "AddressBook should contain 3 lessons");
+        assertEquals(typicalLessons.size(), addressBookLessons.size(),
+                "AddressBooks differ in number of lessons");
 
-        // Verify lessons are loaded correctly
-        assertEquals(TypicalLessons.MATH_LESSON, lessonsFromFile.get(0));
-        assertEquals(TypicalLessons.ENGLISH_LESSON, lessonsFromFile.get(1));
-        assertEquals(TypicalLessons.SCIENCE_LESSON, lessonsFromFile.get(2));
+        for (int i = 0; i < typicalLessons.size(); i++) {
+            Lesson expectedLesson = typicalLessons.get(i);
+            Lesson actualLesson = addressBookLessons.get(i);
+            LessonTest.assertEqualLesson(expectedLesson, actualLesson);
+        }
     }
 
     @Test

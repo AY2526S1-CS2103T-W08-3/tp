@@ -170,4 +170,20 @@ public class LessonTest {
         assertThrows(UnsupportedOperationException.class, () -> students.remove(null));
         assertThrows(UnsupportedOperationException.class, () -> students.clear());
     }
+
+    /**
+     * Asserts that two {@link Lesson} objects are equal in all user-facing fields.
+     *
+     * @param expected The expected lesson.
+     * @param actual The actual lesson.
+     */
+    public static void assertEqualLesson(Lesson expected, Lesson actual) {
+        assertEquals(expected.getLessonId(), actual.getLessonId());
+        assertEquals(expected.getDay(), actual.getDay());
+        assertEquals(expected.getStartTime(), actual.getStartTime());
+        assertEquals(expected.getEndTime(), actual.getEndTime());
+        assertEquals(expected.getVenue(), actual.getVenue());
+        assertEquals(expected.getNote(), actual.getNote());
+        assertEquals(expected.getStudents(), actual.getStudents());
+    }
 }

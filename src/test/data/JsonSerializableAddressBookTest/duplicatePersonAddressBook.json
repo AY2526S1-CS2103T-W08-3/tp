@@ -13,6 +13,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "note": "Athletic and active",
-    "lessons": [ ]
+    "lessons": [ ],
+    "tags": [ "friends" ]
   } ]
 }

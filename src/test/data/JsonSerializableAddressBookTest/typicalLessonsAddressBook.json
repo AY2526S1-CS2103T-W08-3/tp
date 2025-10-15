@@ -7,7 +7,7 @@
     "endTime" : "1600",
     "venue" : "Blk 123 Computing Dr 1",
     "note" : "Algebra basics",
-    "studentIds": [0, 1, 2]
+    "studentIds": [ ]
   }, {
     "lessonId": 1002,
     "day" : "TUE",
@@ -15,7 +15,7 @@
     "endTime" : "1200",
     "venue" : "Blk 456 English Ave 2",
     "note" : "Grammar review",
-    "studentIds": [0, 1, 2]
+    "studentIds": [ ]
   }, {
     "lessonId": 1003,
     "day" : "WED",
@@ -23,6 +23,6 @@
     "endTime" : "1700",
     "venue" : "Blk 789 Science Rd 3",
     "note" : "Physics experiment",
-    "studentIds": [0, 1, 2]
+    "studentIds": [ ]
   } ]
 }
