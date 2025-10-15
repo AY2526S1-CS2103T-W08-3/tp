@@ -58,6 +58,10 @@ public class SampleDataUtil {
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
+
+        // Essential for ensuring static ID fields are initialized correctly, change if sample data changes
+        sampleAb.setInitialMaxUserId(6);
+        sampleAb.setInitialMaxLessonId(0);
         return sampleAb;
     }
 

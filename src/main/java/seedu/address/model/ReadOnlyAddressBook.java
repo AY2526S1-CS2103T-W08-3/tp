@@ -21,4 +21,13 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Lesson> getLessonList();
 
+    /**
+     * Returns the current largest UserId + 1 in the json data.
+     */
+    int getInitialMaxUserId();
+
+    /**
+     * Returns the current largest LessonId + 1 in the json data.
+     */
+    int getInitialMaxLessonId();
 }
