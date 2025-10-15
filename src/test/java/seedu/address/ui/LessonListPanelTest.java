@@ -1,79 +1,116 @@
 package seedu.address.ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.testutil.TypicalLessons;
 
-public class LessonListPanelTest extends FxTestBase {
+/**
+ * Tests for {@link LessonListPanel}.
+ */
+public class LessonListPanelTest {
 
-    private static class TestCell extends LessonListPanel.LessonListViewCell {
-        TestCell(LessonListPanel outer) {
-            outer.super();
-        }
-        public void callUpdate(Lesson item, boolean empty) {
-            super.updateItem(item, empty);
+    @BeforeAll
+    static void initJavaFx() throws Exception {
+        try {
+            Platform.startup(() -> { });
+        } catch (IllegalStateException alreadyStarted) {
+            // FX already initialized in this JVM
         }
     }
 
-    @Test
-    public void constructor_setsItemsAndCellFactory() {
-        var list = FXCollections.observableArrayList(
-                TypicalLessons.MATH_LESSON, TypicalLessons.ENGLISH_LESSON);
+    private static <T> T onFx(Callable<T> task) {
+        CountDownLatch latch = new CountDownLatch(1);
+        AtomicReference<T> out = new AtomicReference<>();
+        AtomicReference<RuntimeException> re = new AtomicReference<>();
+        AtomicReference<Error> er = new AtomicReference<>();
 
-        LessonListPanel panel = callOnFx(() -> {
-            return new LessonListPanel(list);
+        Platform.runLater(() -> {
+            try {
+                out.set(task.call());
+            } catch (RuntimeException x) {
+                re.set(x);
+            } catch (Error x) {
+                er.set(x);
+            } catch (Exception x) {
+                re.set(new RuntimeException(x));
+            } finally {
+                latch.countDown();
+            }
         });
 
-        ListCell<Lesson> cell = callOnFx(() -> {
-            ListView<Lesson> probe = new ListView<>();
-            probe.setCellFactory(lv -> panel.new LessonListViewCell());
-            return probe.getCellFactory().call(probe);
-        });
+        try {
+            if (!latch.await(5, TimeUnit.SECONDS)) {
+                throw new RuntimeException("FX task timed out");
+            }
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(ie);
+        }
 
-        assertNotNull(cell);
+        if (re.get() != null) {
+            throw re.get();
+        }
+        if (er.get() != null) {
+            throw er.get();
+        }
+        return out.get();
     }
 
     @Test
-    public void updateItem_nullOrEmpty_clearsGraphic() {
-        LessonListPanel panel = callOnFx(() -> {
-            return new LessonListPanel(FXCollections.observableArrayList());
-        });
+    void constructor_smoke_createsRoot() {
+        LessonListPanel panel = onFx(() -> new LessonListPanel(FXCollections.observableArrayList()));
+        assertNotNull(panel.getRoot());
+    }
 
-        TestCell cell = callOnFx(() -> {
-            return new TestCell(panel);
-        });
+    @Test
+    void updateItem_nullOrEmpty_clearsGraphic() {
+        LessonListPanel panel = onFx(() -> new LessonListPanel(FXCollections.observableArrayList()));
+        TestCell cell = onFx(() -> new TestCell(panel));
 
-        runOnFx(() -> {
+        onFx(() -> {
             cell.callUpdate(null, true);
+            return null;
         });
 
-        assertEquals(null, cell.getGraphic());
-        assertEquals(null, cell.getText());
+        assertNull(cell.getGraphic());
+        assertNull(cell.getText());
     }
 
     @Test
-    public void updateItem_withLesson_setsGraphic() {
+    void updateItem_withLesson_setsGraphic() {
         Lesson lesson = TypicalLessons.MATH_LESSON;
+        LessonListPanel panel = onFx(() -> new LessonListPanel(FXCollections.observableArrayList(lesson)));
+        TestCell cell = onFx(() -> new TestCell(panel));
 
-        LessonListPanel panel = callOnFx(() -> {
-            return new LessonListPanel(FXCollections.observableArrayList(lesson));
-        });
-
-        TestCell cell = callOnFx(() -> {
-            return new TestCell(panel);
-        });
-
-        runOnFx(() -> {
+        onFx(() -> {
             cell.callUpdate(lesson, false);
+            return null;
         });
 
         assertNotNull(cell.getGraphic());
+        assertNull(cell.getText());
     }
+
+    /** Test helper subclass to expose protected updateItem(...) */
+    static class TestCell extends LessonListPanel.LessonListViewCell {
+        TestCell(LessonListPanel panel) {
+            panel.super();
+        }
+        void callUpdate(Lesson lesson, boolean empty) {
+            super.updateItem(lesson, empty);
+        }
+    }
+
 }
