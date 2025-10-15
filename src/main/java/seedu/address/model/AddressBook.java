@@ -167,6 +167,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         lessons.add(lesson);
     }
 
+    /**
+     * Removes a lesson from the address book.
+     * The lesson must exist in the address book.
+     */
+    public void removeLesson(Lesson lesson) {
+        lessons.remove(lesson);
+    }
+
     // TODO: setLesson for editing lesson, removeLesson for removing lesson
 
     //// util methods
