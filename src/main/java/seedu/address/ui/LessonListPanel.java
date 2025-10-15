@@ -1,13 +1,10 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lesson.Lesson;
 
 /**
@@ -16,7 +13,6 @@ import seedu.address.model.lesson.Lesson;
 public class LessonListPanel extends UiPart<Region> {
 
     private static final String FXML = "LessonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(LessonListPanel.class);
 
     @FXML
     private ListView<Lesson> lessonListView;
