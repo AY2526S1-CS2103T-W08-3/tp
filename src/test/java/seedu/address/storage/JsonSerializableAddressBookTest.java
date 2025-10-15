@@ -27,6 +27,7 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_LESSONS_FILE = TEST_DATA_FOLDER.resolve("typicalLessonsAddressBook.json");
     private static final Path INVALID_LESSON_FILE = TEST_DATA_FOLDER.resolve("invalidLessonAddressBook.json");
     private static final Path DUPLICATE_LESSON_FILE = TEST_DATA_FOLDER.resolve("duplicateLessonAddressBook.json");
+    private static final Path CIRCULAR_REFERENCE_FILE = TEST_DATA_FOLDER.resolve("circularReferenceAddressBook.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -94,5 +95,38 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_LESSON,
                 dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_circularReference_success() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(CIRCULAR_REFERENCE_FILE,
+                JsonSerializableAddressBook.class).get();
+        AddressBook addressBook = dataFromFile.toModelType();
+
+        // Verify we have exactly 1 person and 1 lesson
+        assertEquals(1, addressBook.getPersonList().size(), "Should have exactly 1 person");
+        assertEquals(1, addressBook.getLessonList().size(), "Should have exactly 1 lesson");
+
+        // Get the person and lesson from the address book
+        Person person = addressBook.getPersonList().get(0);
+        Lesson lesson = addressBook.getLessonList().get(0);
+
+        // Verify basic attributes
+        assertEquals(100, person.getUserId().value, "Person should have userId 100");
+        assertEquals(2000, lesson.getLessonId().value, "Lesson should have lessonId 2000");
+
+        // Verify the person has the lesson in their lesson set
+        assertEquals(1, person.getLessons().size(), "Person should have 1 lesson");
+        Lesson lessonFromPerson = person.getLessons().iterator().next();
+
+        // Verify the lesson from person is the same object as the lesson in the address book
+        assertEquals(lesson, lessonFromPerson, "Lesson from person should equal the original lesson");
+
+        // Verify the lesson has the person in their students set
+        assertEquals(1, lesson.getStudents().size(), "Lesson should have 1 student");
+        Person studentFromLesson = lesson.getStudents().iterator().next();
+
+        // Verify the person from lesson is the same object as the person in the address book
+        assertEquals(person, studentFromLesson, "Student from lesson should equal the original person");
     }
 }
