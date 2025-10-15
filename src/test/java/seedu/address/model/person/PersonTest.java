@@ -15,6 +15,9 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -96,6 +99,15 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", note=" + ALICE.getNote() + ", lessons=" + ALICE.getLessons()
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    @Test
+    public void replaceLesson_withNull_throwsIllegalValueException() throws Exception {
+        Lesson placeholderLesson = Lesson.getPlaceholderLesson(new LessonId(1001));
+        Person person = new PersonBuilder().build();
+
+        assertThrows(IllegalValueException.class, () ->
+            person.replaceLesson(placeholderLesson, null));
     }
 
     /**

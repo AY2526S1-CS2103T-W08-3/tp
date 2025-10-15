@@ -94,8 +94,12 @@ class JsonSerializableAddressBook {
             Set<Lesson> placeholderLessons = new HashSet<>(person.getLessons());
 
             for (Lesson placeholderLesson : placeholderLessons) {
-                person.replaceLesson(placeholderLesson,
-                    idToLesson.get(placeholderLesson.getLessonId()));
+                Lesson actualLesson = idToLesson.get(placeholderLesson.getLessonId());
+                if (actualLesson == null) {
+                    throw new IllegalValueException("Person references non-existent lesson ID: "
+                            + placeholderLesson.getLessonId().value);
+                }
+                person.replaceLesson(placeholderLesson, actualLesson);
             }
         }
 
@@ -103,8 +107,12 @@ class JsonSerializableAddressBook {
             Set<Person> placeholderStudents = new HashSet<>(lesson.getStudents());
 
             for (Person placeholderStudent : placeholderStudents) {
-                lesson.replaceStudent(placeholderStudent,
-                    idToPerson.get(placeholderStudent.getUserId()));
+                Person actualPerson = idToPerson.get(placeholderStudent.getUserId());
+                if (actualPerson == null) {
+                    throw new IllegalValueException("Lesson references non-existent student ID: "
+                            + placeholderStudent.getUserId().value);
+                }
+                lesson.replaceStudent(placeholderStudent, actualPerson);
             }
         }
 

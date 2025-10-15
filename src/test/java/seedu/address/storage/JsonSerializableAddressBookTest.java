@@ -28,6 +28,10 @@ public class JsonSerializableAddressBookTest {
     private static final Path INVALID_LESSON_FILE = TEST_DATA_FOLDER.resolve("invalidLessonAddressBook.json");
     private static final Path DUPLICATE_LESSON_FILE = TEST_DATA_FOLDER.resolve("duplicateLessonAddressBook.json");
     private static final Path CIRCULAR_REFERENCE_FILE = TEST_DATA_FOLDER.resolve("circularReferenceAddressBook.json");
+    private static final Path PERSON_WITH_NONEXISTENT_LESSON_ID_FILE =
+                TEST_DATA_FOLDER.resolve("personWithNonExistentLessonId.json");
+    private static final Path LESSON_WITH_NONEXISTENT_STUDENT_ID_FILE =
+                TEST_DATA_FOLDER.resolve("lessonWithNonExistentStudentId.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -128,5 +132,19 @@ public class JsonSerializableAddressBookTest {
 
         // Verify the person from lesson is the same object as the person in the address book
         assertEquals(person, studentFromLesson, "Student from lesson should equal the original person");
+    }
+
+    @Test
+    public void toModelType_personWithNonExistentLessonId_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSON_WITH_NONEXISTENT_LESSON_ID_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_lessonWithNonExistentStudentId_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(LESSON_WITH_NONEXISTENT_STUDENT_ID_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 }

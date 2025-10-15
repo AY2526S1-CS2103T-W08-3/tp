@@ -9,7 +9,10 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.note.Note;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 
 public class LessonTest {
 
@@ -169,6 +172,17 @@ public class LessonTest {
         assertThrows(UnsupportedOperationException.class, () -> students.add(null));
         assertThrows(UnsupportedOperationException.class, () -> students.remove(null));
         assertThrows(UnsupportedOperationException.class, () -> students.clear());
+    }
+
+    @Test
+    public void replaceStudent_withNull_throwsIllegalValueException() throws Exception {
+        Person placeholderStudent = Person.getPlaceholderPerson(new UserId(100));
+
+        Lesson lesson = new Lesson(VALID_LESSON_ID, VALID_DAY,
+                VALID_START_TIME, VALID_END_TIME, VALID_VENUE, VALID_NOTE);
+
+        assertThrows(IllegalValueException.class, () ->
+            lesson.replaceStudent(placeholderStudent, null));
     }
 
     /**

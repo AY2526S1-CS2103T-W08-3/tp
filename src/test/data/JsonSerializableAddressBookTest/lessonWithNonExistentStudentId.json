@@ -1,0 +1,12 @@
+{
+  "_comment": "AddressBook save file with a lesson referencing a non-existent studentId",
+  "lessons" : [ {
+    "lessonId": 4000,
+    "day" : "MON",
+    "startTime" : "1000",
+    "endTime" : "1200",
+    "venue" : "Blk 333 Test Building",
+    "note" : "Test lesson",
+    "studentIds": [ 9999 ]
+  } ]
+}
