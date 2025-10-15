@@ -2,6 +2,7 @@ package seedu.address.model.lesson;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -114,7 +115,13 @@ public class Lesson {
         return lessonId;
     }
 
-    // TODO implement getStudent
+    /**
+     * Returns an immutable student set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Person> getStudents() {
+        return Collections.unmodifiableSet(students);
+    }
 
     public Note getNote() {
         return note;
