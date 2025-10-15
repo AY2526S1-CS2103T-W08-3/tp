@@ -60,4 +60,17 @@ public class CommandResultTest {
                 + ", exit=" + commandResult.isExit() + "}";
         assertEquals(expected, commandResult.toString());
     }
+
+    @Test
+    void isShowLessonsMethod() {
+        CommandResult a = new CommandResult("ok");
+        CommandResult b = new CommandResult("ok", false, false);
+
+        assertFalse(a.isShowLessons(), "showLessons should default to false");
+        assertFalse(b.isShowLessons(), "showLessons should default to false");
+
+        CommandResult r = new CommandResult("Listed all lessons", false, false, true);
+        assertTrue(r.isShowLessons(), "showLessons should be true when specified");
+    }
+
 }
