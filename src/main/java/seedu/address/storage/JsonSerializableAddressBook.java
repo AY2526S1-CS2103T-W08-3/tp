@@ -12,9 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.lesson.LessonId;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UserId;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -82,8 +80,8 @@ class JsonSerializableAddressBook {
         }
 
         // Update static max ID tracker for future persons and lessons
-        UserId.setMaxUserId(maxUserId + 1);
-        LessonId.setMaxLessonId(maxLessonId + 1);
+        addressBook.setInitialMaxUserId(maxUserId + 1);
+        addressBook.setInitialMaxLessonId(maxLessonId + 1);
 
         return addressBook;
     }

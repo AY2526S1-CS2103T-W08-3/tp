@@ -112,6 +112,16 @@ public class AddressBookTest {
         public ObservableList<Lesson> getLessonList() {
             return lessons;
         }
+
+        @Override
+        public int getInitialMaxUserId() {
+            return 0;
+        }
+
+        @Override
+        public int getInitialMaxLessonId() {
+            return 0;
+        }
     }
 
 }

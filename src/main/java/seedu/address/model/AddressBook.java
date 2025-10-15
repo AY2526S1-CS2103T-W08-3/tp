@@ -7,11 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.UniqueLessonList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UserId;
 
 /**
  * Wraps all data at the address-book level
@@ -22,6 +20,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueLessonList lessons;
 
+    private int initialMaxUserId = 0;
+    private int initialMaxLessonId = 0;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -38,10 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Initializes an address book and sets the max user and lesson id to 0.
      */
-    public AddressBook() {
-        UserId.setMaxUserId(0);
-        LessonId.setMaxLessonId(0);
-    }
+    public AddressBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -49,6 +46,38 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /// UserId and LessonId operations
+
+    @Override
+    public int getInitialMaxUserId() {
+        return this.initialMaxUserId;
+    }
+
+    @Override
+    public int getInitialMaxLessonId() {
+        return this.initialMaxLessonId;
+    }
+
+    /**
+     * To store the max userId to be set in the static field in the UserId class
+     */
+    public void setInitialMaxUserId(int max) {
+        if (max < 0) {
+            throw new IllegalArgumentException("Initial max userId cannot be less than 0");
+        }
+        this.initialMaxUserId = max;
+    }
+
+    /**
+     * To store the max lessonId to be set in the static field in the LessonId class
+     */
+    public void setInitialMaxLessonId(int max) {
+        if (max < 0) {
+            throw new IllegalArgumentException("Initial max lessonId cannot be less than 0");
+        }
+        this.initialMaxLessonId = max;
     }
 
     //// list overwrite operations
@@ -77,7 +106,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setLessons(newData.getLessonList());
-
+        setInitialMaxUserId(newData.getInitialMaxUserId());
+        setInitialMaxLessonId(newData.getInitialMaxLessonId());
     }
 
     //// person-level operations

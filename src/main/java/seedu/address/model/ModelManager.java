@@ -12,7 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -37,6 +39,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredLessons = new FilteredList<>(this.addressBook.getLessonList());
+
+        // Important to set max IDs to ensure ID numbers are incremented correctly
+        UserId.setMaxUserId(addressBook.getInitialMaxUserId());
+        LessonId.setMaxLessonId(addressBook.getInitialMaxLessonId());
     }
 
     public ModelManager() {
