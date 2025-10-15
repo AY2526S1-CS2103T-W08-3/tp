@@ -17,7 +17,7 @@ public class LessonBuilder {
     public static final String DEFAULT_ENDTIME = "1600";
     public static final String DEFAULT_VENUE = "Blk 123 Computing Dr 1";
     public static final String DEFAULT_NOTE = "Algebra basics";
-    public static final Integer DEFAULT_LESSONID = 1001;
+    public static final Integer DEFAULT_LESSONID = 0;
 
     private LessonId lessonId;
     private Day day;
