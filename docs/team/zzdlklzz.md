@@ -24,19 +24,25 @@ Given below are my contributions to the project.
 * **Project management**:
     * Set up GitHub team organization and repository, including codecov integration 
     * Set up initial project page
-    * Helped remove traces of AB3 (Pull requests [\#37]())
+    * Helped remove traces of AB3 (Pull requests [\#37](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/37))
     * Resolved merge conflicts in integrating find command and user ID to delete command implementation
 
 * **Enhancements to existing features**:
-    * Updated delete command flow to match updated use case (Pull request [\#51]())
+    * Updated delete command flow to match updated use case (Pull request [\#51](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/51))
     * Added new predicate to filter by UserId instead of Name
 
 * **Documentation**:
     * Developer Guide:
-        * Added use cases for MVP specification (Pull request [\#38]())
+      * Added use cases for MVP specification (Pull request [\#40](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/40))
+    * Release Notes:
+      * Filled in details and images for v1.3  
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#43](), [\#53]()
+    * PRs reviewed (with non-trivial review comments): 
+        [\#43](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/43), 
+        [\#53](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/53), 
+        [\#54](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/54), 
+        [\#60](https://github.com/AY2526S1-CS2103T-W08-3/tp/pull/60)
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]()) (UNUPDATED)
 
 * **Tools**:
