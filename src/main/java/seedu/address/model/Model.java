@@ -100,7 +100,13 @@ public interface Model {
      */
     boolean hasLesson(Lesson lesson);
 
-    // TODO implement other lesson features (e.g. delete, set)
+    /**
+     * Deletes the given lesson
+     * The lesson must exist in the address book.
+     */
+    void deleteLesson(Lesson lesson);
+
+    // TODO implement other lesson features such as set
 
     /**
      * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.

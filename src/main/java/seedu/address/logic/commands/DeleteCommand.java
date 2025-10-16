@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " Bob " + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons with "
+    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons "
             + "containing: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
 
     private final Name name;

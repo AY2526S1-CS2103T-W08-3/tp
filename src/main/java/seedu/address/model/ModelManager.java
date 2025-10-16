@@ -131,6 +131,11 @@ public class ModelManager implements Model {
         return addressBook.hasLesson(lesson);
     }
 
+    @Override
+    public void deleteLesson(Lesson lesson) {
+        addressBook.removeLesson(lesson);
+    }
+
     // TODO implement other lesson features (e.g. delete)
 
     //=========== Filtered Person List Accessors =============================================================

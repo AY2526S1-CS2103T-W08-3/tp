@@ -20,6 +20,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NO_USERS_FOUND = "There are no persons matching the name: \"%s\".";
+    public static final String MESSAGE_NO_LESSONS_FOUND = "There are no lessons matching the day: \"%s\".";
+    public static final String MESSAGE_INVALID_LESSON_DISPLAYED_INDEX = "The lesson index provided is invalid";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
