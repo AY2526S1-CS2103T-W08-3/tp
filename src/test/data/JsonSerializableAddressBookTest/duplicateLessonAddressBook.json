@@ -1,6 +1,5 @@
 {
   "_comment": "AddressBook save file with duplicate lessons (same lessonId)",
-  "persons" : [ ],
   "lessons" : [ {
     "lessonId": 1001,
     "day" : "MON",

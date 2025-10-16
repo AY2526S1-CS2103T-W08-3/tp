@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -31,7 +32,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String note;
-    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
+    private final List<Integer> lessonIds = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -40,15 +41,15 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("userId") Integer userId, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("note") String note, @JsonProperty("lessons") List<JsonAdaptedLesson> lessons,
+            @JsonProperty("note") String note, @JsonProperty("lessonIds") List<Integer> lessonIds,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.userId = userId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.note = note;
-        if (lessons != null) {
-            this.lessons.addAll(lessons);
+        if (lessonIds != null) {
+            this.lessonIds.addAll(lessonIds);
         }
         if (tags != null) {
             this.tags.addAll(tags);
@@ -64,8 +65,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         note = source.getNote().value;
-        lessons.addAll(source.getLessons().stream()
-                .map(JsonAdaptedLesson::new)
+        lessonIds.addAll(source.getLessons().stream()
+                .map(l -> l.getLessonId().value)
                 .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -78,11 +79,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Lesson> personLessons = new ArrayList<>();
-        for (JsonAdaptedLesson lesson : lessons) {
-            personLessons.add(lesson.toModelType());
-        }
-
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
@@ -122,7 +118,11 @@ class JsonAdaptedPerson {
         }
         final Note modelNote = new Note(note);
 
-        final Set<Lesson> modelLessons = new HashSet<>(personLessons);
+        // This is done as a workaround to the circular references between Person and Lesson
+        // The placeholder lessons will be overriden on initialization
+        final Set<Lesson> modelLessons = lessonIds.stream().map(id -> Lesson.getPlaceholderLesson(new LessonId(id)))
+                .collect(Collectors.toSet());
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelUserId, modelName, modelPhone, modelEmail, modelNote, modelLessons, modelTags);
     }

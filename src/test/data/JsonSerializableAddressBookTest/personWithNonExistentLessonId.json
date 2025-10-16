@@ -1,0 +1,12 @@
+{
+  "_comment": "AddressBook save file with a person referencing a non-existent lessonId",
+  "persons" : [ {
+    "userId": 300,
+    "name" : "Alice Wong",
+    "phone" : "91112222",
+    "email" : "alice@example.com",
+    "note" : "Good student",
+    "lessonIds": [ 9999 ],
+    "tags" : [ ]
+  } ]
+}

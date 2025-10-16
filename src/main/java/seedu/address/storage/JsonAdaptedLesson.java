@@ -1,5 +1,10 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,6 +15,8 @@ import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
 import seedu.address.model.note.Note;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
@@ -22,11 +29,10 @@ class JsonAdaptedLesson {
     private final String endTime;
     private final String venue;
     private final String note;
+    private final List<Integer> studentIds = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
-     *
-     * TODO include JsonAdaptedPerson into this class
      */
     @JsonCreator
     public JsonAdaptedLesson(@JsonProperty("lessonId") Integer lessonId,
@@ -34,13 +40,17 @@ class JsonAdaptedLesson {
                              @JsonProperty("startTime") String startTime,
                              @JsonProperty("endTime") String endTime,
                              @JsonProperty("venue") String venue,
-                             @JsonProperty("note") String note) {
+                             @JsonProperty("note") String note,
+                             @JsonProperty("studentIds") List<Integer> studentIds) {
         this.lessonId = lessonId;
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
         this.venue = venue;
         this.note = note;
+        if (studentIds != null) {
+            this.studentIds.addAll(studentIds);
+        }
     }
 
     /**
@@ -53,6 +63,9 @@ class JsonAdaptedLesson {
         endTime = source.getEndTime().toString();
         venue = source.getVenue().toString();
         note = source.getNote().toString();
+        studentIds.addAll(source.getStudents().stream()
+                .map(s -> s.getUserId().value)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -92,7 +105,13 @@ class JsonAdaptedLesson {
         final Venue modelVenue = new Venue(venue);
         final Note modelNote = new Note(note);
 
-        return new Lesson(modelLessonId, modelDay, modelStartTime, modelEndTime, modelVenue, modelNote);
+        // This is done as a workaround to the circular references between Person and Lesson
+        // The placeholder persons will be overriden on initialization
+        final Set<Person> modelPersons = studentIds.stream()
+                .map(id -> Person.getPlaceholderPerson(new UserId(id)))
+                .collect(Collectors.toSet());
+
+        return new Lesson(modelLessonId, modelDay, modelStartTime, modelEndTime, modelVenue, modelNote, modelPersons);
     }
 
 }

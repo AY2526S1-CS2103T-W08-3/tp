@@ -15,6 +15,9 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -98,20 +101,46 @@ public class PersonTest {
         assertEquals(expected, ALICE.toString());
     }
 
+    @Test
+    public void replaceLesson_withNull_throwsIllegalValueException() throws Exception {
+        Lesson placeholderLesson = Lesson.getPlaceholderLesson(new LessonId(1001));
+        Person person = new PersonBuilder().build();
+
+        assertThrows(IllegalValueException.class, () ->
+            person.replaceLesson(placeholderLesson, null));
+    }
+
     /**
-     * Asserts that two {@link Person} objects are equal in all user-facing fields,
-     * ignoring their {@code UserId} (which may differ due to random generation).
+     * Asserts that two {@link Person} objects are equal in all user-facing fields.
      *
      * @param expected The expected person.
      * @param actual The actual person parsed from command.
      */
-    public static void assertEqualPersonIgnoringUserId(Person expected, Person actual) {
+    public static void assertEqualPerson(Person expected, Person actual) {
+        assertEquals(expected.getUserId(), actual.getUserId());
         assertEquals(expected.getName(), actual.getName());
         assertEquals(expected.getPhone(), actual.getPhone());
         assertEquals(expected.getEmail(), actual.getEmail());
         assertEquals(expected.getNote(), actual.getNote());
         assertEquals(expected.getTags(), actual.getTags());
         assertEquals(expected.getLessons(), actual.getLessons());
+    }
+
+    /**
+     * Asserts that two {@link Person} objects are equal in all user-facing fields,
+     * except the userId.
+     *
+     * @param expected The expected person.
+     * @param actual The actual person parsed from command.
+     */
+    public static void assertEqualPersonIgnoringUserId(Person expected, Person actual) {
+        assertNotNull(expected.getUserId());
         assertNotNull(actual.getUserId());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPhone(), actual.getPhone());
+        assertEquals(expected.getEmail(), actual.getEmail());
+        assertEquals(expected.getNote(), actual.getNote());
+        assertEquals(expected.getTags(), actual.getTags());
+        assertEquals(expected.getLessons(), actual.getLessons());
     }
 }
