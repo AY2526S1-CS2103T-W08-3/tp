@@ -21,17 +21,18 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Implemented Random UserIds (Pull requests [\#53]())
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated search command flow to match updated use case (Pull request [\#49]())
+  * Updated UserId to be deterministic (Pull requests [\#60]())
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Updated the DG Target User Profile and User Stories for V1.2: [\#33](), [\#45]())
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()

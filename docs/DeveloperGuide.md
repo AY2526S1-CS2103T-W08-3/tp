@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. EduLink stores the student record.
 5. EduLink displays a success message showing the student details.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. EduLink deletes the student.
 6. EduLink displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. Tutor chooses invalid student.
   * 4a1. EduLink displays an error.
 
-    Use case resumes from step 3.
+    Use case ends.
 
 **Use case: UC03 - Find student**
 
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. EduLink validates the data provided.
 3. EduLink assigns a unique ID to the lesson.
 4. EduLink stores the lesson record.
-5. EduLink displays a success message showing the student details.
+5. EduLink displays a success message showing the lesson details.
 
    Use case ends.
 
@@ -441,59 +441,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Tutor chooses to delete a particular lesson from the system.
-2. EduLink searches for and displays a list of matching lessons.
-3. EduLink prompts Tutor to select a lesson.
-4. Tutor chooses the desired lesson to delete.
-5. EduLink deletes the lesson.
-6. EduLink displays a success message.
+2. EduLink deletes the lesson.
+3. EduLink displays a success message.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. No lesson matches the given name.
-    * 2a1. EduLink displays an error.
+* 1a. No lesson matches the given ID.
+    * 1a1. EduLink displays an error.
 
       Use case ends.
 
-* 4a. Tutor chooses invalid lesson.
-    * 4a1. EduLink displays an error.
-
-      Use case resumes from step 3.
-
-**Use case: UC07 - Delete lesson**
-
-**Preconditions**
-
-* At least one lesson exists in the system.
-
-**Guarantees**
-
-* Lesson record is removed from the system.
-* Tutor sees a confirmation message with deleted lesson details.
+**Use case: UC07 - List lessons**
 
 **MSS**
 
-1. Tutor chooses to delete a particular lesson from the system.
-2. EduLink searches for and displays a list of matching lessons.
-3. EduLink prompts Tutor to select a lesson.
-4. Tutor chooses the desired lesson to delete.
-5. EduLink deletes the lesson.
-6. EduLink displays a success message.
+1. Tutor chooses to display list of lessons.
+2. EduLink retrieves all lessons.
+3. EduLink displays the full list of lessons.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. No lesson matches the given name.
-    * 2a1. EduLink displays an error.
+* 2a. There are no lessons added yet.
+    * 2a1. EduLink shows an error.
 
       Use case ends.
-
-* 4a. Tutor chooses invalid lesson.
-    * 4a1. EduLink displays an error.
-
-      Use case resumes from step 3.
 
 
 *{More to be added}*
