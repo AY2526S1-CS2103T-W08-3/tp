@@ -1,0 +1,21 @@
+{
+  "_comment": "AddressBook save file for testing circular references between person and lesson via studentIds and lessonIds",
+  "persons" : [ {
+    "userId": 100,
+    "name" : "John Doe",
+    "phone" : "91234567",
+    "email" : "johndoe@example.com",
+    "note" : "Excellent student",
+    "lessonIds": [ 2000 ],
+    "tags" : [ "hardworking" ]
+  } ],
+  "lessons" : [ {
+    "lessonId": 2000,
+    "day" : "FRI",
+    "startTime" : "0900",
+    "endTime" : "1100",
+    "venue" : "Blk 111 Math Building",
+    "note" : "Advanced calculus",
+    "studentIds": [ 100 ]
+  } ]
+}

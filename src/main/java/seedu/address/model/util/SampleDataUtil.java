@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
+import seedu.address.model.lesson.Time;
+import seedu.address.model.lesson.Venue;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -51,20 +55,37 @@ public class SampleDataUtil {
         };
     }
 
-    // TODO create sample lessons and integrate into UI
+    public static Lesson[] getSampleLessons() {
+        return new Lesson[] {
+            new Lesson(new LessonId(0), Day.MON, new Time("1000"), new Time("1200"),
+                new Venue("COM1-B103"), new Note("Introduction to Programming")),
+            new Lesson(new LessonId(1), Day.TUE, new Time("1400"), new Time("1600"),
+                new Venue("COM2-0204"), new Note("Data Structures and Algorithms")),
+            new Lesson(new LessonId(2), Day.WED, new Time("0900"), new Time("1100"),
+                new Venue("S16-0430"), new Note("Calculus I")),
+            new Lesson(new LessonId(3), Day.THU, new Time("1500"), new Time("1700"),
+                new Venue("LT19"), new Note("Software Engineering")),
+            new Lesson(new LessonId(4), Day.FRI, new Time("1300"), new Time("1500"),
+                new Venue("COM1-0217"), new Note("Database Systems")),
+            new Lesson(new LessonId(5), Day.MON, new Time("1600"), new Time("1800"),
+                new Venue("AS6-0426"), new Note("Physics for Computing"))
+        };
+    }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
+        for (Lesson sampleLesson : getSampleLessons()) {
+            sampleAb.addLesson(sampleLesson);
+        }
 
         // Essential for ensuring static ID fields are initialized correctly, change if sample data changes
         sampleAb.setInitialMaxUserId(6);
-        sampleAb.setInitialMaxLessonId(0);
+        sampleAb.setInitialMaxLessonId(6);
         return sampleAb;
     }
-
 
     /**
      * Returns a tag set containing the list of strings given.

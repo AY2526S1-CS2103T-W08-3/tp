@@ -1,92 +1,76 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "userId": 0,
+    "userId": 1,
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "note" : "Attentive student, submits homework on time",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ "friends" ]
   }, {
-    "userId": 1,
+    "userId": 2,
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "note" : "Needs to improve attendance",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ "owesMoney", "friends" ]
   }, {
-    "userId": 2,
+    "userId": 3,
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "note" : "Talented in physics",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ ]
   }, {
-    "userId": 3,
+    "userId": 4,
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "note" : "Struggles with concentration",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ "friends" ]
   }, {
-    "userId": 4,
+    "userId": 5,
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "note" : "Quick learner",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ ]
   }, {
-    "userId": 5,
+    "userId": 6,
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "note" : "Creative thinker",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ ]
   }, {
-    "userId": 6,
+    "userId": 7,
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "note" : "Athletic and active",
-    "lessons": [ ],
+    "lessonIds": [ ],
     "tags" : [ ]
-  }, {
-    "userId": 7,
-    "name" : "Alice Tan",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "note" : "Boisterous student",
-    "lessons": [ ],
-    "tags" : [ "friends" ]
   }, {
     "userId": 8,
-    "name" : "Alice Lim",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "note" : "Needs to improve attendance",
-    "lessons": [ ],
-    "tags" : [ "owesMoney", "friends" ]
+    "name" : "Daniel Tan",
+    "phone" : "94351253",
+    "email" : "daniel@example.com",
+    "note" : "Attentive student, submits homework on time",
+    "lessonIds": [ ],
+    "tags" : [ "friends" ]
   }, {
     "userId": 9,
-    "name" : "Carl Goh",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "note" : "Talented in physics",
-    "lessons": [ ],
-    "tags" : [ ]
-  }, {
-    "userId": 10,
-    "name" : "Daniel Tan",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "note" : "Struggles with concentration",
-    "lessons": [ ],
+    "name" : "Daniel Goh",
+    "phone" : "94351253",
+    "email" : "daniel@example.com",
+    "note" : "Attentive student, submits homework on time",
+    "lessonIds": [ ],
     "tags" : [ "friends" ]
   } ]
 }

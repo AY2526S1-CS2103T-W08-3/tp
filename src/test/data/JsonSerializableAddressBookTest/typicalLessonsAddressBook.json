@@ -1,26 +1,28 @@
 {
   "_comment": "AddressBook save file which contains typical lessons",
-  "persons" : [ ],
   "lessons" : [ {
     "lessonId": 1001,
     "day" : "MON",
     "startTime" : "1400",
     "endTime" : "1600",
     "venue" : "Blk 123 Computing Dr 1",
-    "note" : "Algebra basics"
+    "note" : "Algebra basics",
+    "studentIds": [ ]
   }, {
     "lessonId": 1002,
     "day" : "TUE",
     "startTime" : "1000",
     "endTime" : "1200",
     "venue" : "Blk 456 English Ave 2",
-    "note" : "Grammar review"
+    "note" : "Grammar review",
+    "studentIds": [ ]
   }, {
     "lessonId": 1003,
     "day" : "WED",
     "startTime" : "1500",
     "endTime" : "1700",
     "venue" : "Blk 789 Science Rd 3",
-    "note" : "Physics experiment"
+    "note" : "Physics experiment",
+    "studentIds": [ ]
   } ]
 }
