@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showLessonAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
+import static seedu.address.testutil.TypicalIndexes.SECOND_INDEX;
 import static seedu.address.testutil.TypicalLessons.DUPLICATE_DAY;
 import static seedu.address.testutil.TypicalLessons.UNIQUE_DAY;
 
@@ -55,12 +55,12 @@ public class DeleteLessonCommandTest {
 
         // First, filter the model by day to get the correct lesson
         model.updateFilteredLessonList(new DayMatchesPredicate(dayToFilter));
-        Lesson lessonToDelete = model.getFilteredLessonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Lesson lessonToDelete = model.getFilteredLessonList().get(FIRST_INDEX.getZeroBased());
 
         // Reset the model for the actual test
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(dayToFilter, INDEX_FIRST_PERSON);
+        DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(dayToFilter, FIRST_INDEX);
 
         String expectedMessage = String.format(DeleteLessonCommand.MESSAGE_DELETE_LESSON_SUCCESS,
                 Messages.format(lessonToDelete));
@@ -77,10 +77,10 @@ public class DeleteLessonCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showLessonAtIndex(model, INDEX_SECOND_PERSON);
+        showLessonAtIndex(model, SECOND_INDEX);
 
-        Lesson lessonToDelete = model.getFilteredLessonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(UNIQUE_DAY, INDEX_FIRST_PERSON);
+        Lesson lessonToDelete = model.getFilteredLessonList().get(FIRST_INDEX.getZeroBased());
+        DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(UNIQUE_DAY, FIRST_INDEX);
 
         String expectedMessage = String.format(DeleteLessonCommand.MESSAGE_DELETE_LESSON_SUCCESS,
                 Messages.format(lessonToDelete));
@@ -111,15 +111,15 @@ public class DeleteLessonCommandTest {
 
     @Test
     public void equals() {
-        DeleteLessonCommand deleteFirstCommand = new DeleteLessonCommand(DUPLICATE_DAY, INDEX_FIRST_PERSON);
-        DeleteLessonCommand deleteSecondCommand = new DeleteLessonCommand(DUPLICATE_DAY, INDEX_SECOND_PERSON);
-        DeleteLessonCommand deleteFirstDiffDayCommand = new DeleteLessonCommand(Day.WED, INDEX_FIRST_PERSON);
+        DeleteLessonCommand deleteFirstCommand = new DeleteLessonCommand(DUPLICATE_DAY, FIRST_INDEX);
+        DeleteLessonCommand deleteSecondCommand = new DeleteLessonCommand(DUPLICATE_DAY, SECOND_INDEX);
+        DeleteLessonCommand deleteFirstDiffDayCommand = new DeleteLessonCommand(Day.WED, FIRST_INDEX);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteLessonCommand deleteFirstCommandCopy = new DeleteLessonCommand(DUPLICATE_DAY, INDEX_FIRST_PERSON);
+        DeleteLessonCommand deleteFirstCommandCopy = new DeleteLessonCommand(DUPLICATE_DAY, FIRST_INDEX);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
