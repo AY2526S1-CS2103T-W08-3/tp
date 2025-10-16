@@ -106,7 +106,7 @@ public interface Model {
      */
     void deleteLesson(Lesson lesson);
 
-    // TODO implement other lesson features (e.g. delete, set)
+    // TODO implement other lesson features such as set
 
     /**
      * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.

@@ -21,6 +21,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
+import seedu.address.model.lesson.predicates.LessonIdEqualsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
 import seedu.address.model.person.predicates.UserIdEqualsPredicate;
@@ -163,10 +166,10 @@ public class CommandTestUtil {
     public static void showLessonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredLessonList().size());
 
-        seedu.address.model.lesson.Lesson lesson = model.getFilteredLessonList().get(targetIndex.getZeroBased());
-        final seedu.address.model.lesson.LessonId lessonId = lesson.getLessonId();
+        Lesson lesson = model.getFilteredLessonList().get(targetIndex.getZeroBased());
+        final LessonId lessonId = lesson.getLessonId();
 
-        model.updateFilteredLessonList(l -> l.getLessonId().equals(lessonId));
+        model.updateFilteredLessonList(new LessonIdEqualsPredicate(lessonId));
 
         assertEquals(1, model.getFilteredLessonList().size());
     }

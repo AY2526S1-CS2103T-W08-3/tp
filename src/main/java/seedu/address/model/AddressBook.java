@@ -175,7 +175,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         lessons.remove(lesson);
     }
 
-    // TODO: setLesson for editing lesson, removeLesson for removing lesson
+    // TODO: setLesson for editing lesson
 
     //// util methods
 
