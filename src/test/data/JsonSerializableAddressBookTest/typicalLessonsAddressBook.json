@@ -24,5 +24,13 @@
     "venue" : "Blk 789 Science Rd 3",
     "note" : "Physics experiment",
     "studentIds": [ ]
+  }, {
+    "lessonId": 1004,
+    "day" : "MON",
+    "startTime" : "0900",
+    "endTime" : "1100",
+    "venue" : "Blk 321 History Hall",
+    "note" : "World War II",
+    "studentIds": [ ]
   } ]
 }

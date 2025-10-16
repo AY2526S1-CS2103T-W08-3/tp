@@ -28,7 +28,7 @@ public class DeleteLessonCommand extends Command {
 
     public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lesson: %1$s";
     public static final String MESSAGE_LIST_LESSONS_WITH_NAME = "Here are a list of lessons "
-            + "containing: \"%s\". Enter \"delete %s {i}\" to delete the i'th lesson in this list.";
+            + "on the day: \"%s\". Enter \"deletelesson %s {i}\" to delete the i'th lesson in this list.";
 
     private final Day day;
     private final Index targetIndex; //null if no target index provided to delete
@@ -67,7 +67,8 @@ public class DeleteLessonCommand extends Command {
 
         Lesson lessonToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteLesson(lessonToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, Messages.format(lessonToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, Messages.format(lessonToDelete)),
+                false, false, true);
     }
 
     @Override

@@ -155,4 +155,19 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the lesson at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showLessonAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredLessonList().size());
+
+        seedu.address.model.lesson.Lesson lesson = model.getFilteredLessonList().get(targetIndex.getZeroBased());
+        final seedu.address.model.lesson.LessonId lessonId = lesson.getLessonId();
+
+        model.updateFilteredLessonList(l -> l.getLessonId().equals(lessonId));
+
+        assertEquals(1, model.getFilteredLessonList().size());
+    }
 }

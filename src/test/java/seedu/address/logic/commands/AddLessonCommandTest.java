@@ -211,6 +211,11 @@ public class AddLessonCommandTest {
         public ObservableList<Lesson> getFilteredLessonList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteLesson(Lesson target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

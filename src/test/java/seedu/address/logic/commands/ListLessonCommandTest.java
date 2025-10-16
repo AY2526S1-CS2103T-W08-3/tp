@@ -99,5 +99,8 @@ public class ListLessonCommandTest {
         @Override public ObservableList<Lesson> getFilteredLessonList() {
             return FXCollections.observableArrayList();
         }
+        @Override public void deleteLesson(Lesson target) {
+            throw new AssertionError();
+        }
     }
 }
