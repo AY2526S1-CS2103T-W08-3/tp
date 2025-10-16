@@ -152,4 +152,5 @@ public class DeleteLessonCommandTest {
 
         assertTrue(model.getFilteredLessonList().isEmpty());
     }
+
 }
