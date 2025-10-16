@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLessons.DUPLICATE_DAY;
-import static seedu.address.testutil.TypicalLessons.INDEX_DUPLICATE_DAY;
 import static seedu.address.testutil.TypicalLessons.UNIQUE_DAY;
 
 import org.junit.jupiter.api.Test;

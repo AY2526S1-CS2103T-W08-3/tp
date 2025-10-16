@@ -14,9 +14,9 @@ import seedu.address.model.lesson.Lesson;
 public class TypicalLessons {
 
     public static final Day EXAMPLE_DAY = Day.MON;
-    public static final Day DUPLICATE_DAY = Day.MON;  // Multiple lessons on MON
-    public static final Day UNIQUE_DAY = Day.TUE;  // Only one lesson on TUE
-    public static final Index INDEX_DUPLICATE_DAY = Index.fromOneBased(1);  // Index for first MON lesson
+    public static final Day DUPLICATE_DAY = Day.MON; // Multiple lessons on MON
+    public static final Day UNIQUE_DAY = Day.TUE; // Only one lesson on TUE
+    public static final Index INDEX_DUPLICATE_DAY = Index.fromOneBased(1); // Index for first MON lesson
 
     public static final Lesson MATH_LESSON = new LessonBuilder()
             .withLessonId(1001)
