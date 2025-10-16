@@ -28,9 +28,13 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English Lesson` : Adds a lesson with given fields to the Address Book.
+
+   * `delete Bob 1` : Deletes the 1st contact named Bob shown in the current list.   
+
+   * `deletelesson 1` : Deletes the lesson with the ID of 1 in the Lesson List.
 
    * `clear` : Deletes all contacts.
 
@@ -77,15 +81,25 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
+* EMAIL should be of the format local-part@domain and adhere to the following constraints:
+  * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+  * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+
+
+* The domain name must:
+  * end with a domain label at least 2 characters long
+  * have each domain label start and end with alphanumeric characters
+  * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -97,7 +111,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -119,7 +133,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -132,9 +146,9 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete NAME INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the person with the specified `NAME` and `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -147,6 +161,39 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Adding a lesson : `addlesson`
+
+Adds a lesson to the address book.
+
+Format: addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]
+
+* Adds a new lesson with the specified details.
+* START_TIME and END_TIME should be in 24-hour format (e.g. 1300, 0930).
+* A lesson can have any number of tags (including 0).
+
+Examples:
+* `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
+* `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English`
+
+### Listing all lessons : `listlesson`
+
+Shows a list of all lessons in the address book.
+
+Format: `listlesson`
+
+### Deleting a lesson : `deletelesson`
+
+Deletes the specified lesson from the address book.
+
+Format: `deletelesson INDEX`
+
+* Deletes the lesson at the specified INDEX.
+* The index refers to the index number shown in the displayed lesson list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletelesson 2` deletes the 2nd lesson in the list.
 
 ### Exiting the program : `exit`
 
@@ -191,10 +238,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add Student** | `add n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
+**List Students** | `list`
+**Edit Student** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com sn/improved performance`
+**Find Student** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete Student** | `delete NAME INDEX`<br> e.g., `delete Betsy 1`
+**Clear Students** | `clear`
+**Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
+**List Lessons** | `listlesson`
+**Delete Lesson** | `deletelesson INDEX`<br> e.g., `deletelesson 2`
 **Help** | `help`
+**Exit** | `exit`
