@@ -27,6 +27,7 @@ import seedu.address.model.lesson.predicates.LessonIdEqualsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
 import seedu.address.model.person.predicates.UserIdEqualsPredicate;
+import seedu.address.testutil.EditLessonDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -93,6 +94,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditLessonCommand.EditLessonDescriptor DESC_MATH;
+    public static final EditLessonCommand.EditLessonDescriptor DESC_SCIENCE;
+
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withNote(VALID_STUDENT_NOTE_AMY)
@@ -100,6 +105,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withNote(VALID_STUDENT_NOTE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MATH = new EditLessonDescriptorBuilder().withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_MATH)
+                .withEndTime(VALID_ENDTIME_MATH).withVenue(VALID_VENUE_MATH).withNote(VALID_LESSON_NOTE_MATH)
+                .build();
+        DESC_SCIENCE = new EditLessonDescriptorBuilder().withDay(VALID_DAY_SCIENCE).withStartTime(VALID_STARTTIME_SCIENCE)
+                .withEndTime(VALID_ENDTIME_SCIENCE).withVenue(VALID_VENUE_SCIENCE).withNote(VALID_LESSON_NOTE_SCIENCE)
+                .build();
     }
 
     /**
