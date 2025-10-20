@@ -1,25 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DAY_DESC_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.DAY_DESC_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.ENDTIME_DESC_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DAY_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDTIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -88,6 +70,7 @@ public class EditLessonCommandParserTest {
                 .withStartTime(VALID_STARTTIME_SCIENCE)
                 .withEndTime(VALID_ENDTIME_SCIENCE)
                 .withVenue(VALID_VENUE_SCIENCE)
+                .withNote(VALID_LESSON_NOTE_MATH)
                 .build();
         EditLessonCommand expectedCommand = new EditLessonCommand(targetIndex, descriptor);
 

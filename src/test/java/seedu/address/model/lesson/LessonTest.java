@@ -200,4 +200,19 @@ public class LessonTest {
         assertEquals(expected.getNote(), actual.getNote());
         assertEquals(expected.getStudents(), actual.getStudents());
     }
+
+    /**
+     * Asserts that two {@link Lesson} objects are equal in all user-facing fields.
+     *
+     * @param expected The expected lesson.
+     * @param actual The actual lesson.
+     */
+    public static void assertEqualLessonIgnoringLessonId(Lesson expected, Lesson actual) {
+        assertEquals(expected.getDay(), actual.getDay());
+        assertEquals(expected.getStartTime(), actual.getStartTime());
+        assertEquals(expected.getEndTime(), actual.getEndTime());
+        assertEquals(expected.getVenue(), actual.getVenue());
+        assertEquals(expected.getNote(), actual.getNote());
+        assertEquals(expected.getStudents(), actual.getStudents());
+    }
 }
