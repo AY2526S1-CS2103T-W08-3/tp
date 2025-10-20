@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="lesson-card-small" alignment="TOP_LEFT" spacing="3">
+  <padding>
+    <Insets top="8" right="8" bottom="8" left="8" />
+  </padding>
+  <Label fx:id="lessonId" styleClass="lesson-card-id" />
+  <Label fx:id="day" styleClass="lesson-card-day" />
+  <Label fx:id="time" styleClass="lesson-card-time" wrapText="true" />
+  <Label fx:id="venue" styleClass="lesson-card-venue" wrapText="true" />
+  <Label fx:id="note" styleClass="lesson-card-note" wrapText="true" />
+</VBox>
