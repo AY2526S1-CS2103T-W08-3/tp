@@ -81,6 +81,13 @@ public class Lesson {
                 && otherLesson.getLessonId().equals(getLessonId());
     }
 
+    /**
+     * Returns true if the input student is a student of this lesson
+     */
+    public boolean hasPerson(Person person) {
+        return students.contains(person);
+    }
+
 
     @Override
     public boolean equals(Object other) {

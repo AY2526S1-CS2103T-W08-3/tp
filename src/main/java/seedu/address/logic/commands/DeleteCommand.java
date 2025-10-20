@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a person identified by name using it's displayed index from the filtered name list .\n"
+            + ": Deletes a person identified by name using it's displayed index from the filtered name list.\n"
             + "Parameters: NAME, INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Bob " + " 1";
 
@@ -88,6 +88,7 @@ public class DeleteCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("name", name)
                 .add("targetIndex", targetIndex)
                 .toString();
     }

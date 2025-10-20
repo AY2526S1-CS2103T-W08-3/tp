@@ -128,7 +128,8 @@ public class DeleteCommandTest {
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(DUPLICATE_NAME, targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{name=" + DUPLICATE_NAME
+                + ", targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
