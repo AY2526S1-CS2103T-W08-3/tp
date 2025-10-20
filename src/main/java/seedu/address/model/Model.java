@@ -106,7 +106,12 @@ public interface Model {
      */
     void deleteLesson(Lesson lesson);
 
-    // TODO implement other lesson features such as set
+    /**
+     * Replaces the given lesson {@code target} with {@code editedLesson}.
+     * {@code target} must exist in the address book.
+     * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the address book.
+     */
+    void setLesson(Lesson target, Lesson editedLesson);
 
     /**
      * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.

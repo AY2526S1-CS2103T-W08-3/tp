@@ -80,7 +80,8 @@ public class EditLessonCommand extends Command {
 
         model.setLesson(lessonToEdit, editedLesson);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS, Messages.format(editedLesson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS,
+                                               Messages.format(editedLesson)), false, false, true);
     }
 
     /**
