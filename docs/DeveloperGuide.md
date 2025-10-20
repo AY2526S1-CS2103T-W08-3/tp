@@ -470,6 +470,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC08 - Edit student**
+
+**Preconditions**
+
+* At least one student exists in the system.
+
+**Guarantees**
+
+* Tutor sees a confirmation message with edited student details.
+
+**MSS**
+
+1. Tutor chooses to edit a particular student from the system.
+2. EduLink edits the student.
+3. EduLink displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No student matches the given index.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 1b. Input data fails validation.
+    * 1b1. EduLink displays an error.
+
+      Use case ends.
+
+**Use case: UC09 - Edit lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* Tutor sees a confirmation message with edited lesson details.
+
+**MSS**
+
+1. Tutor chooses to edit a particular lesson from the system.
+2. EduLink edits the lesson.
+3. EduLink displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No lesson matches the given index.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 1b. Input data fails validation.
+    * 1b1. EduLink displays an error.
+
+      Use case ends.
+
 
 *{More to be added}*
 
