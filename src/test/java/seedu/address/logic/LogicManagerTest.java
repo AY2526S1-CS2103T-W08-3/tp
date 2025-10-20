@@ -61,10 +61,10 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String name = AMY.getName().fullName.split("\\s+")[0];
-        String deleteCommand = String.format("delete %s 5", name);
+        String deleteStudentCommand = String.format("deletestudent %s 5", name);
         Person person = new PersonBuilder(AMY).build();
         model.addPerson(person);
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteStudentCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
