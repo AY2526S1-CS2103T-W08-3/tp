@@ -124,11 +124,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `findstudent`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findstudent KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -138,9 +138,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findstudent John` returns `john` and `John Doe`
+* `findstudent alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findstudent alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
@@ -154,7 +154,7 @@ Format: `delete NAME INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `findstudent Betsy` followed by `delete 1` deletes the 1st person in the results of the `findstudent` command.
 
 ### Clearing all entries : `clear`
 
@@ -241,7 +241,7 @@ Action | Format, Examples
 **Add Student** | `add n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
 **List Students** | `list`
 **Edit Student** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com sn/improved performance`
-**Find Student** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Student** | `findstudent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstudent James Jake`
 **Delete Student** | `delete NAME INDEX`<br> e.g., `delete Betsy 1`
 **Clear Students** | `clear`
 **Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
