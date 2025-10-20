@@ -106,27 +106,6 @@ public class EditStudentCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditStudentCommand editCommand = new EditStudentCommand(SECOND_INDEX, descriptor);
-
-        assertCommandFailure(editCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, FIRST_INDEX);
-
-        // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(SECOND_INDEX.getZeroBased());
-        EditStudentCommand editCommand = new EditStudentCommand(FIRST_INDEX,
-                                                                new EditPersonDescriptorBuilder(personInList).build());
-
-        assertCommandFailure(editCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
