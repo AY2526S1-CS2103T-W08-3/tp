@@ -86,7 +86,6 @@ public class CommandTestUtil {
     public static final String INVALID_DAY_DESC = " " + PREFIX_DAY + "ABC"; // invalid day
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_START_TIME + "25:00"; // invalid time
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_END_TIME + "2500"; // invalid time
-    public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE; // empty venue not allowed when specified
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
