@@ -142,19 +142,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `deletestudent`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the address book.
 
-Format: `delete NAME INDEX`
+Format: `deletestudent NAME INDEX`
 
-* Deletes the person with the specified `NAME` and `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student with the specified `NAME` at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `deletestudent David` brings up a filtered list of students containing the name 'David'. 
+Following that with `deletestudent David 1` deletes the 1st student in that list.
 
 ### Clearing all entries : `clear`
 
@@ -186,14 +186,15 @@ Format: `listlesson`
 
 Deletes the specified lesson from the address book.
 
-Format: `deletelesson INDEX`
+Format: `deletelesson DAY INDEX`
 
-* Deletes the lesson at the specified INDEX.
+* Deletes the lesson of the specific `DAY` at the specified `INDEX`
 * The index refers to the index number shown in the displayed lesson list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletelesson 2` deletes the 2nd lesson in the list.
+* `deletelesson TUE` brings up a filtered list of lessons of the day 'TUE'.
+Following that with `deletelesson TUE 2` deletes the 2nd lesson in that list.
 
 ### Exiting the program : `exit`
 
