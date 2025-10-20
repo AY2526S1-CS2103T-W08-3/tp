@@ -3,10 +3,10 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditLessonCommand;
@@ -28,16 +28,19 @@ public class EditLessonCommandParser implements Parser<EditLessonCommand> {
     public EditLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_START_TIME,
+                                           PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE);
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditLessonCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                                   EditLessonCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DAY, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DAY, PREFIX_START_TIME,
+                                                 PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE);
 
         EditLessonDescriptor editLessonDescriptor = new EditLessonDescriptor();
 

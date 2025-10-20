@@ -102,5 +102,8 @@ public class ListLessonCommandTest {
         @Override public void deleteLesson(Lesson target) {
             throw new AssertionError();
         }
+        @Override public void setLesson(Lesson target, Lesson editedLesson) {
+            throw new AssertionError();
+        }
     }
 }

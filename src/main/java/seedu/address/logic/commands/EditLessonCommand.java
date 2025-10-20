@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 
 import java.util.List;
@@ -15,8 +19,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Day;
-import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
 import seedu.address.model.note.Note;
 
@@ -97,7 +101,8 @@ public class EditLessonCommand extends Command {
         Venue updatedVenue = editLessonDescriptor.getVenue().orElse(lessonToEdit.getVenue());
         Note updatedNote = editLessonDescriptor.getNote().orElse(lessonToEdit.getNote());
 
-        return new Lesson(lessonToEdit.getLessonId(), updatedDay, updatedStartTime, updatedEndTime, updatedVenue, updatedNote);
+        return new Lesson(lessonToEdit.getLessonId(), updatedDay, updatedStartTime,
+                          updatedEndTime, updatedVenue, updatedNote);
     }
 
     @Override

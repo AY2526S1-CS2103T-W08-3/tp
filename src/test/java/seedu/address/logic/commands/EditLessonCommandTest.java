@@ -3,7 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_MATH;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_MATH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_MATH;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertLessonCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showLessonAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
 import static seedu.address.testutil.TypicalIndexes.SECOND_INDEX;
@@ -35,13 +41,14 @@ public class EditLessonCommandTest {
         EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder(editedLesson).build();
         EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, descriptor);
 
-        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS, Messages.format(editedLesson));
+        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
+                Messages.format(editedLesson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setLesson(model.getFilteredLessonList().get(0), editedLesson);
 
-        assertCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
+        assertLessonCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -56,12 +63,13 @@ public class EditLessonCommandTest {
                 .withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_MATH).build();
         EditLessonCommand editLessonCommand = new EditLessonCommand(indexLastLesson, descriptor);
 
-        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS, Messages.format(editedLesson));
+        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
+                Messages.format(editedLesson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setLesson(lastLesson, editedLesson);
 
-        assertCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
+        assertLessonCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -69,11 +77,12 @@ public class EditLessonCommandTest {
         EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, new EditLessonDescriptor());
         Lesson editedLesson = model.getFilteredLessonList().get(FIRST_INDEX.getZeroBased());
 
-        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS, Messages.format(editedLesson));
+        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
+                Messages.format(editedLesson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertLessonCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -85,12 +94,13 @@ public class EditLessonCommandTest {
         EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX,
                 new EditLessonDescriptorBuilder().withDay(VALID_DAY_MATH).build());
 
-        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS, Messages.format(editedLesson));
+        String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
+                Messages.format(editedLesson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setLesson(model.getFilteredLessonList().get(0), editedLesson);
 
-        assertCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
+        assertLessonCommandSuccess(editLessonCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

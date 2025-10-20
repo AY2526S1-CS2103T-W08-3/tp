@@ -108,8 +108,9 @@ public class CommandTestUtil {
         DESC_MATH = new EditLessonDescriptorBuilder().withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_MATH)
                 .withEndTime(VALID_ENDTIME_MATH).withVenue(VALID_VENUE_MATH).withNote(VALID_LESSON_NOTE_MATH)
                 .build();
-        DESC_SCIENCE = new EditLessonDescriptorBuilder().withDay(VALID_DAY_SCIENCE).withStartTime(VALID_STARTTIME_SCIENCE)
-                .withEndTime(VALID_ENDTIME_SCIENCE).withVenue(VALID_VENUE_SCIENCE).withNote(VALID_LESSON_NOTE_SCIENCE)
+        DESC_SCIENCE = new EditLessonDescriptorBuilder().withDay(VALID_DAY_SCIENCE)
+                .withStartTime(VALID_STARTTIME_SCIENCE).withEndTime(VALID_ENDTIME_SCIENCE)
+                .withVenue(VALID_VENUE_SCIENCE).withNote(VALID_LESSON_NOTE_SCIENCE)
                 .build();
     }
 
@@ -118,8 +119,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertStudentCommandSuccess(Command command, Model actualModel,
+                                                   CommandResult expectedCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -130,13 +131,39 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertStudentCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+    public static void assertStudentCommandSuccess(Command command, Model actualModel,
+                                                   String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertStudentCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertLessonCommandSuccess(Command command, Model actualModel,
+                                                  CommandResult expectedCommandResult, Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertLessonCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertLessonCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
+        assertStudentCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
