@@ -21,10 +21,13 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Day;
+import seedu.address.model.lesson.predicates.DayMatchesPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -117,5 +120,35 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLessonCommand.MESSAGE_USAGE), () ->
                 parser.parseCommand(AddLessonCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_deleteLesson_invalidFormat() {
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), () ->
+                parser.parseCommand(DeleteCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_deleteLesson() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + TypicalPersons.DUPLICATE_NAME
+                        + " " + FIRST_INDEX.getOneBased());
+        assertEquals(new DeleteCommand(TypicalPersons.DUPLICATE_NAME, FIRST_INDEX), command);
+    }
+
+    @Test
+    public void parseCommand_findLesson_invalidFormat() {
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindLessonCommand.MESSAGE_USAGE), () ->
+                parser.parseCommand(seedu.address.logic.commands.FindLessonCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_findLesson() throws Exception {
+        FindLessonCommand command = (FindLessonCommand) parser.parseCommand(
+                FindLessonCommand.COMMAND_WORD + " MON");
+        assertEquals(new FindLessonCommand(new DayMatchesPredicate(
+                Day.MON)), command);
     }
 }
