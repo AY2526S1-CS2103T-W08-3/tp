@@ -16,7 +16,7 @@ public class FindLessonCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "   ", 
+        assertParseFailure(parser, "   ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindLessonCommand.MESSAGE_USAGE));
     }
 
@@ -46,14 +46,14 @@ public class FindLessonCommandParserTest {
     }
 
     @Test
-    public void parse_validDay_lowercase_returnsFindLessonCommand() {
+    public void parse_validDaylowercase_returnsFindLessonCommand() {
         // Lowercase input should still work (Day.isValidDay is case-insensitive)
         FindLessonCommand expectedCommand = new FindLessonCommand(new DayMatchesPredicate(Day.MON));
         assertParseSuccess(parser, "mon", expectedCommand);
     }
 
     @Test
-    public void parse_validDay_withExtraSpaces_returnsFindLessonCommand() {
+    public void parse_validDaywithExtraSpaces_returnsFindLessonCommand() {
         FindLessonCommand expectedCommand = new FindLessonCommand(new DayMatchesPredicate(Day.MON));
         assertParseSuccess(parser, "   MON   ", expectedCommand);
     }
