@@ -17,18 +17,18 @@ import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 /**
  * Deletes a person identified by name using it's displayed index from the filtered name list of the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletestudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a person identified by name using it's displayed index from the filtered name list .\n"
+            + ": Deletes a student identified by name using it's displayed index from the filtered name list .\n"
             + "Parameters: NAME, INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Bob " + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of persons "
-            + "containing: \"%s\". Enter \"delete %s {i}\" to delete the i'th person in this list.";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of student "
+            + "containing: \"%s\". Enter \"delete %s {i}\" to delete the i'th student in this list.";
 
     private final Name name;
     private final Index targetIndex; // null if no target index provided to delete
@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
     /**
      * Creates a DeleteCommand to delete the specified {@code Person}
      */
-    public DeleteCommand(Name name, Index targetIndex) {
+    public DeleteStudentCommand(Name name, Index targetIndex) {
         this.name = name;
         this.targetIndex = targetIndex;
     }
@@ -75,14 +75,14 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteStudentCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
+        DeleteStudentCommand otherDeleteStudentCommand = (DeleteStudentCommand) other;
 
-        return (Objects.equals(targetIndex, otherDeleteCommand.targetIndex))
-                && name.equals(otherDeleteCommand.name);
+        return (Objects.equals(targetIndex, otherDeleteStudentCommand.targetIndex))
+                && name.equals(otherDeleteStudentCommand.name);
     }
 
     @Override
