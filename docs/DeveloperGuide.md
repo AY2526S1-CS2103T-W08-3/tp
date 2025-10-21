@@ -283,15 +283,21 @@ A typing-first address book for private tutors lets them:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​       | I want to …​                                  | So that I can…​                                      |
-| -------- |---------------|-----------------------------------------------|------------------------------------------------------|
-| `* * *`  | private tutor | add students and their administrative details | keep track of and contact my students easily         |
-| `* * *`  | private tutor | delete students                               | get rid of students I am no longer teaching          |
-| `* * *`  | private tutor | search for a student                          | find out their details easily                        |
-| `* * *`  | private tutor | list students by class                        | prepare individualised content and comments for them |
-| `* * *`  | private tutor | create lesson                                 | assign students to a lesson                            |
-| `* * *`  | private tutor | delete lesson                                 | remove a lesson that I am no longer teaching |
-| `* * *`  | private tutor | see the information of a student              | plan the lessons accordingly |
+| Priority | As a …​       | I want to …​                                  | So that I can…​                                                  |
+|----------|---------------|-----------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | private tutor | add students and their administrative details | keep track of and contact my students easily                     |
+| `* *`    | private tutor | edit students' details                        | correct mistakes I made when adding a student                    |
+| `* * *`  | private tutor | delete students                               | get rid of students I am no longer teaching                      |
+| `* * *`  | private tutor | search for a student                          | find out their details easily                                    |
+| `* * *`  | private tutor | create lesson                                 | assign students to a lesson                                      |
+| `* *`    | private tutor | edit lessons' details                         | correct any mistakes in content                                  |
+| `* * *`  | private tutor | delete lesson                                 | remove a lesson that I am no longer teaching                     |
+| `* * *`  | private tutor | list my lessons                               | plan my schedule                                                 |
+| `* * *`  | private tutor | assign a student to a lesson                  | manage my student more easily                                    |
+| `* * *`  | private tutor | unassign a student from a lesson              | manage my student more easily                                    |
+| `* *`    | private tutor | filter students by lesson                     | prepare more individualized content for my upcoming lesson       |
+| `* *`    | private tutor | filter lessons by student                     | review upcoming lessons for my student and tailor my preparation |
+| `* *`    | private tutor | search for lessons by day                     | find my upcoming lessons more quickly                            |
 
 *{More to be added}*
 
