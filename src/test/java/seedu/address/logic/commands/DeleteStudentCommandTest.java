@@ -28,22 +28,22 @@ import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_nameOnly_filtersListNoDeletion() {
         Name nameToFilter = DUPLICATE_NAME;
-        DeleteCommand deleteCommand = new DeleteCommand(nameToFilter, null);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(nameToFilter, null);
 
         String expectedMessage = String.format(
-                DeleteCommand.MESSAGE_LIST_PERSONS_WITH_NAME, nameToFilter, nameToFilter);
+                DeleteStudentCommand.MESSAGE_LIST_PERSONS_WITH_NAME, nameToFilter, nameToFilter);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(new NameContainsKeywordPredicate(nameToFilter.fullName));
 
-        assertStudentCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
 
         // Ensure no deletion occurred
         assertTrue(model.getAddressBook().getPersonList().containsAll(getTypicalAddressBook().getPersonList()));
@@ -54,9 +54,9 @@ public class DeleteCommandTest {
         Name nameToFilter = DUPLICATE_NAME;
         Person personToDelete = model.getFilteredPersonList().get(INDEX_DUPLICATE_NAME.getZeroBased());
 
-        DeleteCommand deleteCommand = new DeleteCommand(nameToFilter, FIRST_INDEX);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(nameToFilter, FIRST_INDEX);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -65,7 +65,7 @@ public class DeleteCommandTest {
         expectedModel.updateFilteredPersonList(new NameContainsKeywordPredicate(nameToFilter.fullName));
         expectedModel.deletePerson(personToDelete);
 
-        assertStudentCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -73,16 +73,16 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, SECOND_INDEX);
 
         Person personToDelete = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(UNIQUE_NAME, FIRST_INDEX);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(UNIQUE_NAME, FIRST_INDEX);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
-        assertStudentCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -93,22 +93,22 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(UNIQUE_NAME, outOfBoundIndex);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(UNIQUE_NAME, outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(DUPLICATE_NAME, FIRST_INDEX);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(DUPLICATE_NAME, SECOND_INDEX);
-        DeleteCommand deleteFirstDiffNameCommand = new DeleteCommand(new Name("Hello"), FIRST_INDEX);
+        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(DUPLICATE_NAME, FIRST_INDEX);
+        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(DUPLICATE_NAME, SECOND_INDEX);
+        DeleteStudentCommand deleteFirstDiffNameCommand = new DeleteStudentCommand(new Name("Hello"), FIRST_INDEX);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(DUPLICATE_NAME, FIRST_INDEX);
+        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(DUPLICATE_NAME, FIRST_INDEX);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -127,9 +127,9 @@ public class DeleteCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(DUPLICATE_NAME, targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-        assertEquals(expected, deleteCommand.toString());
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(DUPLICATE_NAME, targetIndex);
+        String expected = DeleteStudentCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        assertEquals(expected, deleteStudentCommand.toString());
     }
 
     /**
