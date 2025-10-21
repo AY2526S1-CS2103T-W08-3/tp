@@ -35,7 +35,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -43,8 +43,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() throws Exception {
@@ -53,7 +53,7 @@ public class AddCommandParserTest {
         String inputWithWhitespace = PREAMBLE_WHITESPACE
                 + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENT_NOTE_DESC_BOB + TAG_DESC_FRIEND;
 
-        AddCommand command = parser.parse(inputWithWhitespace);
+        AddStudentCommand command = parser.parse(inputWithWhitespace);
         Person actualPerson = command.getPerson();
         assertEqualPersonIgnoringUserId(expectedPerson, actualPerson);
 
@@ -64,7 +64,7 @@ public class AddCommandParserTest {
         String inputMultipleTags = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STUDENT_NOTE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND;
 
-        AddCommand commandMultiple = parser.parse(inputMultipleTags);
+        AddStudentCommand commandMultiple = parser.parse(inputMultipleTags);
         Person actualPersonMultiple = commandMultiple.getPerson();
         assertEqualPersonIgnoringUserId(expectedPersonMultipleTags, actualPersonMultiple);
     }
@@ -133,7 +133,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + STUDENT_NOTE_DESC_AMY;
 
-        AddCommand command = parser.parse(userInput);
+        AddStudentCommand command = parser.parse(userInput);
         Person person = command.getPerson();
 
         // Compare all fields except for UserId
@@ -143,7 +143,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENT_NOTE_DESC_BOB,
@@ -187,6 +187,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STUDENT_NOTE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
     }
 }
