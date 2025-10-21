@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -82,7 +83,7 @@ public class FilterLessonByStudentCommand extends FilterCommand {
         }
 
         FilterLessonByStudentCommand command = (FilterLessonByStudentCommand) other;
-        return this.name.equals(command.name) && this.targetIndex.equals(command.targetIndex);
+        return this.name.equals(command.name) && Objects.equals(this.targetIndex, command.targetIndex);
     }
 
     @Override
