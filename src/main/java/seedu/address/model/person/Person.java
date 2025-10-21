@@ -156,13 +156,13 @@ public class Person {
             return false;
         }
 
+        // No need to check if lessons storage is equal for simplicity and to avoid bugs for this two-way rls
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && userId.equals(otherPerson.userId)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && note.equals(otherPerson.note)
-                && lessons.equals(otherPerson.lessons)
                 && tags.equals(otherPerson.tags);
     }
 

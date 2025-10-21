@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -136,7 +137,17 @@ public class TypicalPersons {
 
     private TypicalPersons() {}
 
+    /**
+     * Returns a list of typical students
+     */
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, DANIEL_2, DANIEL_3));
+    }
+
+    /**
+     * Returns a copy of the input student and assigns the input lessons ot the student
+     */
+    public static Person getStudentWithLessons(Person student, Lesson ... lessons) {
+        return new PersonBuilder(student).withLessons(lessons).build();
     }
 }
