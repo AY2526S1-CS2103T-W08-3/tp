@@ -33,6 +33,7 @@ public class FilterLessonByStudentCommand extends FilterCommand {
      * Creates a FilterCommand to filter the list of lessons by the specified student
      */
     public FilterLessonByStudentCommand(Name name, Index targetIndex) {
+        requireNonNull(name);
         this.name = name;
         this.targetIndex = targetIndex;
     }
@@ -40,7 +41,6 @@ public class FilterLessonByStudentCommand extends FilterCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireNonNull(name);
 
         model.updateFilteredPersonList(new NameContainsKeywordPredicate(name.toString()));
         List<Person> filteredPersonList = model.getFilteredPersonList();

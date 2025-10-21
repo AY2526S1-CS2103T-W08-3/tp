@@ -33,6 +33,7 @@ public class FilterStudentByLessonCommand extends FilterCommand {
      * Creates a FilterCommand to filter students by the specified lesson
      */
     public FilterStudentByLessonCommand(Day day, Index targetIndex) {
+        requireNonNull(day);
         this.day = day;
         this.targetIndex = targetIndex;
     }
@@ -40,7 +41,6 @@ public class FilterStudentByLessonCommand extends FilterCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireNonNull(day);
 
         model.updateFilteredLessonList(new DayMatchesPredicate(day));
         List<Lesson> filteredLessonList = model.getFilteredLessonList();
