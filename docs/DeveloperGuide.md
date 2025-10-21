@@ -470,6 +470,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC08 - Filter students by lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* A list of students associated with the selected lesson is displayed.
+
+**MSS**
+
+1. Tutor chooses to filter students by a specific lesson.
+2. EduLink locates the selected lesson.
+3. EduLink retrieves all students associated with that lesson.
+4. EduLink displays the list of students with their details.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The selected lesson does not exist.
+    * 2a1. EduLink displays an error.
+
+        Use case ends.
+
+* 3a. The lesson exists but has no associated students.
+    * 3a1. EduLink displays a “no students found” message.
+  
+        Use case ends.
+
+**Use case: UC09 - Filter lessons by student**
+
+**Preconditions**
+
+* At least one student exists in the system.
+
+**Guarantees**
+
+* A list of lessons associated with the selected student is displayed.
+
+**MSS**
+
+1. Tutor chooses to filter lessons by a specific student.
+2. EduLink locates the selected student.
+3. EduLink retrieves all lessons associated with that student.
+4. EduLink displays the list of lessons with their details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The selected student does not exist.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 3a. The student exists but has no associated lessons.
+    * 3a1. EduLink displays a “no lessons found” message.
+  
+      Use case ends.
 
 *{More to be added}*
 
