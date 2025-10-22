@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX_2;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -116,8 +117,8 @@ public class AssignCommand extends Command {
 
         AssignCommand e = (AssignCommand) other;
         return name.equals(e.name)
-                && studentIndex.equals(e.studentIndex)
+                && Objects.equals(studentIndex, e.studentIndex) // Use Objects.equals to handle null indices
                 && day.equals(e.day)
-                && lessonIndex.equals(e.lessonIndex);
+                && Objects.equals(lessonIndex, e.lessonIndex); // Use Objects.equals to handle null indices
     }
 }
