@@ -15,11 +15,11 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W08-3/tp/releases/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EduLink.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edulink.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -28,7 +28,7 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
+   * `addstudent n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
 
    * `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English Lesson` : Adds a lesson with given fields to the Address Book.
 
@@ -194,7 +194,7 @@ Examples:
 * `deletelesson TUE` brings up a filtered list of lessons of the day `TUE`.
 Following that with `deletelesson TUE 2` deletes the 2nd lesson in that list.
 
-### Editing a person : `editlesson`
+### Editing a lesson : `editlesson`
 
 Edits an existing lesson in the address book.
 
@@ -206,7 +206,7 @@ Format: `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LE
 
 Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
-*  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd person to be `1400` and `Apple Store` respectively.
+*  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd lesson to be `1400` and `Apple Store` respectively.
 
 ### Assigning a student to a lesson : `assign`
 
@@ -284,15 +284,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EduLink data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EduLink data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, EduLink will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause EduLink to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -304,7 +304,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduLink home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -319,15 +319,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
+**Add Student** | `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `addstudent n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
 **List Students** | `list`
-**Edit Student** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com sn/improved performance`
+**Edit Student** | `editstudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `editstudent 2 n/James Lee e/jameslee@example.com sn/improved performance`
 **Find Student** | `findstudent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstudent James Jake`
-**Delete Student** | `delete NAME INDEX`<br> e.g., `delete Betsy 1`
+**Delete Student** | `deletestudent NAME INDEX`<br> e.g., `deletestudent Betsy 1`
 **Clear Students** | `clear`
 **Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
-**Delete Lesson** | `deletelesson INDEX`<br> e.g., `deletelesson 2`
+**Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
 **Assign Student to Lesson** | `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
 **Unassign Student from Lesson** | `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
