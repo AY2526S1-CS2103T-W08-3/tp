@@ -226,6 +226,16 @@ public class AddLessonCommandTest {
         public void assign(Person student, Lesson lesson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void unassign(Person student, Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshLists() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

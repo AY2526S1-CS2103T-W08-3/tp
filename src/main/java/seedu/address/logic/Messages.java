@@ -25,6 +25,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_LESSON_DISPLAYED_INDEX = "The lesson index provided is invalid";
     public static final String MESSAGE_STUDENT_ALREADY_ASSIGNED_LESSON =
             "This student has already been assigned this lesson";
+    public static final String MESSAGE_STUDENT_NOT_ASSIGNED_LESSON =
+            "This student has not been assigned this lesson";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

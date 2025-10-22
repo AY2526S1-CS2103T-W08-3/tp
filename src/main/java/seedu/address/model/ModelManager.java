@@ -172,6 +172,45 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Unassigns a student from a lesson and vice versa.
+     * Both the student and lesson must exist in the address book.
+     *
+     * @param student the student to unassign from the lesson
+     * @param lesson the lesson to unassign from the student
+     * @throws AssertionError if the student or lesson does not exist in the address book
+     */
+    public void unassign(Person student, Lesson lesson) {
+        if (!addressBook.hasPerson(student) || !addressBook.hasLesson(lesson)) {
+            throw new AssertionError("Person or Lesson does not exist in the address book");
+        }
+
+        // Get the actual objects from the address book to ensure we modify the correct instances
+        Person actualStudent = addressBook.getPersonList().stream()
+                .filter(p -> p.isSamePerson(student))
+                .findFirst()
+                .orElse(null);
+
+        Lesson actualLesson = addressBook.getLessonList().stream()
+                .filter(l -> l.isSameLesson(lesson))
+                .findFirst()
+                .orElse(null);
+
+        if (actualStudent != null && actualLesson != null) {
+            actualStudent.removeLesson(actualLesson);
+            actualLesson.removeStudent(actualStudent);
+        }
+    }
+
+    /**
+     * Refreshes both the person and lesson lists to show all entries.
+     * This is typically called after operations that modify the address book.
+     */
+    public void refreshLists() {
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

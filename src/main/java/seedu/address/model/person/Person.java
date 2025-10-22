@@ -151,6 +151,15 @@ public class Person {
     }
 
     /**
+     * Removes a lesson from this person's set of lessons.
+     *
+     * @param lesson the lesson to remove
+     */
+    public void removeLesson(Lesson lesson) {
+        lessons.remove(lesson);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

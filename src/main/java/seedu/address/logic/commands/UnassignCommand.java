@@ -21,25 +21,26 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 
 /**
- * Assigns a student to a lesson, and that lesson back to the student.
+ * Unassigns a student from a lesson, and that lesson from the student.
  */
-public class AssignCommand extends Command {
-    public static final String COMMAND_WORD = "assign";
+public class UnassignCommand extends Command {
+    public static final String COMMAND_WORD = "unassign";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Assigns a student identified by name using its displayed index from the filtered name list "
-            + "to a lesson identified by day using its displayed index from the filtered lesson list, and vice versa.\n"
+            + ": Unassigns a student identified by name using its displayed index from the filtered name list "
+            + "from a lesson identified by day using its displayed index from the filtered lesson list, "
+            + "and vice versa.\n"
             + "Parameters: NAME, INDEX1 (must be positive integer), DAY, INDEX2 (must be positive integer)\n"
             + "NAME and DAY is required minimally.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Bob " + PREFIX_INDEX_1 + "1 "
-            + PREFIX_DAY + "Mon " + PREFIX_INDEX_2 + "2 (Full Example, Instantly assigns)";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Assign command not implemented yet";
+            + PREFIX_DAY + "Mon " + PREFIX_INDEX_2 + "2 (Full Example, Instantly unassigns)";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Unassign command not implemented yet";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here is the list of students "
-            + "containing: \"%s\". Enter \"assign n/%s i1/{i1} d/%s \" to view lessons you can assign to "
-            + "student {i1} from %s.";
+            + "containing: \"%s\". Enter \"unassign n/%s i1/{i1} d/%s \" to view lessons you can unassign "
+            + "from student {i1} from %s.";
     public static final String MESSAGE_LIST_LESSONS_WITH_DAY = "Here is the list of lessons "
-            + "on: \"%s\". Enter \"assign n/%s i1/%s d/%s i2/{i2} \" to assign the student to the lesson "
-            + "and vice versa.";
-    public static final String MESSAGE_ASSIGN_SUCCESS = "Successfully assigned %s to %s";
+            + "on: \"%s\". Enter \"unassign n/%s i1/%s d/%s i2/{i2} \" to unassign the student from the "
+            + "lesson and vice versa.";
+    public static final String MESSAGE_UNASSIGN_SUCCESS = "Successfully unassigned %s from %s";
 
     private final Name name;
     private final Index studentIndex;
@@ -47,9 +48,9 @@ public class AssignCommand extends Command {
     private final Index lessonIndex;
 
     /**
-     * Creates a AssignCommand to assign the specified {@code Person} to a {@code Lesson}.
+     * Creates a UnassignCommand to unassign the specified {@code Person} from a {@code Lesson}.
      */
-    public AssignCommand(Name name, Index studentIndex, Day day, Index lessonIndex) {
+    public UnassignCommand(Name name, Index studentIndex, Day day, Index lessonIndex) {
         requireAllNonNull(name, day);
         this.name = name;
         this.studentIndex = studentIndex;
@@ -91,17 +92,18 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
 
-        Person studentToAssign = lastShownPersonList.get(studentIndex.getZeroBased());
-        Lesson lessonToAssign = lastShownLessonList.get(lessonIndex.getZeroBased());
+        Person studentToUnassign = lastShownPersonList.get(studentIndex.getZeroBased());
+        Lesson lessonToUnassign = lastShownLessonList.get(lessonIndex.getZeroBased());
 
-        if (studentToAssign.hasLesson(lessonToAssign)) {
-            throw new CommandException(Messages.MESSAGE_STUDENT_ALREADY_ASSIGNED_LESSON);
+        if (!studentToUnassign.hasLesson(lessonToUnassign)) {
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_ASSIGNED_LESSON);
         }
 
-        model.assign(studentToAssign, lessonToAssign);
+        model.unassign(studentToUnassign, lessonToUnassign);
         model.refreshLists();
-        return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS, Messages.format(lessonToAssign),
-                Messages.format(studentToAssign)));
+        
+        return new CommandResult(String.format(MESSAGE_UNASSIGN_SUCCESS, Messages.format(lessonToUnassign),
+                Messages.format(studentToUnassign)));
     }
 
     @Override
@@ -110,11 +112,11 @@ public class AssignCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof AssignCommand)) {
+        if (!(other instanceof UnassignCommand)) {
             return false;
         }
 
-        AssignCommand e = (AssignCommand) other;
+        UnassignCommand e = (UnassignCommand) other;
         return name.equals(e.name)
                 && studentIndex.equals(e.studentIndex)
                 && day.equals(day)

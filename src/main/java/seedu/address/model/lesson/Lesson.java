@@ -97,6 +97,15 @@ public class Lesson {
         students.add(student);
     }
 
+    /**
+     * Removes a student from this lesson's set of students.
+     *
+     * @param student the student to remove
+     */
+    public void removeStudent(Person student) {
+        students.remove(student);
+    }
+
 
     @Override
     public boolean equals(Object other) {
