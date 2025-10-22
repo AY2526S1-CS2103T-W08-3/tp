@@ -20,10 +20,10 @@ import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterLessonByStudentCommand;
 import seedu.address.logic.commands.FilterStudentByLessonCommand;
+import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.commands.FindStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -151,8 +151,9 @@ public class AddressBookParserTest {
     public void parseCommand_findLesson() throws Exception {
         FindLessonCommand command = (FindLessonCommand) parser.parseCommand(
                 FindLessonCommand.COMMAND_WORD + " MON");
-        assertEquals(new FindLessonCommand(new DayMatchesPredicate(
-                Day.MON)), command);
+        assertEquals(new FindLessonCommand(new DayMatchesPredicate(Day.MON)), command);
+    }
+
     public void parseCommand_filterNoIndex_returnsCorrectCommandType() throws Exception {
         String byStudent = FilterCommand.COMMAND_WORD + " s/john";
         String byLesson = FilterCommand.COMMAND_WORD + " l/mon";
