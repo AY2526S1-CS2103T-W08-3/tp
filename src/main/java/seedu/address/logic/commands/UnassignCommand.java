@@ -101,7 +101,7 @@ public class UnassignCommand extends Command {
 
         model.unassign(studentToUnassign, lessonToUnassign);
         model.refreshLists();
-        
+
         return new CommandResult(String.format(MESSAGE_UNASSIGN_SUCCESS, Messages.format(lessonToUnassign),
                 Messages.format(studentToUnassign)));
     }
@@ -119,7 +119,7 @@ public class UnassignCommand extends Command {
         UnassignCommand e = (UnassignCommand) other;
         return name.equals(e.name)
                 && studentIndex.equals(e.studentIndex)
-                && day.equals(day)
-                && lessonIndex.equals(lessonIndex);
+                && day.equals(e.day)
+                && lessonIndex.equals(e.lessonIndex);
     }
 }

@@ -117,7 +117,7 @@ public class AssignCommand extends Command {
         AssignCommand e = (AssignCommand) other;
         return name.equals(e.name)
                 && studentIndex.equals(e.studentIndex)
-                && day.equals(day)
-                && lessonIndex.equals(lessonIndex);
+                && day.equals(e.day)
+                && lessonIndex.equals(e.lessonIndex);
     }
 }
