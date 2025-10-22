@@ -51,8 +51,6 @@ public class UniqueLessonList implements Iterable<Lesson> {
      * Replaces the lesson {@code target} in the list with {@code editedLesson}.
      * {@code target} must exist in the list.
      * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the list.
-     *
-     * TODO this method is used for editing lesson
      */
     public void setLesson(Lesson target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
@@ -72,8 +70,6 @@ public class UniqueLessonList implements Iterable<Lesson> {
     /**
      * Removes the equivalent lesson from the list.
      * The lesson must exist in the list.
-     *
-     * TODO this method is used for removing lesson
      */
     public void remove(Lesson toRemove) {
         requireNonNull(toRemove);
