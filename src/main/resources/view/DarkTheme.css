@@ -364,3 +364,89 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.lesson-card-small {
+    -fx-background-color: #8b35a3;
+    -fx-border-color: #a855c7;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-width: 150;
+    -fx-min-width: 150;
+}
+
+.lesson-card-id {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 10px;
+    -fx-text-fill: #e0b3ff;
+    -fx-font-weight: bold;
+}
+
+.lesson-card-day {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.lesson-card-time {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+}
+
+.lesson-card-venue {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-text-fill: #e0b3ff;
+}
+
+.lesson-card-note {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 9px;
+    -fx-text-fill: #d0d0d0;
+    -fx-font-style: italic;
+}
+
+.person-card-small {
+    -fx-background-color: #3e7b91;
+    -fx-border-color: #5a9fb8;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-width: 150;
+    -fx-min-width: 150;
+}
+
+.person-card-id {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 10px;
+    -fx-text-fill: #b3e0ff;
+    -fx-font-weight: bold;
+}
+
+.person-card-name {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.person-card-phone {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+}
+
+.person-card-email {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-text-fill: #b3e0ff;
+}
+
+.person-card-note {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 9px;
+    -fx-text-fill: #d0d0d0;
+    -fx-font-style: italic;
+}
