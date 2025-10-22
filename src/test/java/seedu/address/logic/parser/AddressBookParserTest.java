@@ -23,13 +23,19 @@ import seedu.address.logic.commands.EditLessonCommand.EditLessonDescriptor;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FilterLessonByStudentCommand;
+import seedu.address.logic.commands.FilterStudentByLessonCommand;
+import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.commands.FindStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
+import seedu.address.model.lesson.predicates.DayMatchesPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
@@ -144,5 +150,70 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLessonCommand.MESSAGE_USAGE), () ->
                 parser.parseCommand(AddLessonCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_deleteLesson_invalidFormat() {
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE), () ->
+                parser.parseCommand(DeleteStudentCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_deleteLesson() throws Exception {
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                DeleteStudentCommand.COMMAND_WORD + " " + TypicalPersons.DUPLICATE_NAME
+                        + " " + FIRST_INDEX.getOneBased());
+        assertEquals(new DeleteStudentCommand(TypicalPersons.DUPLICATE_NAME, FIRST_INDEX), command);
+    }
+
+    @Test
+    public void parseCommand_findLesson_invalidFormat() {
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindLessonCommand.MESSAGE_USAGE), () ->
+                parser.parseCommand(seedu.address.logic.commands.FindLessonCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_findLesson() throws Exception {
+        FindLessonCommand command = (FindLessonCommand) parser.parseCommand(
+                FindLessonCommand.COMMAND_WORD + " MON");
+        assertEquals(new FindLessonCommand(new DayMatchesPredicate(Day.MON)), command);
+    }
+
+    public void parseCommand_filterNoIndex_returnsCorrectCommandType() throws Exception {
+        String byStudent = FilterCommand.COMMAND_WORD + " s/john";
+        String byLesson = FilterCommand.COMMAND_WORD + " l/mon";
+        assertTrue(parser.parseCommand(byStudent) instanceof FilterLessonByStudentCommand);
+        assertTrue(parser.parseCommand(byLesson) instanceof FilterStudentByLessonCommand);
+    }
+
+    @Test
+    public void parseCommand_filterWithIndex_returnsCorrectCommandType() throws Exception {
+        String byStudent = FilterCommand.COMMAND_WORD + " s/john 2";
+        String byLesson = FilterCommand.COMMAND_WORD + " l/mon 2";
+        assertTrue(parser.parseCommand(byStudent) instanceof FilterLessonByStudentCommand);
+        assertTrue(parser.parseCommand(byLesson) instanceof FilterStudentByLessonCommand);
+    }
+
+    @Test
+    public void parseCommand_filterWithInvalidFormat_throwsParseException() {
+        String noArguments = FilterCommand.COMMAND_WORD;
+        String preamblePresent = FilterCommand.COMMAND_WORD + " preamble s/john";
+        String invalidPrefix = FilterCommand.COMMAND_WORD + " x/invalid";
+        String moreThanOnePrefix = FilterCommand.COMMAND_WORD + " s/john l/mon";
+
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), () ->
+                    parser.parseCommand(noArguments));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(preamblePresent));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(invalidPrefix));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(moreThanOnePrefix));
     }
 }

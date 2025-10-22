@@ -1,11 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
 import seedu.address.model.note.Note;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building Lesson objects.
@@ -25,6 +29,7 @@ public class LessonBuilder {
     private Time endTime;
     private Venue venue;
     private Note note;
+    private Set<Person> students;
 
     /**
      * Creates a {@code LessonBuilder} with the default details.
@@ -36,6 +41,7 @@ public class LessonBuilder {
         endTime = new Time(DEFAULT_ENDTIME);
         venue = new Venue(DEFAULT_VENUE);
         note = new Note(DEFAULT_NOTE);
+        students = new HashSet<>();
     }
 
     /**
@@ -48,6 +54,7 @@ public class LessonBuilder {
         endTime = lessonToCopy.getEndTime();
         venue = lessonToCopy.getVenue();
         note = lessonToCopy.getNote();
+        students = new HashSet<>(lessonToCopy.getStudents());
     }
 
     /**
@@ -98,7 +105,15 @@ public class LessonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Person}s of the {@code Lesson} that we are building.
+     */
+    public LessonBuilder withStudents(Person ... students) {
+        this.students = Set.of(students);
+        return this;
+    }
+
     public Lesson build() {
-        return new Lesson(lessonId, day, startTime, endTime, venue, note);
+        return new Lesson(lessonId, day, startTime, endTime, venue, note, students);
     }
 }

@@ -61,7 +61,6 @@ public class LessonCard extends UiPart<Region> {
         lesson.getStudents().stream()
                 .sorted(Comparator.comparing(
                     student -> student.getUserId().value))
-                .forEach(student -> students.getChildren().add(
-                    new Label(student.getName().toString())));
+                .forEach(student -> students.getChildren().add(new PersonCardSmall(student).getRoot()));
     }
 }

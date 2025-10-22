@@ -32,7 +32,7 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 
    * `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English Lesson` : Adds a lesson with given fields to the Address Book.
 
-   * `delete Bob 1` : Deletes the 1st contact named Bob shown in the current list.   
+   * `deletestudent Bob 1` : Deletes the 1st student named Bob shown in the current list.   
 
    * `deletelesson 1` : Deletes the lesson with the ID of 1 in the Lesson List.
 
@@ -76,12 +76,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
-### Adding a student: `add`
+### Adding a student: `addstudent`
 
 Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`
+Format: `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
@@ -98,8 +97,8 @@ A student can have any number of tags (including 0)
   * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
+* `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
+* `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -187,12 +186,12 @@ Deletes the specified lesson from the address book.
 
 Format: `deletelesson DAY INDEX`
 
-* Deletes the lesson of the specific `DAY` at the specified `INDEX`
+* Deletes the lesson of the specific `DAY` at the specified `INDEX`.
 * The index refers to the index number shown in the displayed lesson list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletelesson TUE` brings up a filtered list of lessons of the day 'TUE'.
+* `deletelesson TUE` brings up a filtered list of lessons of the day `TUE`.
 Following that with `deletelesson TUE 2` deletes the 2nd lesson in that list.
 
 ### Editing a person : `editlesson`
