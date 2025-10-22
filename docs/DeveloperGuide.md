@@ -536,6 +536,136 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC10 - Assign student to lesson**
+
+**Preconditions**
+
+* At least one student exists in the system.
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* Student is assigned to the specified lesson.
+* Lesson is added to the student's lesson list.
+* Tutor sees a confirmation message showing the assignment.
+
+**MSS**
+
+1. Tutor chooses to assign a student to a lesson by providing student name and lesson day.
+2. EduLink searches for and displays matching students with the given name.
+3. Tutor selects the desired student by providing an index.
+4. EduLink displays matching lessons on the specified day.
+5. Tutor selects the desired lesson by providing an index.
+6. EduLink validates that the student is not already assigned to this lesson.
+7. EduLink assigns the student to the lesson.
+8. EduLink displays a success message with assignment details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Tutor provides all parameters (name, student index, day, and lesson index) at once.
+    * 1a1. EduLink validates all parameters and assignment constraints.
+    * 1a2. EduLink assigns the student to the lesson instantly.
+    * 1a3. EduLink displays a success message with assignment details.
+
+      Use case ends.
+    
+    * 1a1a. Validation fails for any parameter or constraint.
+        * 1a1a1. EduLink displays an error.
+        
+          Use case ends.
+
+* 2a. No student matches the given name.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 3a. Tutor provides an invalid student index.
+    * 3a1. EduLink displays an error.
+
+      Use case ends.
+
+* 4a. No lesson matches the given day.
+    * 4a1. EduLink displays an error.
+
+      Use case ends.
+
+* 5a. Tutor provides an invalid lesson index.
+    * 5a1. EduLink displays an error.
+
+      Use case ends.
+
+* 6a. Student is already assigned to the lesson.
+    * 6a1. EduLink displays an error indicating the student is already assigned.
+
+      Use case ends.
+
+**Use case: UC11 - Unassign student from lesson**
+
+**Preconditions**
+
+* At least one student exists in the system.
+* At least one lesson exists in the system.
+* The student must be currently assigned to the lesson.
+
+**Guarantees**
+
+* Student is unassigned from the specified lesson.
+* Lesson is removed from the student's lesson list.
+* Tutor sees a confirmation message showing the unassignment.
+
+**MSS**
+
+1. Tutor chooses to unassign a student from a lesson by providing student name and lesson day.
+2. EduLink searches for and displays matching students with the given name.
+3. Tutor selects the desired student by providing an index.
+4. EduLink displays matching lessons on the specified day.
+5. Tutor selects the desired lesson by providing an index.
+6. EduLink validates that the student is currently assigned to this lesson.
+7. EduLink unassigns the student from the lesson.
+8. EduLink displays a success message with unassignment details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Tutor provides all parameters (name, student index, day, and lesson index) at once.
+    * 1a1. EduLink validates all parameters and unassignment constraints.
+    * 1a2. EduLink unassigns the student from the lesson instantly.
+    * 1a3. EduLink displays a success message with unassignment details.
+
+      Use case ends.
+    
+    * 1a1a. Validation fails for any parameter or constraint.
+        * 1a1a1. EduLink displays an error.
+        
+          Use case ends.
+
+* 2a. No student matches the given name.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 3a. Tutor provides an invalid student index.
+    * 3a1. EduLink displays an error.
+
+      Use case ends.
+
+* 4a. No lesson matches the given day.
+    * 4a1. EduLink displays an error.
+
+      Use case ends.
+
+* 5a. Tutor provides an invalid lesson index.
+    * 5a1. EduLink displays an error.
+
+      Use case ends.
+
+* 6a. Student is not currently assigned to the lesson.
+    * 6a1. EduLink displays an error indicating the student is not assigned to this lesson.
+
+      Use case ends.
 
 *{More to be added}*
 

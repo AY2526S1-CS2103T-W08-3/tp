@@ -208,6 +208,45 @@ Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
 *  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd person to be `1400` and `Apple Store` respectively.
 
+### Assigning a student to a lesson : `assign`
+
+Assigns a student to a lesson in a step-by-step interactive process.
+
+Format: `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
+
+* Assigns a student with the specified `NAME` to a lesson on the specified `DAY`.
+* The command works in an interactive manner:
+  1. First, provide the student's name (`n/NAME`) and lesson day (`d/DAY`)
+  2. EduLink will display matching students. Select one using `i1/INDEX1`
+  3. EduLink will display matching lessons on that day. Select one using `i2/INDEX2`
+* You can also provide all parameters at once for instant assignment.
+* The indices **must be positive integers** 1, 2, 3, …​
+* The student must not already be assigned to the selected lesson.
+
+Examples:
+* `assign n/Bob d/Mon` - Shows all students named "Bob" and prompts for student selection
+* `assign n/Bob i1/1 d/Mon` - Selects the 1st Bob and shows lessons on Monday
+* `assign n/Bob i1/1 d/Mon i2/2` - Instantly assigns the 1st Bob to the 2nd Monday lesson
+
+### Unassigning a student from a lesson : `unassign`
+
+Unassigns a student from a lesson in a step-by-step interactive process.
+
+Format: `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
+
+* Unassigns a student with the specified `NAME` from a lesson on the specified `DAY`.
+* The command works in an interactive manner:
+  1. First, provide the student's name (`n/NAME`) and lesson day (`d/DAY`)
+  2. EduLink will display matching students. Select one using `i1/INDEX1`
+  3. EduLink will display matching lessons on that day. Select one using `i2/INDEX2`
+* You can also provide all parameters at once for instant unassignment.
+* The indices **must be positive integers** 1, 2, 3, …​
+* The student must currently be assigned to the selected lesson.
+
+Examples:
+* `unassign n/Bob d/Mon` - Shows all students named "Bob" and prompts for student selection
+* `unassign n/Bob i1/1 d/Mon` - Selects the 1st Bob and shows lessons on Monday
+* `unassign n/Bob i1/1 d/Mon i2/2` - Instantly unassigns the 1st Bob from the 2nd Monday lesson
 
 ### Exiting the program : `exit`
 
@@ -262,5 +301,7 @@ Action | Format, Examples
 **List Lessons** | `listlesson`
 **Delete Lesson** | `deletelesson INDEX`<br> e.g., `deletelesson 2`
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
+**Assign Student to Lesson** | `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
+**Unassign Student from Lesson** | `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
 **Help** | `help`
 **Exit** | `exit`
