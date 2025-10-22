@@ -175,7 +175,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         lessons.remove(lesson);
     }
 
-    // TODO: setLesson for editing lesson
+    /**
+     * Replaces the given lesson {@code target} in the list with {@code editedLesson}.
+     * {@code target} must exist in the address book.
+     * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the address book.
+     */
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        requireNonNull(editedLesson);
+
+        lessons.setLesson(target, editedLesson);
+    }
 
     //// util methods
 

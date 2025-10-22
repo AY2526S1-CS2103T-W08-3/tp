@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertStudentCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
@@ -61,7 +61,7 @@ public class FindStudentCommandTest {
         NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("/");
         FindStudentCommand command = new FindStudentCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -71,7 +71,7 @@ public class FindStudentCommandTest {
         NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Car");
         FindStudentCommand command = new FindStudentCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(CARL), model.getFilteredPersonList());
     }
 
@@ -81,7 +81,7 @@ public class FindStudentCommandTest {
         NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Daniel");
         FindStudentCommand command = new FindStudentCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, DANIEL_2, DANIEL_3), model.getFilteredPersonList());
     }
 

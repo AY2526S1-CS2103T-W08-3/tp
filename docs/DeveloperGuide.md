@@ -476,38 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC08 - Filter students by lesson**
-
-**Preconditions**
-
-* At least one lesson exists in the system.
-
-**Guarantees**
-
-* A list of students associated with the selected lesson is displayed.
-
-**MSS**
-
-1. Tutor chooses to filter students by a specific lesson.
-2. EduLink locates the selected lesson.
-3. EduLink retrieves all students associated with that lesson.
-4. EduLink displays the list of students with their details.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The selected lesson does not exist.
-    * 2a1. EduLink displays an error.
-
-        Use case ends.
-
-* 3a. The lesson exists but has no associated students.
-    * 3a1. EduLink displays a “no students found” message.
-  
-        Use case ends.
-
-**Use case: UC09 - Filter lessons by student**
+**Use case: UC08 - Edit student**
 
 **Preconditions**
 
@@ -515,28 +484,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A list of lessons associated with the selected student is displayed.
+* Tutor sees a confirmation message with edited student details.
 
 **MSS**
 
-1. Tutor chooses to filter lessons by a specific student.
-2. EduLink locates the selected student.
-3. EduLink retrieves all lessons associated with that student.
-4. EduLink displays the list of lessons with their details.
+1. Tutor chooses to edit a particular student from the system.
+2. EduLink edits the student.
+3. EduLink displays a success message.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The selected student does not exist.
-    * 2a1. EduLink displays an error.
+* 1a. No student matches the given index.
+    * 1a1. EduLink displays an error.
 
       Use case ends.
 
-* 3a. The student exists but has no associated lessons.
-    * 3a1. EduLink displays a “no lessons found” message.
-  
+* 1b. Input data fails validation.
+    * 1b1. EduLink displays an error.
+
       Use case ends.
+
+**Use case: UC09 - Edit lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* Tutor sees a confirmation message with edited lesson details.
+
+**MSS**
+
+1. Tutor chooses to edit a particular lesson from the system.
+2. EduLink edits the lesson.
+3. EduLink displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No lesson matches the given index.
+    * 1a1. EduLink displays an error.
+
+      Use case ends.
+
+* 1b. Input data fails validation.
+    * 1b1. EduLink displays an error.
+
+      Use case ends.
+
 
 *{More to be added}*
 

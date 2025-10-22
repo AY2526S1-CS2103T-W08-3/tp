@@ -165,11 +165,10 @@ Format: `clear`
 
 Adds a lesson to the address book.
 
-Format: addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]
+Format: `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`
 
 * Adds a new lesson with the specified details.
 * START_TIME and END_TIME should be in 24-hour format (e.g. 1300, 0930).
-* A lesson can have any number of tags (including 0).
 
 Examples:
 * `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
@@ -195,33 +194,20 @@ Examples:
 * `deletelesson TUE` brings up a filtered list of lessons of the day `TUE`.
 Following that with `deletelesson TUE 2` deletes the 2nd lesson in that list.
 
-### Filtering students by lesson : `filter`
+### Editing a person : `editlesson`
 
-Shows a list of all students that are a part of the specified lesson.
+Edits an existing lesson in the address book.
 
-Format: `filter l/DAY INDEX`
+Format: `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`
 
-* Filters the list of students that are part of the lesson at `INDEX` when filtered by `DAY`.
-* `filter l/DAY` displays the list of all lessons on the specified `DAY`.
-* The lesson at `INDEX` in this list is taken to be the specified lesson for reference when filtering the students list.
-
-Examples:
-* `filter l/Mon` brings up a filtered list of lessons of the day `MON`. Following that with 
-`filter l/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
-
-### Filtering lessons by student : `filter`
-
-Shows a list of all lessons that contain the specified student.
-
-Format: `filter s/NAME INDEX`
-
-* Filters the list of lessons that contain the student at `INDEX` when filtered by `NAME`.
-* `filter s/NAME` displays the list of all students with the specified `NAME`.
-* The student at `INDEX` in this list is taken to be the specified student for reference when filtering the lessons list.
+* Edits the lesson at the specified `INDEX`. The index refers to the index number shown in the displayed lesson list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 Examples:
-* `filter s/John` brings up a filtered list of students containing the name `John`. Following that with
-  `filter s/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
+*  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
+*  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd person to be `1400` and `Apple Store` respectively.
+
 
 ### Exiting the program : `exit`
 
@@ -275,5 +261,6 @@ Action | Format, Examples
 **Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
 **Delete Lesson** | `deletelesson INDEX`<br> e.g., `deletelesson 2`
+**Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
 **Help** | `help`
 **Exit** | `exit`
