@@ -105,5 +105,8 @@ public class ListLessonCommandTest {
         @Override public void setLesson(Lesson target, Lesson editedLesson) {
             throw new AssertionError();
         }
+        @Override public void assign(Person student, Lesson lesson) {
+            throw new AssertionError();
+        }
     }
 }

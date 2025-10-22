@@ -88,6 +88,15 @@ public class Lesson {
         return students.contains(person);
     }
 
+    /**
+     * Adds a student to this lesson's set of students.
+     *
+     * @param student the student to add
+     */
+    public void addStudent(Person student) {
+        students.add(student);
+    }
+
 
     @Override
     public boolean equals(Object other) {

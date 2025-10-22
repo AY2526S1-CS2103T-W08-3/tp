@@ -142,6 +142,36 @@ public class ModelManager implements Model {
         addressBook.setLesson(target, editedLesson);
     }
 
+    /**
+     * Assigns a student to a lesson and vice versa.
+     * Both the student and lesson must exist in the address book.
+     *
+     * @param student the student to assign to the lesson
+     * @param lesson the lesson to assign to the student
+     * @throws AssertionError if the student or lesson does not exist in the address book
+     */
+    public void assign(Person student, Lesson lesson) {
+        if (!addressBook.hasPerson(student) || !addressBook.hasLesson(lesson)) {
+            throw new AssertionError("Person or Lesson does not exist in the address book");
+        }
+
+        // Get the actual objects from the address book to ensure we modify the correct instances
+        Person actualStudent = addressBook.getPersonList().stream()
+                .filter(p -> p.isSamePerson(student))
+                .findFirst()
+                .orElse(null);
+
+        Lesson actualLesson = addressBook.getLessonList().stream()
+                .filter(l -> l.isSameLesson(lesson))
+                .findFirst()
+                .orElse(null);
+
+        if (actualStudent != null && actualLesson != null) {
+            actualStudent.addLesson(actualLesson);
+            actualLesson.addStudent(actualStudent);
+        }
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

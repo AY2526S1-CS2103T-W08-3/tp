@@ -114,6 +114,16 @@ public interface Model {
     void setLesson(Lesson target, Lesson editedLesson);
 
     /**
+     * Assigns a student to a lesson and vice versa.
+     * Both the student and lesson must exist in the address book.
+     *
+     * @param student the student to assign to the lesson
+     * @param lesson the lesson to assign to the student
+     * @throws AssertionError if the student or lesson does not exist in the address book
+     */
+    void assign(Person student, Lesson lesson);
+
+    /**
      * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
