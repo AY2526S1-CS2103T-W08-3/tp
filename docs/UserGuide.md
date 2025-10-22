@@ -26,7 +26,7 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `liststudent` : Lists all students.
 
    * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
 
@@ -62,7 +62,7 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `liststudent`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -100,11 +100,11 @@ Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
 * `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all students : `liststudent`
 
-Shows a list of all persons in the address book.
+Shows a list of all students in the address book.
 
-Format: `list`
+Format: `liststudent`
 
 ### Editing a student : `editstudent`
 
@@ -267,7 +267,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
-**List Students** | `list`
+**List Students** | `liststudent`
 **Edit Student** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com sn/improved performance`
 **Find Student** | `findstudent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstudent James Jake`
 **Delete Student** | `delete NAME INDEX`<br> e.g., `delete Betsy 1`
