@@ -37,6 +37,7 @@ public class DeleteStudentCommand extends Command {
      * Creates a DeleteCommand to delete the specified {@code Person}
      */
     public DeleteStudentCommand(Name name, Index targetIndex) {
+        requireNonNull(name);
         this.name = name;
         this.targetIndex = targetIndex;
     }
@@ -44,7 +45,6 @@ public class DeleteStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireNonNull(name);
 
         model.updateFilteredPersonList(new NameContainsKeywordPredicate(name.toString()));
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -88,6 +88,7 @@ public class DeleteStudentCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("name", name)
                 .add("targetIndex", targetIndex)
                 .toString();
     }

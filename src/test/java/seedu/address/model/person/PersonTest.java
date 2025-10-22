@@ -110,6 +110,21 @@ public class PersonTest {
             person.replaceLesson(placeholderLesson, null));
     }
 
+    @Test
+    public void hasLesson_lessonPresentAndNotPresent_returnsCorrectResult() throws Exception {
+        Lesson lessonA = Lesson.getPlaceholderLesson(new LessonId(2001));
+        Lesson lessonB = Lesson.getPlaceholderLesson(new LessonId(2002));
+
+        Person person = new PersonBuilder().withLessons(lessonA).build();
+
+        // lesson present -> returns true
+        assertTrue(person.hasLesson(lessonA));
+
+        // lesson not present -> returns false
+        assertFalse(person.hasLesson(lessonB));
+    }
+
+
     /**
      * Asserts that two {@link Person} objects are equal in all user-facing fields.
      *

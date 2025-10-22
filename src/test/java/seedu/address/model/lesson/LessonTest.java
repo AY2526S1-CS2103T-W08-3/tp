@@ -185,6 +185,21 @@ public class LessonTest {
             lesson.replaceStudent(placeholderStudent, null));
     }
 
+    @Test
+    public void hasPerson_studentPresentAndNotPresent_correctResult() throws Exception {
+        Person studentA = Person.getPlaceholderPerson(new UserId(2001));
+        Person studentB = Person.getPlaceholderPerson(new UserId(2002));
+
+        Set<Person> students = Set.of(studentA);
+
+        Lesson lesson = new Lesson(VALID_LESSON_ID, VALID_DAY,
+                VALID_START_TIME, VALID_END_TIME, VALID_VENUE, VALID_NOTE, students);
+
+        assertFalse(lesson.hasPerson(studentB));
+        assertTrue(lesson.hasPerson(studentA));
+    }
+
+
     /**
      * Asserts that two {@link Lesson} objects are equal in all user-facing fields.
      *

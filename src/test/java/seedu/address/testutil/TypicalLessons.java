@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Lesson} objects to be used in tests.
@@ -61,5 +62,12 @@ public class TypicalLessons {
      */
     public static List<Lesson> getTypicalLessons() {
         return new ArrayList<>(Arrays.asList(MATH_LESSON, ENGLISH_LESSON, SCIENCE_LESSON, HISTORY_LESSON));
+    }
+
+    /**
+     * Returns a copy of the input student and assigns the input lessons ot the student
+     */
+    public static Lesson getLessonWithStudents(Lesson lesson, Person ... students) {
+        return new LessonBuilder(lesson).withStudents(students).build();
     }
 }

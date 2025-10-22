@@ -106,6 +106,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Lesson}s of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLessons(Lesson ... lessons) {
+        this.lessons = Set.of(lessons);
+        return this;
+    }
+
     public Person build() {
         return new Person(userId, name, phone, email, note, lessons, tags);
     }

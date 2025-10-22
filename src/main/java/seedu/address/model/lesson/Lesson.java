@@ -81,6 +81,13 @@ public class Lesson {
                 && otherLesson.getLessonId().equals(getLessonId());
     }
 
+    /**
+     * Returns true if the input student is a student of this lesson
+     */
+    public boolean hasPerson(Person person) {
+        return students.contains(person);
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -93,6 +100,7 @@ public class Lesson {
             return false;
         }
 
+        // No need to check if students storage is equal for simplicity and to avoid bugs for this two-way rls
         Lesson otherLesson = (Lesson) other;
         return lessonId.equals(otherLesson.lessonId)
                 && day.equals(otherLesson.day)

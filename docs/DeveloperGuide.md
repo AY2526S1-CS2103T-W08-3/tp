@@ -283,15 +283,21 @@ A typing-first address book for private tutors lets them:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​       | I want to …​                                  | So that I can…​                                      |
-| -------- |---------------|-----------------------------------------------|------------------------------------------------------|
-| `* * *`  | private tutor | add students and their administrative details | keep track of and contact my students easily         |
-| `* * *`  | private tutor | delete students                               | get rid of students I am no longer teaching          |
-| `* * *`  | private tutor | search for a student                          | find out their details easily                        |
-| `* * *`  | private tutor | list students by class                        | prepare individualised content and comments for them |
-| `* * *`  | private tutor | create lesson                                 | assign students to a lesson                            |
-| `* * *`  | private tutor | delete lesson                                 | remove a lesson that I am no longer teaching |
-| `* * *`  | private tutor | see the information of a student              | plan the lessons accordingly |
+| Priority | As a …​       | I want to …​                                  | So that I can…​                                                  |
+|----------|---------------|-----------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | private tutor | add students and their administrative details | keep track of and contact my students easily                     |
+| `* *`    | private tutor | edit students' details                        | correct mistakes I made when adding a student                    |
+| `* * *`  | private tutor | delete students                               | get rid of students I am no longer teaching                      |
+| `* * *`  | private tutor | search for a student                          | find out their details easily                                    |
+| `* * *`  | private tutor | create lesson                                 | assign students to a lesson                                      |
+| `* *`    | private tutor | edit lessons' details                         | correct any mistakes in content                                  |
+| `* * *`  | private tutor | delete lesson                                 | remove a lesson that I am no longer teaching                     |
+| `* * *`  | private tutor | list my lessons                               | plan my schedule                                                 |
+| `* * *`  | private tutor | assign a student to a lesson                  | manage my student more easily                                    |
+| `* * *`  | private tutor | unassign a student from a lesson              | manage my student more easily                                    |
+| `* *`    | private tutor | filter students by lesson                     | prepare more individualized content for my upcoming lesson       |
+| `* *`    | private tutor | filter lessons by student                     | review upcoming lessons for my student and tailor my preparation |
+| `* *`    | private tutor | search for lessons by day                     | find my upcoming lessons more quickly                            |
 
 *{More to be added}*
 
@@ -470,6 +476,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC08 - Filter students by lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* A list of students associated with the selected lesson is displayed.
+
+**MSS**
+
+1. Tutor chooses to filter students by a specific lesson.
+2. EduLink locates the selected lesson.
+3. EduLink retrieves all students associated with that lesson.
+4. EduLink displays the list of students with their details.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The selected lesson does not exist.
+    * 2a1. EduLink displays an error.
+
+        Use case ends.
+
+* 3a. The lesson exists but has no associated students.
+    * 3a1. EduLink displays a “no students found” message.
+  
+        Use case ends.
+
+**Use case: UC09 - Filter lessons by student**
+
+**Preconditions**
+
+* At least one student exists in the system.
+
+**Guarantees**
+
+* A list of lessons associated with the selected student is displayed.
+
+**MSS**
+
+1. Tutor chooses to filter lessons by a specific student.
+2. EduLink locates the selected student.
+3. EduLink retrieves all lessons associated with that student.
+4. EduLink displays the list of lessons with their details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The selected student does not exist.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 3a. The student exists but has no associated lessons.
+    * 3a1. EduLink displays a “no lessons found” message.
+  
+      Use case ends.
 
 *{More to be added}*
 
