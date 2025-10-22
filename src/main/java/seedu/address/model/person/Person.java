@@ -135,6 +135,13 @@ public class Person {
     }
 
     /**
+     * Returns true if this person is a student of the input lesson
+     */
+    public boolean hasLesson(Lesson lesson) {
+        return lessons.contains(lesson);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -149,13 +156,13 @@ public class Person {
             return false;
         }
 
+        // No need to check if lessons storage is equal for simplicity and to avoid bugs for this two-way rls
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && userId.equals(otherPerson.userId)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && note.equals(otherPerson.note)
-                && lessons.equals(otherPerson.lessons)
                 && tags.equals(otherPerson.tags);
     }
 
