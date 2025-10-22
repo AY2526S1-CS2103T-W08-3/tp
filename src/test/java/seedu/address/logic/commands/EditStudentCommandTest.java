@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertStudentCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -49,7 +49,7 @@ public class EditStudentCommandTest {
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class EditStudentCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class EditStudentCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class EditStudentCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

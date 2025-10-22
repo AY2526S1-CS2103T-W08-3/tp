@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertStudentCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showLessonAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -43,7 +43,7 @@ public class DeleteLessonCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredLessonList(new DayMatchesPredicate(dayToFilter));
 
-        assertCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
+        assertStudentCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
 
         // Ensure no deletion occurred
         assertTrue(model.getAddressBook().getLessonList().containsAll(getTypicalAddressBook().getLessonList()));
@@ -72,7 +72,7 @@ public class DeleteLessonCommandTest {
         expectedModel.updateFilteredLessonList(new DayMatchesPredicate(dayToFilter));
         expectedModel.deleteLesson(lessonToDelete);
 
-        assertCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
+        assertStudentCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class DeleteLessonCommandTest {
         expectedModel.deleteLesson(lessonToDelete);
         showNoLesson(expectedModel);
 
-        assertCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
+        assertStudentCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

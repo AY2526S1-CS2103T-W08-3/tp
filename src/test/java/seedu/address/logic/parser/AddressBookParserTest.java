@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.model.lesson.LessonTest.assertEqualLessonIgnoringLessonId;
 import static seedu.address.model.person.PersonTest.assertEqualPersonIgnoringUserId;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -17,6 +18,8 @@ import seedu.address.logic.commands.AddLessonCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
+import seedu.address.logic.commands.EditLessonCommand;
+import seedu.address.logic.commands.EditLessonCommand.EditLessonDescriptor;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -30,10 +33,16 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Day;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.predicates.DayMatchesPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UserId;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
+import seedu.address.testutil.EditLessonDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.LessonBuilder;
+import seedu.address.testutil.LessonUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPersons;
@@ -44,9 +53,18 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
+        UserId.setMaxUserId(0);
         Person person = new PersonBuilder().build();
         AddStudentCommand command = (AddStudentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEqualPersonIgnoringUserId(new AddStudentCommand(person).getPerson(), command.getPerson());
+    }
+
+    @Test
+    public void parseCommand_addLesson() throws Exception {
+        LessonId.setMaxLessonId(0);
+        Lesson lesson = new LessonBuilder().build();
+        AddLessonCommand command = (AddLessonCommand) parser.parseCommand(LessonUtil.getAddLessonCommand(lesson));
+        assertEqualLessonIgnoringLessonId(new AddLessonCommand(lesson).getLesson(), command.getLesson());
     }
 
     @Test
@@ -70,6 +88,15 @@ public class AddressBookParserTest {
         EditStudentCommand command = (EditStudentCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
                 + FIRST_INDEX.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditStudentCommand(FIRST_INDEX, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editLesson() throws Exception {
+        Lesson lesson = new LessonBuilder().build();
+        EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder(lesson).build();
+        EditLessonCommand command = (EditLessonCommand) parser.parseCommand(EditLessonCommand.COMMAND_WORD + " "
+                + FIRST_INDEX.getOneBased() + " " + LessonUtil.getEditLessonDescriptorDetails(descriptor));
+        assertEquals(new EditLessonCommand(FIRST_INDEX, descriptor), command);
     }
 
     @Test

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertStudentCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -43,7 +43,7 @@ public class DeleteStudentCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(new NameContainsKeywordPredicate(nameToFilter.fullName));
 
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
 
         // Ensure no deletion occurred
         assertTrue(model.getAddressBook().getPersonList().containsAll(getTypicalAddressBook().getPersonList()));
@@ -65,7 +65,7 @@ public class DeleteStudentCommandTest {
         expectedModel.updateFilteredPersonList(new NameContainsKeywordPredicate(nameToFilter.fullName));
         expectedModel.deletePerson(personToDelete);
 
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DeleteStudentCommandTest {
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
+        assertStudentCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
