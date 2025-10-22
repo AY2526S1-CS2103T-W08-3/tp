@@ -62,7 +62,6 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getLessons().stream()
                 .sorted(Comparator.comparing(lesson -> lesson.getDay()))
-                .forEach(lesson -> lessons.getChildren().add(
-                        new Label(lesson.getDay() + " " + lesson.getStartTime() + "-" + lesson.getEndTime())));
+                .forEach(lesson -> lessons.getChildren().add(new LessonCardSmall(lesson).getRoot()));
     }
 }
