@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_LESSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertLessonCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalLessons.ENGLISH_LESSON;
 import static seedu.address.testutil.TypicalLessons.HISTORY_LESSON;
@@ -50,7 +50,7 @@ public class FindLessonCommandTest {
         String expectedMessage = String.format(MESSAGE_LESSONS_LISTED_OVERVIEW, 0); // SUN has none
         CommandResult expected = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(command, model, expected, expectedModel);
+        assertLessonCommandSuccess(command, model, expected, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredLessonList());
     }
 
@@ -63,7 +63,7 @@ public class FindLessonCommandTest {
         String expectedMessage = String.format(MESSAGE_LESSONS_LISTED_OVERVIEW, 2); // MON has 2
         CommandResult expected = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(command, model, expected, expectedModel);
+        assertLessonCommandSuccess(command, model, expected, expectedModel);
         // Order should follow TypicalAddressBook insertion order: MATH then HISTORY
         assertEquals(Arrays.asList(MATH_LESSON, HISTORY_LESSON), model.getFilteredLessonList());
     }
@@ -77,7 +77,7 @@ public class FindLessonCommandTest {
         String expectedMessage = String.format(MESSAGE_LESSONS_LISTED_OVERVIEW, 1); // TUE has 1
         CommandResult expected = new CommandResult(expectedMessage, false, false, true);
 
-        assertCommandSuccess(command, model, expected, expectedModel);
+        assertLessonCommandSuccess(command, model, expected, expectedModel);
         assertEquals(Collections.singletonList(ENGLISH_LESSON), model.getFilteredLessonList());
     }
 
