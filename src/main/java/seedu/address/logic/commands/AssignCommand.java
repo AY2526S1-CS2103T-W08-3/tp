@@ -33,7 +33,6 @@ public class AssignCommand extends Command {
             + "NAME and DAY is required minimally.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Bob " + PREFIX_INDEX_1 + "1 "
             + PREFIX_DAY + "Mon " + PREFIX_INDEX_2 + "2 (Full Example, Instantly assigns)";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Assign command not implemented yet";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here is the list of students "
             + "containing: \"%s\". Enter \"assign n/%s i1/{i1} d/%s \" to view lessons you can assign to "
             + "student {i1} from %s.";
