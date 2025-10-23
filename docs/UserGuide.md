@@ -180,6 +180,21 @@ Shows a list of all lessons in the address book.
 
 Format: `listlesson`
 
+### 2. Locating lessons by day: `findlesson`
+
+Finds and lists all lessons scheduled on a specific day.
+
+Format: `findlesson DAY`
+
+* Finds all lessons on the specified `DAY`.
+* `DAY` must be a valid day of the week (MON, TUE, WED, THU, FRI, SAT, SUN).
+* The search is case-insensitive.
+* Only accepts a single day parameter.
+
+Examples:
+* `findlesson MON` returns all lessons scheduled on Monday
+* `findlesson tue` returns all lessons scheduled on Tuesday
+
 ### Deleting a lesson : `deletelesson`
 
 Deletes the specified lesson from the address book.
@@ -327,6 +342,7 @@ Action | Format, Examples
 **Clear Students** | `clear`
 **Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
+**Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
 **Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
 **Assign Student to Lesson** | `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
