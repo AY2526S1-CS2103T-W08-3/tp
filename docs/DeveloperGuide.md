@@ -729,6 +729,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
+**Use case: UC14 - Find lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* The lesson list is filtered to lessons that occur on the specific day.
+* A result message indicates the number of lessons found.
+
+**MSS**
+
+1. Tutor chooses to filter lessons by a day.
+2. Edulink validates the supplied day.
+2. EduLink searches for all lessons scheduled on the specific day.
+3. Edulink displays all matching lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The day is missing.
+  * 2a1. EduLink displays an error message indicating the correct format.
+
+       Use case ends.
+
+* 2b. The day is invalid.
+  * 2b1. EduLink displays an error message indicating the correct format.
+
+       Use case ends.
+ 
+* 2c. There are more than one parameter provided by the user.
+  * 2c1. EduLink displays an error message indicating the correct format.
+
+       Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
