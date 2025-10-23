@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddLessonCommand;
 import seedu.address.logic.commands.AddStudentCommand;
+import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditLessonCommand;
@@ -31,6 +32,7 @@ import seedu.address.logic.commands.FindStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLessonCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
@@ -65,6 +67,18 @@ public class AddressBookParserTest {
         Lesson lesson = new LessonBuilder().build();
         AddLessonCommand command = (AddLessonCommand) parser.parseCommand(LessonUtil.getAddLessonCommand(lesson));
         assertEqualLessonIgnoringLessonId(new AddLessonCommand(lesson).getLesson(), command.getLesson());
+    }
+
+    @Test
+    public void parseCommand_assign() throws Exception {
+        // Test basic parsing - ensures parser recognizes assign command
+        assertTrue(parser.parseCommand("assign n/Alice d/Mon") instanceof AssignCommand);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws Exception {
+        // Test basic parsing - ensures parser recognizes unassign command
+        assertTrue(parser.parseCommand("unassign n/Alice d/Mon") instanceof UnassignCommand);
     }
 
     @Test

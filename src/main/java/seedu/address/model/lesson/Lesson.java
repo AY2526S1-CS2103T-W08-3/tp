@@ -88,6 +88,24 @@ public class Lesson {
         return students.contains(person);
     }
 
+    /**
+     * Adds a student to this lesson's set of students.
+     *
+     * @param student the student to add
+     */
+    public void addStudent(Person student) {
+        students.add(student);
+    }
+
+    /**
+     * Removes a student from this lesson's set of students.
+     *
+     * @param student the student to remove
+     */
+    public void removeStudent(Person student) {
+        students.remove(student);
+    }
+
 
     @Override
     public boolean equals(Object other) {
