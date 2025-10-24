@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletestudent Bob 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -91,9 +91,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletestudent Bob 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletestudent Bob 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -212,7 +212,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `liststudent`. Commands that do not modify the address book, such as `liststudent`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -536,6 +536,235 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC10 - Assign student to lesson**
+
+**Preconditions**
+
+* At least one student exists in the system.
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* Student is assigned to the specified lesson.
+* Lesson is added to the student's lesson list.
+* Tutor sees a confirmation message showing the assignment.
+
+**MSS**
+
+1. Tutor chooses to assign a student to a lesson by providing student name and lesson day.
+2. EduLink searches for and displays matching students with the given name.
+3. Tutor selects the desired student by providing an index.
+4. EduLink displays matching lessons on the specified day.
+5. Tutor selects the desired lesson by providing an index.
+6. EduLink validates that the student is not already assigned to this lesson.
+7. EduLink assigns the student to the lesson.
+8. EduLink displays a success message with assignment details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Tutor provides all parameters (name, student index, day, and lesson index) at once.
+    * 1a1. EduLink validates all parameters and assignment constraints.
+    * 1a2. EduLink assigns the student to the lesson instantly.
+    * 1a3. EduLink displays a success message with assignment details.
+
+      Use case ends.
+    
+    * 1a1a. Validation fails for any parameter or constraint.
+        * 1a1a1. EduLink displays an error.
+        
+          Use case ends.
+
+* 2a. No student matches the given name.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 3a. Tutor provides an invalid student index.
+    * 3a1. EduLink displays an error.
+
+      Use case ends.
+
+* 4a. No lesson matches the given day.
+    * 4a1. EduLink displays an error.
+
+      Use case ends.
+
+* 5a. Tutor provides an invalid lesson index.
+    * 5a1. EduLink displays an error.
+
+      Use case ends.
+
+* 6a. Student is already assigned to the lesson.
+    * 6a1. EduLink displays an error indicating the student is already assigned.
+
+      Use case ends.
+
+**Use case: UC11 - Unassign student from lesson**
+
+**Preconditions**
+
+* At least one student exists in the system.
+* At least one lesson exists in the system.
+* The student must be currently assigned to the lesson.
+
+**Guarantees**
+
+* Student is unassigned from the specified lesson.
+* Lesson is removed from the student's lesson list.
+* Tutor sees a confirmation message showing the unassignment.
+
+**MSS**
+
+1. Tutor chooses to unassign a student from a lesson by providing student name and lesson day.
+2. EduLink searches for and displays matching students with the given name.
+3. Tutor selects the desired student by providing an index.
+4. EduLink displays matching lessons on the specified day.
+5. Tutor selects the desired lesson by providing an index.
+6. EduLink validates that the student is currently assigned to this lesson.
+7. EduLink unassigns the student from the lesson.
+8. EduLink displays a success message with unassignment details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Tutor provides all parameters (name, student index, day, and lesson index) at once.
+    * 1a1. EduLink validates all parameters and unassignment constraints.
+    * 1a2. EduLink unassigns the student from the lesson instantly.
+    * 1a3. EduLink displays a success message with unassignment details.
+
+      Use case ends.
+    
+    * 1a1a. Validation fails for any parameter or constraint.
+        * 1a1a1. EduLink displays an error.
+        
+          Use case ends.
+
+* 2a. No student matches the given name.
+    * 2a1. EduLink displays an error.
+
+      Use case ends.
+
+* 3a. Tutor provides an invalid student index.
+    * 3a1. EduLink displays an error.
+
+      Use case ends.
+
+* 4a. No lesson matches the given day.
+    * 4a1. EduLink displays an error.
+
+      Use case ends.
+
+* 5a. Tutor provides an invalid lesson index.
+    * 5a1. EduLink displays an error.
+
+      Use case ends.
+
+* 6a. Student is not currently assigned to the lesson.
+    * 6a1. EduLink displays an error indicating the student is not assigned to this lesson.
+
+      Use case ends.
+
+**Use case: UC12 - Filter students by lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* A list of students associated with the selected lesson is displayed.
+
+**MSS**
+
+1. Tutor chooses to filter students by a specific lesson.
+2. EduLink locates the selected lesson.
+3. EduLink retrieves all students associated with that lesson.
+4. EduLink displays the list of students with their details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The selected lesson does not exist.
+  * 2a1. EduLink displays an error.
+
+       Use case ends.
+
+* 3a. The lesson exists but has no associated students.
+  * 3a1. EduLink displays a “no students found” message.
+
+       Use case ends.
+
+**Use case: UC13 - Filter lessons by student**
+
+**Preconditions**
+
+* At least one student exists in the system.
+
+**Guarantees**
+
+* A list of lessons associated with the selected student is displayed.
+
+**MSS**
+
+1. Tutor chooses to filter lessons by a specific student.
+2. EduLink locates the selected student.
+3. EduLink retrieves all lessons associated with that student.
+4. EduLink displays the list of lessons with their details.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The selected student does not exist.
+  * 2a1. EduLink displays an error.
+
+     Use case ends.
+
+* 3a. The student exists but has no associated lessons.
+  * 3a1. EduLink displays a “no lessons found” message.
+
+     Use case ends.
+
+**Use case: UC14 - Find lesson**
+
+**Preconditions**
+
+* At least one lesson exists in the system.
+
+**Guarantees**
+
+* The lesson list is filtered to lessons that occur on the specific day.
+* A result message indicates the number of lessons found.
+
+**MSS**
+
+1. Tutor chooses to filter lessons by a day.
+2. Edulink validates the supplied day.
+2. EduLink searches for all lessons scheduled on the specific day.
+3. Edulink displays all matching lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The day is missing.
+  * 2a1. EduLink displays an error message indicating the correct format.
+
+       Use case ends.
+
+* 2b. The day is invalid.
+  * 2b1. EduLink displays an error message indicating the correct format.
+
+       Use case ends.
+ 
+* 2c. There are more than one parameter provided by the user.
+  * 2c1. EduLink displays an error message indicating the correct format.
+
+       Use case ends.
 
 *{More to be added}*
 
@@ -593,15 +822,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `liststudent` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletestudent Bob 1`<br>
+      Expected: First contact named Bob is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deletestudent Bob 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletestudent`, `deletestudent Bob x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
