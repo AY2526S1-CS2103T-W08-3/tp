@@ -35,10 +35,9 @@ public class NameTest {
         for (int i = 0; i < 201; i++) {
             invalidLengthName.append("A");
         }
-        String longName = invalidLengthName.toString();
 
         // should fail validation
-        assertFalse(Name.isValidName(longName));
+        assertFalse(Name.isValidName(invalidLengthName.toString()));
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
