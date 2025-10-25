@@ -5,17 +5,28 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniquePersonList
+AddressBook *-down-> "1" UniqueLessonList
 AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
+UniqueLessonList -right-> "*" Lesson
+UniquePersonList -right-> "*" Person
 
 Person -up-> "*" Tag
 
+Person *--> UserId
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Note
+
+Lesson *--> LessonId
+Lesson *--> Day
+Lesson *--> Time : startTime
+Lesson *--> Time : endTime
+Lesson *--> Venue
+Lesson *--> Note
+
 @enduml
