@@ -30,6 +30,16 @@ public class NameTest {
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
 
+        // build a name with >200 characters
+        StringBuilder invalidLengthName = new StringBuilder();
+        for (int i = 0; i < 201; i++) {
+            invalidLengthName.append("A");
+        }
+        String longName = invalidLengthName.toString();
+
+        // should fail validation
+        assertFalse(Name.isValidName(longName));
+
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
         assertTrue(Name.isValidName("12345")); // numbers only
