@@ -33,9 +33,10 @@ public class Name {
 
     /**
      * Returns true if a given string is a valid name.
+     * Max length of name is set to 200
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 200;
     }
 
 
