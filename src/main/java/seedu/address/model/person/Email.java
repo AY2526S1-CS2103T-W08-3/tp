@@ -46,9 +46,10 @@ public class Email {
 
     /**
      * Returns if a given string is a valid email.
+     * 255 is the max length of a valid gmail address
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 255;
     }
 
     @Override
