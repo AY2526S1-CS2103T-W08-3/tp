@@ -14,11 +14,19 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class PersonNote
 Class Email
 Class Name
 Class Phone
 Class Tag
+
+Class UniqueLessonList
+Class Lesson
+Class LessonNote
+Class Day
+Class StartTime
+Class EndTime
+Class Venue
 
 Class I #FFFFFF
 }
@@ -40,15 +48,36 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> PersonNote
 Person *--> "*" Tag
+
+AddressBook *--> "1" UniqueLessonList
+UniqueLessonList --> "~* all" Lesson
+Lesson *--> Day
+Lesson *--> StartTime
+Lesson *--> EndTime
+Lesson *--> Venue
+Lesson *--> LessonNote
+
+Lesson --> "*" Person
+Person --> "*" Lesson
+Lesson -[hidden]right-> Person
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> PersonNote
+PersonNote -[hidden]right-> Email
+
+Lesson -[hidden]up--> I
+UniqueLessonList -[hidden]right-> I
+
+Day -[hidden]right-> StartTime
+StartTime -[hidden]right-> EndTime
+EndTime -[hidden]right-> Venue
+Venue -[hidden]right-> LessonNote
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Lesson
 @enduml
