@@ -37,7 +37,6 @@ public class EditLessonCommandTest {
 
     @BeforeEach
     public void ensureLessonsDisplayed() {
-        // Guard added in EditLessonCommand requires lessons list to be displayed
         model.setDisplayedListToLessons();
     }
 
@@ -179,7 +178,6 @@ public class EditLessonCommandTest {
 
     @Test
     public void execute_lessonsListNotDisplayed_failure() {
-        // Switch to students view then attempt to edit lesson
         model.setDisplayedListToPersons();
         EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, new EditLessonDescriptor());
         assertCommandFailure(editLessonCommand, model,
