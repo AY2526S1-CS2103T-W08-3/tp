@@ -6,11 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -23,6 +23,7 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.lesson.Venue;
 import seedu.address.model.note.Note;
+import seedu.address.model.person.Person;
 
 /**
  * Edits the details of an existing lesson in the address book.
@@ -83,7 +84,7 @@ public class EditLessonCommand extends Command {
         }
 
         model.setLesson(lessonToEdit, editedLesson);
-        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        model.refreshLists();
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS,
                                                Messages.format(editedLesson)), false, false, true);
     }
@@ -100,9 +101,10 @@ public class EditLessonCommand extends Command {
         Time updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
         Venue updatedVenue = editLessonDescriptor.getVenue().orElse(lessonToEdit.getVenue());
         Note updatedNote = editLessonDescriptor.getNote().orElse(lessonToEdit.getNote());
+        Set<Person> existingStudents = lessonToEdit.getStudents();
 
         return new Lesson(lessonToEdit.getLessonId(), updatedDay, updatedStartTime,
-                          updatedEndTime, updatedVenue, updatedNote);
+                          updatedEndTime, updatedVenue, updatedNote, existingStudents);
     }
 
     @Override
