@@ -29,7 +29,7 @@ public class AssignCommand extends Command {
             + ": Assigns a student identified by name using its displayed index from the filtered name list "
             + "to a lesson identified by day using its displayed index from the filtered lesson list, and vice versa.\n"
             + "Parameters: NAME, INDEX1 (must be positive integer), DAY, INDEX2 (must be positive integer)\n"
-            + "NAME and DAY is required minimally.\n"
+            + "NAME is required minimally.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Bob " + PREFIX_INDEX_1 + "1 "
             + PREFIX_DAY + "Mon " + PREFIX_INDEX_2 + "2 (Full Example, Instantly assigns)";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here is the list of students "
