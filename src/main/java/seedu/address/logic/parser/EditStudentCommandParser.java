@@ -62,7 +62,6 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
             editPersonDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_STUDENT_NOTE).get()));
         }
 
-        // Parse tag operations (only add and remove)
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_ADD)).ifPresent(editPersonDescriptor::setTagsToAdd);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_REMOVE))
                 .ifPresent(editPersonDescriptor::setTagsToRemove);
