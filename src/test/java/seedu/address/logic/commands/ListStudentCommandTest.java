@@ -36,4 +36,13 @@ public class ListStudentCommandTest {
         showPersonAtIndex(model, FIRST_INDEX);
         assertStudentCommandSuccess(new ListStudentCommand(), model, ListStudentCommand.MESSAGE_SUCCESS, expectedModel);
     }
+
+    @Test
+    public void execute_setsDisplayedStateToPersons() throws Exception {
+        // Flip to lessons view first
+        model.setDisplayedListToLessons();
+        CommandResult r = new ListStudentCommand().execute(model);
+        org.junit.jupiter.api.Assertions.assertFalse(r.isShowLessons());
+        org.junit.jupiter.api.Assertions.assertTrue(model.isPersonsDisplayed());
+    }
 }

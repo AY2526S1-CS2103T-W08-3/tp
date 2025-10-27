@@ -236,6 +236,26 @@ public class AddLessonCommandTest {
         public void refreshLists() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setDisplayedListToPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDisplayedListToLessons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isPersonsDisplayed() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isLessonsDisplayed() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
