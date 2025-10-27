@@ -84,7 +84,7 @@ public class Lesson {
     /**
      * Returns true if the input student is a student of this lesson
      */
-    public boolean hasPerson(Person person) {
+    public boolean hasStudent(Person person) {
         return students.contains(person);
     }
 
