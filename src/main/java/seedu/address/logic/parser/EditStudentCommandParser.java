@@ -6,7 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_REMOVE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_STUDENT_NOTE, PREFIX_TAG);
+                        PREFIX_STUDENT_NOTE, PREFIX_TAG_ADD, PREFIX_TAG_REMOVE);
 
         Index index;
 
@@ -60,7 +61,11 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         if (argMultimap.getValue(PREFIX_STUDENT_NOTE).isPresent()) {
             editPersonDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_STUDENT_NOTE).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        // Parse tag operations (only add and remove)
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_ADD)).ifPresent(editPersonDescriptor::setTagsToAdd);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_REMOVE))
+                .ifPresent(editPersonDescriptor::setTagsToRemove);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditStudentCommand.MESSAGE_NOT_EDITED);

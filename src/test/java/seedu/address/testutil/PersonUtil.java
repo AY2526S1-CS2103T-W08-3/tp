@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_REMOVE;
 
 import java.util.Set;
 
@@ -49,13 +51,13 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getNote().ifPresent(note -> sb.append(PREFIX_STUDENT_NOTE).append(note.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
+        if (descriptor.getTagsToAdd().isPresent()) {
+            Set<Tag> tagsToAdd = descriptor.getTagsToAdd().get();
+            tagsToAdd.forEach(s -> sb.append(PREFIX_TAG_ADD).append(s.tagName).append(" "));
+        }
+        if (descriptor.getTagsToRemove().isPresent()) {
+            Set<Tag> tagsToRemove = descriptor.getTagsToRemove().get();
+            tagsToRemove.forEach(s -> sb.append(PREFIX_TAG_REMOVE).append(s.tagName).append(" "));
         }
         return sb.toString();
     }

@@ -110,14 +110,12 @@ Format: `liststudent`
 
 Edits an existing student in the address book.
 
-Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG] [t-/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+* The `t+/` flag adds the specified tag while the `t-/` flag removes the specified tag.
 
 Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.

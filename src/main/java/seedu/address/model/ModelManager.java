@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,12 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -119,18 +116,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-        Set<Lesson> assignedLessons = target.getLessons();
-
-        for (Lesson lesson : assignedLessons) {
-            if (lesson.hasStudent(target)) {
-                try {
-                    lesson.replaceStudent(target, editedPerson);
-                    addressBook.setLesson(lesson, lesson);
-                } catch (IllegalValueException e) {
-                    throw new PersonNotFoundException();
-                }
-            }
-        }
         addressBook.setPerson(target, editedPerson);
     }
 
