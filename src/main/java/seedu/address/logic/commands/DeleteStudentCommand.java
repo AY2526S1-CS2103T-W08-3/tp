@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,12 +25,16 @@ public class DeleteStudentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a student identified by name using it's displayed index from the filtered name list .\n"
-            + "Parameters: NAME, INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " Bob " + " 1";
+            + "Parameters: " + PREFIX_NAME + "NAME, " + PREFIX_INDEX + "INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Bob "
+            + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
-    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here are a list of student "
-            + "containing: \"%s\". Enter \"delete %s {i}\" to delete the i'th student in this list.";
+    public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here is a list of student "
+            + "containing: \"%s\". Enter \"deletestudent "
+            + PREFIX_NAME + "%s "
+            + PREFIX_INDEX + "{ i }\" to delete the i'th student in this list.";
 
     private final Name name;
     private final Index targetIndex; // null if no target index provided to delete

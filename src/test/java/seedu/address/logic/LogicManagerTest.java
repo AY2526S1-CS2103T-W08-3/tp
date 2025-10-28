@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENT_NOTE_DESC_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -61,7 +63,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String name = AMY.getName().fullName.split("\\s+")[0];
-        String deleteStudentCommand = String.format("deletestudent %s 5", name);
+        String deleteStudentCommand = String.format("deletestudent " + PREFIX_NAME + "%s " + PREFIX_INDEX + "5", name);
         Person person = new PersonBuilder(AMY).build();
         model.addPerson(person);
         assertCommandException(deleteStudentCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
