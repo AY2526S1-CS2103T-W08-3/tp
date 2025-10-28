@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_FILTER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_FILTER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterLessonByStudentCommand;
@@ -23,16 +23,16 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_FILTER, PREFIX_LESSON_FILTER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DAY);
 
         if (!isArgMultimapValid(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LESSON_FILTER, PREFIX_STUDENT_FILTER);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DAY, PREFIX_NAME);
 
         if (isLessonPrefixPresent(argMultimap)) {
-            String lessonArgs = argMultimap.getValue(PREFIX_LESSON_FILTER).get();
+            String lessonArgs = argMultimap.getValue(PREFIX_DAY).get();
             String[] dayAndIndex = lessonArgs.split("\\s+");
             Day day = ParserUtil.parseDay(dayAndIndex[0]);
 
@@ -43,7 +43,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             }
 
         } else if (isStudentPrefixPresent(argMultimap)) {
-            String studentArgs = argMultimap.getValue(PREFIX_STUDENT_FILTER).get();
+            String studentArgs = argMultimap.getValue(PREFIX_NAME).get();
             String[] nameAndIndex = studentArgs.split("\\s+");
             Name name = ParserUtil.parseName(nameAndIndex[0]);
 
@@ -61,14 +61,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * Checks if the lesson prefix is present in the input argumentMultimap
      */
     private static boolean isLessonPrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_LESSON_FILTER).isPresent();
+        return argumentMultimap.getValue(PREFIX_DAY).isPresent();
     }
 
     /**
      * Checks if the student prefix is present in the input argumentMultimap
      */
     private static boolean isStudentPrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_STUDENT_FILTER).isPresent();
+        return argumentMultimap.getValue(PREFIX_NAME).isPresent();
     }
 
     /**

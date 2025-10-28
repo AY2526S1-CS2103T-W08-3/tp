@@ -267,29 +267,29 @@ Examples:
 
 Shows a list of all students that are a part of the specified lesson.
 
-Format: `filter l/DAY INDEX`
+Format: `filter d/DAY INDEX`
 
 * Filters the list of students that are part of the lesson at `INDEX` when filtered by `DAY`.
-* `filter l/DAY` displays the list of all lessons on the specified `DAY`.
+* `filter d/DAY` displays the list of all lessons on the specified `DAY`.
 * The lesson at `INDEX` in this list is taken to be the specified lesson for reference when filtering the students list.
 
 Examples:
-* `filter l/Mon` brings up a filtered list of lessons of the day `MON`. Following that with
-`filter l/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
+* `filter d/Mon` brings up a filtered list of lessons of the day `MON`. Following that with
+`filter d/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
 
 ### Filtering lessons by student : `filter`
 
 Shows a list of all lessons that contain the specified student.
 
-Format: `filter s/NAME INDEX`
+Format: `filter n/NAME INDEX`
 
 * Filters the list of lessons that contain the student at `INDEX` when filtered by `NAME`.
-* `filter s/NAME` displays the list of all students with the specified `NAME`.
+* `filter n/NAME` displays the list of all students with the specified `NAME`.
 * The student at `INDEX` in this list is taken to be the specified student for reference when filtering the lessons list.
 
 Examples:
-* `filter s/John` brings up a filtered list of students containing the name `John`. Following that with
- `filter s/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
+* `filter n/John` brings up a filtered list of students containing the name `John`. Following that with
+ `filter n/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
 
 ### Exiting the program : `exit`
 
