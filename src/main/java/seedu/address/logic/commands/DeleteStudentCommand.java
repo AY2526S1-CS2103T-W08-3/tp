@@ -46,6 +46,10 @@ public class DeleteStudentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.isPersonsDisplayed()) {
+            throw new CommandException(String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
+        }
+
         model.updateFilteredPersonList(new NameContainsKeywordPredicate(name.toString()));
         List<Person> lastShownList = model.getFilteredPersonList();
 

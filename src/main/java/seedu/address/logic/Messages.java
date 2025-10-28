@@ -27,6 +27,7 @@ public class Messages {
             "This student has already been assigned this lesson";
     public static final String MESSAGE_STUDENT_NOT_ASSIGNED_LESSON =
             "This student has not been assigned this lesson";
+    public static final String MESSAGE_LIST_NOT_DISPLAYED = "%s list not displayed!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

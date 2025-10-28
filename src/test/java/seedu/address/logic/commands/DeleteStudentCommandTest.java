@@ -141,4 +141,13 @@ public class DeleteStudentCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
+
+    @Test
+    public void execute_studentsListNotDisplayed_failure() {
+        // Ensure wrong list (lessons) is displayed
+        model.setDisplayedListToLessons();
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(DUPLICATE_NAME, FIRST_INDEX);
+        seedu.address.logic.commands.CommandTestUtil.assertCommandFailure(deleteStudentCommand, model,
+                String.format(seedu.address.logic.Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
+    }
 }

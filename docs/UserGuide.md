@@ -150,6 +150,7 @@ Format: `deletestudent NAME INDEX`
 * Deletes the student with the specified `NAME` at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deleting of student information is only allowed when a list of students are displayed on the screen
 
 Examples:
 * `deletestudent David` brings up a filtered list of students containing the name 'David'. 
@@ -204,6 +205,7 @@ Format: `deletelesson DAY INDEX`
 * Deletes the lesson of the specific `DAY` at the specified `INDEX`.
 * The index refers to the index number shown in the displayed lesson list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deleting of lesson information is only allowed when a list of lessons are displayed on the screen
 
 Examples:
 * `deletelesson TUE` brings up a filtered list of lessons of the day `TUE`.

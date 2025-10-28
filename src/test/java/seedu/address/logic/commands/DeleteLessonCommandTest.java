@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.SECOND_INDEX;
 import static seedu.address.testutil.TypicalLessons.DUPLICATE_DAY;
 import static seedu.address.testutil.TypicalLessons.UNIQUE_DAY;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -30,6 +31,11 @@ import seedu.address.model.lesson.predicates.DayMatchesPredicate;
 public class DeleteLessonCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @BeforeEach
+    public void ensureLessonsDisplayed() {
+        model.setDisplayedListToLessons();
+    }
 
     @Test
     public void execute_dayOnly_filtersListNoDeletion() {
@@ -71,7 +77,7 @@ public class DeleteLessonCommandTest {
         // Filter by day and delete
         expectedModel.updateFilteredLessonList(new DayMatchesPredicate(dayToFilter));
         expectedModel.deleteLesson(lessonToDelete);
-
+        model.setDisplayedListToLessons();
         assertStudentCommandSuccess(deleteLessonCommand, model, expectedCommandResult, expectedModel);
     }
 
@@ -138,6 +144,7 @@ public class DeleteLessonCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
+        model.setDisplayedListToLessons();
         DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(DUPLICATE_DAY, targetIndex);
         String expected = DeleteLessonCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteLessonCommand.toString());
@@ -152,4 +159,11 @@ public class DeleteLessonCommandTest {
         assertTrue(model.getFilteredLessonList().isEmpty());
     }
 
+    @Test
+    public void execute_lessonsListNotDisplayed_failure() {
+        model.setDisplayedListToPersons();
+        DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(DUPLICATE_DAY, FIRST_INDEX);
+        assertCommandFailure(deleteLessonCommand, model,
+                String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Lesson"));
+    }
 }
