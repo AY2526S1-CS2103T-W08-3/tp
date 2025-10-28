@@ -162,10 +162,10 @@ Clears all entries from the address book.
 Format: `clear`
 
 ### Adding a lesson : `addlesson`
-
+adsf
 Adds a lesson to the address book.
 
-Format: `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`
+Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
 
 * Adds a new lesson with the specified details.
 * START_TIME and END_TIME should be in 24-hour format (e.g. 1300, 0930).
@@ -340,7 +340,7 @@ Action | Format, Examples
 **Find Student** | `findstudent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstudent James Jake`
 **Delete Student** | `deletestudent NAME INDEX`<br> e.g., `deletestudent Betsy 1`
 **Clear Students** | `clear`
-**Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
+**Add Lesson** | `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
 **Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
 **Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`
