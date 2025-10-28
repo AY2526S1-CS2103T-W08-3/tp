@@ -100,17 +100,23 @@ public class DeleteStudentCommandTest {
     }
 
     @Test
-    public void execute_studentDeleted_allAssociatedLessonsUpdated() throws Exception {
-        // Delete a student who is enrolled in lessons
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(
-                getTypicalAddressBook().getPersonList().get(0).getName(), FIRST_INDEX);
-        deleteStudentCommand.execute(model);
+    public void execute_studentDeleted_allAssociatedLessonsUpdated() {
+        Model testModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Person studentToDelete = testModel.getAddressBook().getPersonList().get(0);
+        Name studentName = studentToDelete.getName();
 
-        // Ensure that all lessons associated with the deleted student have been updated
-        for (Lesson lesson : model.getAddressBook().getLessonList()) {
-            assertFalse(lesson.getStudents().stream()
-                    .anyMatch(student -> student.getName().equals(
-                            getTypicalAddressBook().getPersonList().get(0).getName())));
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(studentName, Index.fromOneBased(1));
+
+        try {
+            deleteStudentCommand.execute(testModel);
+        } catch (Exception e) {
+            throw new AssertionError("Unexpected exception: " + e);
+        }
+
+        for (Lesson lesson : testModel.getAddressBook().getLessonList()) {
+            boolean studentStillExists = lesson.getStudents().stream()
+                    .anyMatch(student -> student.getName().equals(studentName));
+            assertFalse(studentStillExists);
         }
     }
 
