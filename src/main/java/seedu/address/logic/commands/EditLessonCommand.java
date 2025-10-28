@@ -102,7 +102,7 @@ public class EditLessonCommand extends Command {
         Note updatedNote = editLessonDescriptor.getNote().orElse(lessonToEdit.getNote());
 
         return new Lesson(lessonToEdit.getLessonId(), updatedDay, updatedStartTime,
-                          updatedEndTime, updatedVenue, updatedNote);
+                          updatedEndTime, updatedVenue, updatedNote, lessonToEdit.getStudents());
     }
 
     @Override
