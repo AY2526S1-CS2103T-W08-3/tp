@@ -180,7 +180,7 @@ Shows a list of all lessons in the address book.
 
 Format: `listlesson`
 
-### 2. Locating lessons by day: `findlesson`
+### Locating lessons by day: `findlesson`
 
 Finds and lists all lessons scheduled on a specific day.
 
