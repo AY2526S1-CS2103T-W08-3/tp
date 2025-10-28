@@ -23,7 +23,7 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
         String[] argParts = trimmedArgs.split("\\s+");
 
         // No arguments provided
-        if (argParts.length == 0) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
         }
 
