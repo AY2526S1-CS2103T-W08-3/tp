@@ -20,6 +20,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
@@ -96,6 +97,21 @@ public class DeleteStudentCommandTest {
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(UNIQUE_NAME, outOfBoundIndex);
 
         assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_studentDeleted_allAssociatedLessonsUpdated() throws Exception {
+        // Delete a student who is enrolled in lessons
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(
+                getTypicalAddressBook().getPersonList().get(0).getName(), FIRST_INDEX);
+        deleteStudentCommand.execute(model);
+
+        // Ensure that all lessons associated with the deleted student have been updated
+        for (Lesson lesson : model.getAddressBook().getLessonList()) {
+            assertFalse(lesson.getStudents().stream()
+                    .anyMatch(student -> student.getName().equals(
+                            getTypicalAddressBook().getPersonList().get(0).getName())));
+        }
     }
 
     @Test
