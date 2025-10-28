@@ -22,7 +22,7 @@ public class DeleteLessonCommand extends Command {
     public static final String COMMAND_WORD = "deletelesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a lesson  identified by day using it's displayed index from the filtered name list .\n"
+            + ": Deletes a lesson identified by day using it's displayed index from the filtered name list .\n"
             + "Parameters: DAY, INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " MON " + " 1";
 

@@ -19,31 +19,29 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteLessonCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        String[] argParts = trimmedArgs.split("\\s+");
+
+        // No arguments provided
+        if (argParts.length == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
+        }
+
+        // Case: first argument is a pure number → invalid name
+        if (argParts.length == 1 && argParts[0].matches("\\d+")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
+        }
+
         try {
-            String trimmedArgs = args.trim();
-            String[] argParts = trimmedArgs.split("\\s+");
-
-            // No arguments provided
-            if (argParts.length == 0) {
-                throw new ParseException("");
-            }
-
-            // Case: first argument is a pure number → invalid name
-            if (argParts.length == 1 && argParts[0].matches("\\d+")) {
-                throw new ParseException("");
-            }
-
             Day day = ParserUtil.parseDay(argParts[0]);
-
             if (argParts.length == 1) {
+                // No index provided, return command to list lessons on that day
                 return new DeleteLessonCommand(day, null);
             }
-
             Index index = ParserUtil.parseIndex(argParts[1]);
             return new DeleteLessonCommand(day, index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }
