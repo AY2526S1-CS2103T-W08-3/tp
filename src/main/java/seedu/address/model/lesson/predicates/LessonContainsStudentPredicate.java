@@ -20,7 +20,7 @@ public class LessonContainsStudentPredicate implements Predicate<Lesson> {
 
     @Override
     public boolean test(Lesson lesson) {
-        return lesson.hasPerson(person);
+        return lesson.hasStudent(person);
     }
 
     @Override
