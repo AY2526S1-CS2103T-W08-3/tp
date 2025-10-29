@@ -186,7 +186,7 @@ public class LessonTest {
     }
 
     @Test
-    public void hasPerson_studentPresentAndNotPresent_correctResult() throws Exception {
+    public void hasStudent_studentPresentAndNotPresent_correctResult() throws Exception {
         Person studentA = Person.getPlaceholderPerson(new UserId(2001));
         Person studentB = Person.getPlaceholderPerson(new UserId(2002));
 
@@ -195,8 +195,8 @@ public class LessonTest {
         Lesson lesson = new Lesson(VALID_LESSON_ID, VALID_DAY,
                 VALID_START_TIME, VALID_END_TIME, VALID_VENUE, VALID_NOTE, students);
 
-        assertFalse(lesson.hasPerson(studentB));
-        assertTrue(lesson.hasPerson(studentA));
+        assertFalse(lesson.hasStudent(studentB));
+        assertTrue(lesson.hasStudent(studentA));
     }
 
 

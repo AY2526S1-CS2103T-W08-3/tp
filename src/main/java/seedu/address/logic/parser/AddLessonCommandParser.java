@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Day;
@@ -44,6 +45,9 @@ public class AddLessonCommandParser implements Parser<AddLessonCommand> {
         Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
         Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
         Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+        if (endTime.isBefore(startTime)) {
+            throw new ParseException(Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
+        }
         Venue venue = argMultimap.getValue(PREFIX_VENUE).isPresent()
                 ? ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get())
                 : new Venue("");

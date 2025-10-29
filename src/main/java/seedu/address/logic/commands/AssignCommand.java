@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX_1;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX_2;
@@ -30,12 +29,14 @@ public class AssignCommand extends Command {
             + ": Assigns a student identified by name using its displayed index from the filtered name list "
             + "to a lesson identified by day using its displayed index from the filtered lesson list, and vice versa.\n"
             + "Parameters: NAME, INDEX1 (must be positive integer), DAY, INDEX2 (must be positive integer)\n"
-            + "NAME and DAY is required minimally.\n"
+            + "NAME is required minimally.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Bob " + PREFIX_INDEX_1 + "1 "
             + PREFIX_DAY + "Mon " + PREFIX_INDEX_2 + "2 (Full Example, Instantly assigns)";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here is the list of students "
             + "containing: \"%s\". Enter \"assign n/%s i1/{i1} d/%s \" to view lessons you can assign to "
             + "student {i1} from %s.";
+    public static final String MESSAGE_INPUT_DAY_PARAMETER = "Enter \"assign n/%s i1/%d d/DAY\" "
+            + "to view lessons you can assign to the student from DAY.";
     public static final String MESSAGE_LIST_LESSONS_WITH_DAY = "Here is the list of lessons "
             + "on: \"%s\". Enter \"assign n/%s i1/%s d/%s i2/{i2} \" to assign the student to the lesson "
             + "and vice versa.";
@@ -50,7 +51,7 @@ public class AssignCommand extends Command {
      * Creates a AssignCommand to assign the specified {@code Person} to a {@code Lesson}.
      */
     public AssignCommand(Name name, Index studentIndex, Day day, Index lessonIndex) {
-        requireAllNonNull(name, day);
+        requireNonNull(name);
         this.name = name;
         this.studentIndex = studentIndex;
         this.day = day;
@@ -64,11 +65,13 @@ public class AssignCommand extends Command {
         model.updateFilteredPersonList(new NameContainsKeywordPredicate(name.toString()));
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
+        if (lastShownPersonList.isEmpty()) {
+            return new CommandResult(String.format(Messages.MESSAGE_NO_USERS_FOUND, name));
+        }
+
         if (studentIndex == null) {
-            if (lastShownPersonList.isEmpty()) {
-                return new CommandResult(String.format(Messages.MESSAGE_NO_USERS_FOUND, name));
-            }
-            return new CommandResult(String.format(MESSAGE_LIST_PERSONS_WITH_NAME, name, name, day, day),
+            String dayString = day == null ? "DAY" : day.toString();
+            return new CommandResult(String.format(MESSAGE_LIST_PERSONS_WITH_NAME, name, name, dayString, dayString),
                     false, false, false);
         }
 
@@ -76,13 +79,20 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (day == null) {
+            int index = studentIndex.getOneBased();
+            return new CommandResult(String.format(MESSAGE_INPUT_DAY_PARAMETER, name, index),
+                    false, false, false);
+        }
+
         model.updateFilteredLessonList(new DayMatchesPredicate(day));
         List<Lesson> lastShownLessonList = model.getFilteredLessonList();
 
+        if (lastShownLessonList.isEmpty()) {
+            return new CommandResult(String.format(Messages.MESSAGE_NO_LESSONS_FOUND, day));
+        }
+
         if (lessonIndex == null) {
-            if (lastShownLessonList.isEmpty()) {
-                return new CommandResult(String.format(Messages.MESSAGE_NO_LESSONS_FOUND, day));
-            }
             return new CommandResult(String.format(MESSAGE_LIST_LESSONS_WITH_DAY, day, name,
                     studentIndex.getOneBased(), day), false, false, true);
         }

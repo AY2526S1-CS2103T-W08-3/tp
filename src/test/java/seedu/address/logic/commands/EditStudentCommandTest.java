@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertStudentCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -38,7 +37,9 @@ public class EditStudentCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person first = model.getAddressBook().getPersonList().get(0);
-        Person editedPerson = new PersonBuilder().withUserId(first.getUserId().value).build();
+        Person editedPerson = new PersonBuilder().withUserId(first.getUserId().value)
+                .withTags(first.getTags().stream().map(tag -> tag.tagName).toArray(String[]::new))
+                .build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(FIRST_INDEX, descriptor);
 
@@ -58,11 +59,10 @@ public class EditStudentCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS,
@@ -122,13 +122,21 @@ public class EditStudentCommandTest {
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, FIRST_INDEX);
         Index outOfBoundIndex = SECOND_INDEX;
-        // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_studentsListNotDisplayed_failure() {
+        // Ensure wrong list (lessons) is displayed
+        model.setDisplayedListToLessons();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(FIRST_INDEX, new EditPersonDescriptor());
+        seedu.address.logic.commands.CommandTestUtil.assertCommandFailure(editStudentCommand, model,
+                String.format(seedu.address.logic.Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
     }
 
     @Test

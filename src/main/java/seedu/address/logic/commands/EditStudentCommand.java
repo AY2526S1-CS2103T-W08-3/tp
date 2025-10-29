@@ -5,7 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_REMOVE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -44,14 +45,17 @@ public class EditStudentCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENT_NOTE + "NOTE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG_ADD + "TAG_TO_ADD] "
+            + "[" + PREFIX_TAG_REMOVE + "TAG_TO_REMOVE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TAG_ADD + "friend " + PREFIX_TAG_REMOVE + "colleague";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Tag '%s' does not exist!";
+    public static final String MESSAGE_TAG_ALREADY_EXISTS = "Tag '%s' already exists!";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -71,6 +75,11 @@ public class EditStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isPersonsDisplayed()) {
+            throw new CommandException(String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -78,6 +87,9 @@ public class EditStudentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        validateTagOperations(personToEdit, editPersonDescriptor);
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -86,7 +98,35 @@ public class EditStudentCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDisplayedListToPersons();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    /**
+     * Validates tag add/remove operations.
+     * @throws CommandException if attempting to remove a non-existent tag or add a duplicate tag
+     */
+    private static void validateTagOperations(Person person, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
+        Set<Tag> currentTags = person.getTags();
+
+        // Check if tag exists
+        if (editPersonDescriptor.getTagsToRemove().isPresent()) {
+            for (Tag tagToRemove : editPersonDescriptor.getTagsToRemove().get()) {
+                if (!currentTags.contains(tagToRemove)) {
+                    throw new CommandException(String.format(MESSAGE_TAG_NOT_FOUND, tagToRemove.tagName));
+                }
+            }
+        }
+
+        // Checks if tag already exists
+        if (editPersonDescriptor.getTagsToAdd().isPresent()) {
+            for (Tag tagToAdd : editPersonDescriptor.getTagsToAdd().get()) {
+                if (currentTags.contains(tagToAdd)) {
+                    throw new CommandException(String.format(MESSAGE_TAG_ALREADY_EXISTS, tagToAdd.tagName));
+                }
+            }
+        }
     }
 
     /**
@@ -100,7 +140,10 @@ public class EditStudentCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
+        editPersonDescriptor.getTagsToAdd().ifPresent(updatedTags::addAll);
+        editPersonDescriptor.getTagsToRemove().ifPresent(updatedTags::removeAll);
+
         Set<Lesson> updatedLessons = editPersonDescriptor.getLessons().orElse(personToEdit.getLessons());
 
         return new Person(personToEdit.getUserId(), updatedName, updatedPhone, updatedEmail,
@@ -141,13 +184,14 @@ public class EditStudentCommand extends Command {
         private Email email;
         private Note note;
         private Set<Lesson> lessons;
-        private Set<Tag> tags;
+        private Set<Tag> tagsToAdd;
+        private Set<Tag> tagsToRemove;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} and {@code lessons} is used internally.
+         * A defensive copy of {@code lessons}, {@code tagsToAdd} and {@code tagsToRemove} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -155,14 +199,15 @@ public class EditStudentCommand extends Command {
             setEmail(toCopy.email);
             setNote(toCopy.note);
             setLessons(toCopy.lessons);
-            setTags(toCopy.tags);
+            setTagsToAdd(toCopy.tagsToAdd);
+            setTagsToRemove(toCopy.tagsToRemove);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, note, lessons, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, note, lessons, tagsToAdd, tagsToRemove);
         }
 
         public void setName(Name name) {
@@ -215,20 +260,37 @@ public class EditStudentCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tagsToAdd} to this object's {@code tagsToAdd}.
+         * A defensive copy of {@code tagsToAdd} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTagsToAdd(Set<Tag> tagsToAdd) {
+            this.tagsToAdd = (tagsToAdd != null) ? new HashSet<>(tagsToAdd) : null;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code tagsToAdd} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Tag>> getTagsToAdd() {
+            return (tagsToAdd != null) ? Optional.of(Collections.unmodifiableSet(tagsToAdd)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tagsToRemove} to this object's {@code tagsToRemove}.
+         * A defensive copy of {@code tagsToRemove} is used internally.
+         */
+        public void setTagsToRemove(Set<Tag> tagsToRemove) {
+            this.tagsToRemove = (tagsToRemove != null) ? new HashSet<>(tagsToRemove) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tagsToRemove} is null.
+         */
+        public Optional<Set<Tag>> getTagsToRemove() {
+            return (tagsToRemove != null) ? Optional.of(Collections.unmodifiableSet(tagsToRemove)) : Optional.empty();
         }
 
         @Override
@@ -248,7 +310,8 @@ public class EditStudentCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(note, otherEditPersonDescriptor.note)
                     && Objects.equals(lessons, otherEditPersonDescriptor.lessons)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tagsToAdd, otherEditPersonDescriptor.tagsToAdd)
+                    && Objects.equals(tagsToRemove, otherEditPersonDescriptor.tagsToRemove);
         }
 
         @Override
@@ -259,7 +322,8 @@ public class EditStudentCommand extends Command {
                     .add("email", email)
                     .add("note", note)
                     .add("lessons", lessons)
-                    .add("tags", tags)
+                    .add("tagsToAdd", tagsToAdd)
+                    .add("tagsToRemove", tagsToRemove)
                     .toString();
         }
     }

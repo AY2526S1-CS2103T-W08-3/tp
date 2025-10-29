@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.lesson.LessonTest.assertEqualLessonIgnoringLessonId;
 import static seedu.address.model.person.PersonTest.assertEqualPersonIgnoringUserId;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -90,8 +92,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + TypicalPersons.DUPLICATE_NAME
-                        + " " + FIRST_INDEX.getOneBased());
+                DeleteStudentCommand.COMMAND_WORD + " " + PREFIX_NAME + TypicalPersons.DUPLICATE_NAME
+                        + " " + PREFIX_INDEX + FIRST_INDEX.getOneBased());
         assertEquals(new DeleteStudentCommand(TypicalPersons.DUPLICATE_NAME, FIRST_INDEX), command);
     }
 
@@ -176,8 +178,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteLesson() throws Exception {
         DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + TypicalPersons.DUPLICATE_NAME
-                        + " " + FIRST_INDEX.getOneBased());
+                DeleteStudentCommand.COMMAND_WORD + " " + PREFIX_NAME + TypicalPersons.DUPLICATE_NAME
+                        + " " + PREFIX_INDEX + FIRST_INDEX.getOneBased());
         assertEquals(new DeleteStudentCommand(TypicalPersons.DUPLICATE_NAME, FIRST_INDEX), command);
     }
 
@@ -195,17 +197,18 @@ public class AddressBookParserTest {
         assertEquals(new FindLessonCommand(new DayMatchesPredicate(Day.MON)), command);
     }
 
+    @Test
     public void parseCommand_filterNoIndex_returnsCorrectCommandType() throws Exception {
-        String byStudent = FilterCommand.COMMAND_WORD + " s/john";
-        String byLesson = FilterCommand.COMMAND_WORD + " l/mon";
+        String byStudent = FilterCommand.COMMAND_WORD + " n/john";
+        String byLesson = FilterCommand.COMMAND_WORD + " d/mon";
         assertTrue(parser.parseCommand(byStudent) instanceof FilterLessonByStudentCommand);
         assertTrue(parser.parseCommand(byLesson) instanceof FilterStudentByLessonCommand);
     }
 
     @Test
     public void parseCommand_filterWithIndex_returnsCorrectCommandType() throws Exception {
-        String byStudent = FilterCommand.COMMAND_WORD + " s/john 2";
-        String byLesson = FilterCommand.COMMAND_WORD + " l/mon 2";
+        String byStudent = FilterCommand.COMMAND_WORD + " n/john 2";
+        String byLesson = FilterCommand.COMMAND_WORD + " d/mon 2";
         assertTrue(parser.parseCommand(byStudent) instanceof FilterLessonByStudentCommand);
         assertTrue(parser.parseCommand(byLesson) instanceof FilterStudentByLessonCommand);
     }
@@ -213,9 +216,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_filterWithInvalidFormat_throwsParseException() {
         String noArguments = FilterCommand.COMMAND_WORD;
-        String preamblePresent = FilterCommand.COMMAND_WORD + " preamble s/john";
+        String preamblePresent = FilterCommand.COMMAND_WORD + " preamble n/john";
         String invalidPrefix = FilterCommand.COMMAND_WORD + " x/invalid";
-        String moreThanOnePrefix = FilterCommand.COMMAND_WORD + " s/john l/mon";
+        String moreThanOnePrefix = FilterCommand.COMMAND_WORD + " n/john d/mon";
 
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), () ->

@@ -110,36 +110,32 @@ Format: `liststudent`
 
 Edits an existing student in the address book.
 
-Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG] [t-/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+* The `t+/` flag adds the specified tag while the `t-/` flag removes the specified tag.
 
 Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `editstudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `editstudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags. 
+* Editing of student information is only allowed when a list of students are displayed on the screen
 
 ### Locating persons by name: `findstudent`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `findstudent KEYWORD [MORE_KEYWORDS]`
+Format: `findstudent KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Partial words will be matched e.g. `Han` will match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* All names containing `KEYWORD` as a substring will match.
 
 Examples:
 * `findstudent John` returns `john` and `John Doe`
-* `findstudent alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findstudent alex david'](images/findAlexDavidResult.png)
+* `findstudent john s` returns `John Smith`, `John Sigma`<br>
+  ![result for 'findstudent john s'](images/findstudentJohnSResult.png)
 
 ### Deleting a student : `deletestudent`
 
@@ -150,6 +146,7 @@ Format: `deletestudent NAME INDEX`
 * Deletes the student with the specified `NAME` at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deleting of student information is only allowed when a list of students are displayed on the screen
 
 Examples:
 * `deletestudent David` brings up a filtered list of students containing the name 'David'. 
@@ -162,10 +159,9 @@ Clears all entries from the address book.
 Format: `clear`
 
 ### Adding a lesson : `addlesson`
-
 Adds a lesson to the address book.
 
-Format: `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`
+Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
 
 * Adds a new lesson with the specified details.
 * START_TIME and END_TIME should be in 24-hour format (e.g. 1300, 0930).
@@ -180,7 +176,7 @@ Shows a list of all lessons in the address book.
 
 Format: `listlesson`
 
-### 2. Locating lessons by day: `findlesson`
+### Locating lessons by day: `findlesson`
 
 Finds and lists all lessons scheduled on a specific day.
 
@@ -204,6 +200,7 @@ Format: `deletelesson DAY INDEX`
 * Deletes the lesson of the specific `DAY` at the specified `INDEX`.
 * The index refers to the index number shown in the displayed lesson list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deleting of lesson information is only allowed when a list of lessons are displayed on the screen
 
 Examples:
 * `deletelesson TUE` brings up a filtered list of lessons of the day `TUE`.
@@ -222,6 +219,7 @@ Format: `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LE
 Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
 *  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd lesson to be `1400` and `Apple Store` respectively.
+* Editing of lesson information is only allowed when a list of lessons are displayed on the screen
 
 ### Assigning a student to a lesson : `assign`
 
@@ -267,29 +265,29 @@ Examples:
 
 Shows a list of all students that are a part of the specified lesson.
 
-Format: `filter l/DAY INDEX`
+Format: `filter d/DAY INDEX`
 
 * Filters the list of students that are part of the lesson at `INDEX` when filtered by `DAY`.
-* `filter l/DAY` displays the list of all lessons on the specified `DAY`.
+* `filter d/DAY` displays the list of all lessons on the specified `DAY`.
 * The lesson at `INDEX` in this list is taken to be the specified lesson for reference when filtering the students list.
 
 Examples:
-* `filter l/Mon` brings up a filtered list of lessons of the day `MON`. Following that with
-`filter l/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
+* `filter d/Mon` brings up a filtered list of lessons of the day `MON`. Following that with
+`filter d/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
 
 ### Filtering lessons by student : `filter`
 
 Shows a list of all lessons that contain the specified student.
 
-Format: `filter s/NAME INDEX`
+Format: `filter n/NAME INDEX`
 
 * Filters the list of lessons that contain the student at `INDEX` when filtered by `NAME`.
-* `filter s/NAME` displays the list of all students with the specified `NAME`.
+* `filter n/NAME` displays the list of all students with the specified `NAME`.
 * The student at `INDEX` in this list is taken to be the specified student for reference when filtering the lessons list.
 
 Examples:
-* `filter s/John` brings up a filtered list of students containing the name `John`. Following that with
- `filter s/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
+* `filter n/John` brings up a filtered list of students containing the name `John`. Following that with
+ `filter n/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
 
 ### Exiting the program : `exit`
 
@@ -337,10 +335,10 @@ Action | Format, Examples
 **List Students** | `liststudent`
 **Add Student** | `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `addstudent n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
 **Edit Student** | `editstudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `editstudent 2 n/James Lee e/jameslee@example.com sn/improved performance`
-**Find Student** | `findstudent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstudent James Jake`
+**Find Student** | `findstudent KEYWORD`<br> e.g., `findstudent James T`
 **Delete Student** | `deletestudent NAME INDEX`<br> e.g., `deletestudent Betsy 1`
 **Clear Students** | `clear`
-**Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
+**Add Lesson** | `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
 **Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
 **Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`

@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteLessonCommand;
+import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Day;
 
@@ -30,6 +31,11 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
         // Case: first argument is a pure number → invalid name
         if (argParts.length == 1 && argParts[0].matches("\\d+")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
+        }
+        // Reject input with more than one argument
+        if (trimmedArgs.split("\\s+").length > 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindLessonCommand.MESSAGE_USAGE));
         }
 
         try {
