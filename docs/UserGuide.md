@@ -162,7 +162,6 @@ Clears all entries from the address book.
 Format: `clear`
 
 ### Adding a lesson : `addlesson`
-adsf
 Adds a lesson to the address book.
 
 Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
