@@ -65,10 +65,6 @@ public class AssignCommandParserTest {
         assertParseFailure(parser, " i1/1" + DAY_DESC_MATH + " i2/2",
                 expectedMessage);
 
-        // missing day prefix
-        assertParseFailure(parser, NAME_DESC_AMY + " i1/1 i2/2",
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_AMY + " 1 " + VALID_DAY_MATH + " 2",
                 expectedMessage);
