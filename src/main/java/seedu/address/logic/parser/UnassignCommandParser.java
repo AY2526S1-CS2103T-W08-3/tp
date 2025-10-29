@@ -30,7 +30,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX_1,
                 PREFIX_DAY, PREFIX_INDEX_2);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DAY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
@@ -40,7 +40,9 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         Index studentIndex = argMultimap.getValue(PREFIX_INDEX_1).isPresent()
                 ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX_1).get())
                 : null;
-        Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
+        Day day = argMultimap.getValue(PREFIX_DAY).isPresent()
+                ? ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get())
+                : null;
         Index lessonIndex = argMultimap.getValue(PREFIX_INDEX_2).isPresent()
                 ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX_2).get())
                 : null;
