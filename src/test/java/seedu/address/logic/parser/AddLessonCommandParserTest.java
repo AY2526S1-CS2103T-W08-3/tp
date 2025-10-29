@@ -151,4 +151,10 @@ public class AddLessonCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DAY, PREFIX_START_TIME,
                         PREFIX_END_TIME, PREFIX_VENUE, PREFIX_LESSON_NOTE));
     }
+
+    @Test
+    public void parse_endTimeBeforeStartTime_failure() {
+        assertParseFailure(parser, DAY_DESC_MATH + STARTTIME_DESC_MATH + ENDTIME_DESC_SCIENCE
+                + VENUE_DESC_MATH + LESSON_NOTE_DESC_MATH, Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
+    }
 }

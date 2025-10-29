@@ -67,4 +67,12 @@ public class Time {
     public int hashCode() {
         return value.hashCode();
     }
+
+    /**
+     * Returns true if this Time is strictly before the other Time.
+     */
+    public boolean isBefore(Time other) {
+        requireNonNull(other);
+        return time.isBefore(other.time);
+    }
 }

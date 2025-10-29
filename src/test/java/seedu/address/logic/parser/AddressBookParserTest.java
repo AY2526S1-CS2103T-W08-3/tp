@@ -199,16 +199,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filterNoIndex_returnsCorrectCommandType() throws Exception {
-        String byStudent = FilterCommand.COMMAND_WORD + " s/john";
-        String byLesson = FilterCommand.COMMAND_WORD + " l/mon";
+        String byStudent = FilterCommand.COMMAND_WORD + " n/john";
+        String byLesson = FilterCommand.COMMAND_WORD + " d/mon";
         assertTrue(parser.parseCommand(byStudent) instanceof FilterLessonByStudentCommand);
         assertTrue(parser.parseCommand(byLesson) instanceof FilterStudentByLessonCommand);
     }
 
     @Test
     public void parseCommand_filterWithIndex_returnsCorrectCommandType() throws Exception {
-        String byStudent = FilterCommand.COMMAND_WORD + " s/john 2";
-        String byLesson = FilterCommand.COMMAND_WORD + " l/mon 2";
+        String byStudent = FilterCommand.COMMAND_WORD + " n/john 2";
+        String byLesson = FilterCommand.COMMAND_WORD + " d/mon 2";
         assertTrue(parser.parseCommand(byStudent) instanceof FilterLessonByStudentCommand);
         assertTrue(parser.parseCommand(byLesson) instanceof FilterStudentByLessonCommand);
     }
@@ -216,9 +216,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_filterWithInvalidFormat_throwsParseException() {
         String noArguments = FilterCommand.COMMAND_WORD;
-        String preamblePresent = FilterCommand.COMMAND_WORD + " preamble s/john";
+        String preamblePresent = FilterCommand.COMMAND_WORD + " preamble n/john";
         String invalidPrefix = FilterCommand.COMMAND_WORD + " x/invalid";
-        String moreThanOnePrefix = FilterCommand.COMMAND_WORD + " s/john l/mon";
+        String moreThanOnePrefix = FilterCommand.COMMAND_WORD + " n/john d/mon";
 
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), () ->
