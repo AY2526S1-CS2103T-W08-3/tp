@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.lesson.LessonTest.assertEqualLessonIgnoringLessonId;
 import static seedu.address.model.person.PersonTest.assertEqualPersonIgnoringUserId;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -90,8 +92,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + TypicalPersons.DUPLICATE_NAME
-                        + " " + FIRST_INDEX.getOneBased());
+                DeleteStudentCommand.COMMAND_WORD + " " + PREFIX_NAME + TypicalPersons.DUPLICATE_NAME
+                        + " " + PREFIX_INDEX + FIRST_INDEX.getOneBased());
         assertEquals(new DeleteStudentCommand(TypicalPersons.DUPLICATE_NAME, FIRST_INDEX), command);
     }
 
@@ -176,8 +178,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteLesson() throws Exception {
         DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + TypicalPersons.DUPLICATE_NAME
-                        + " " + FIRST_INDEX.getOneBased());
+                DeleteStudentCommand.COMMAND_WORD + " " + PREFIX_NAME + TypicalPersons.DUPLICATE_NAME
+                        + " " + PREFIX_INDEX + FIRST_INDEX.getOneBased());
         assertEquals(new DeleteStudentCommand(TypicalPersons.DUPLICATE_NAME, FIRST_INDEX), command);
     }
 
@@ -195,6 +197,7 @@ public class AddressBookParserTest {
         assertEquals(new FindLessonCommand(new DayMatchesPredicate(Day.MON)), command);
     }
 
+    @Test
     public void parseCommand_filterNoIndex_returnsCorrectCommandType() throws Exception {
         String byStudent = FilterCommand.COMMAND_WORD + " n/john";
         String byLesson = FilterCommand.COMMAND_WORD + " d/mon";

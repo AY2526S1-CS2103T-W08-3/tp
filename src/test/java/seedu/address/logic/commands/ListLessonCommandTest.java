@@ -40,6 +40,15 @@ public class ListLessonCommandTest {
         assertTrue(model.updateLessonsCalled, "updateFilteredLessonList should be called");
     }
 
+    @Test
+    void execute_setsDisplayedStateToLessons() throws Exception {
+        Model realModel = new seedu.address.model.ModelManager();
+        ListLessonCommand cmd = new ListLessonCommand();
+        CommandResult result = cmd.execute(realModel);
+        assertTrue(result.isShowLessons());
+        assertTrue(realModel.isLessonsDisplayed());
+    }
+
     private static class ModelSpy implements Model {
         private boolean updateLessonsCalled = false;
 
@@ -113,6 +122,15 @@ public class ListLessonCommandTest {
         }
         @Override public void refreshLists() {
             throw new AssertionError();
+        }
+
+        @Override public void setDisplayedListToPersons() { }
+        @Override public void setDisplayedListToLessons() { }
+        @Override public boolean isPersonsDisplayed() {
+            return false;
+        }
+        @Override public boolean isLessonsDisplayed() {
+            return true;
         }
     }
 }

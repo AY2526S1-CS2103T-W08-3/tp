@@ -20,6 +20,17 @@ public class TagTest {
     }
 
     @Test
+    public void constructor_invalidTagLength_throwsIllegalArgumentException() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < 51; i++) {
+            stringBuilder.append("X");
+        }
+        String invalidLongTag = stringBuilder.toString();
+
+        assertThrows(IllegalArgumentException.class, () -> new Tag(invalidLongTag));
+    }
+
+    @Test
     public void isValidTagName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
