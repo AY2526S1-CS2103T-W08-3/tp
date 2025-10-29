@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
 import static seedu.address.testutil.TypicalIndexes.SECOND_INDEX;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -35,18 +34,12 @@ public class EditLessonCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @BeforeEach
-    public void ensureLessonsDisplayed() {
-        model.setDisplayedListToLessons();
-    }
-
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Lesson first = model.getAddressBook().getLessonList().get(0);
         Lesson editedLesson = new LessonBuilder().withLessonId(first.getLessonId().value).build();
         EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder(editedLesson).build();
         EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, descriptor);
-        model.setDisplayedListToLessons();
 
         String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
                 Messages.format(editedLesson));
@@ -72,7 +65,6 @@ public class EditLessonCommandTest {
 
         String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
                 Messages.format(editedLesson));
-        model.setDisplayedListToLessons();
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setLesson(lastLesson, editedLesson);
@@ -87,7 +79,6 @@ public class EditLessonCommandTest {
 
         String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
                 Messages.format(editedLesson));
-        model.setDisplayedListToLessons();
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -105,7 +96,6 @@ public class EditLessonCommandTest {
 
         String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
                 Messages.format(editedLesson));
-        model.setDisplayedListToLessons();
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setLesson(model.getFilteredLessonList().get(0), editedLesson);
@@ -118,7 +108,6 @@ public class EditLessonCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredLessonList().size() + 1);
         EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder().withDay(VALID_DAY_MATH).build();
         EditLessonCommand editLessonCommand = new EditLessonCommand(outOfBoundIndex, descriptor);
-        model.setDisplayedListToLessons();
 
         assertCommandFailure(editLessonCommand, model, Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
     }
@@ -131,7 +120,6 @@ public class EditLessonCommandTest {
     public void execute_invalidLessonIndexFilteredList_failure() {
         showLessonAtIndex(model, FIRST_INDEX);
         Index outOfBoundIndex = SECOND_INDEX;
-        model.setDisplayedListToLessons();
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getLessonList().size());
 
@@ -174,14 +162,6 @@ public class EditLessonCommandTest {
         String expected = EditLessonCommand.class.getCanonicalName() + "{index=" + index + ", editLessonDescriptor="
                 + editLessonDescriptor + "}";
         assertEquals(expected, editLessonCommand.toString());
-    }
-
-    @Test
-    public void execute_lessonsListNotDisplayed_failure() {
-        model.setDisplayedListToPersons();
-        EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, new EditLessonDescriptor());
-        assertCommandFailure(editLessonCommand, model,
-                String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Lesson"));
     }
 
 }

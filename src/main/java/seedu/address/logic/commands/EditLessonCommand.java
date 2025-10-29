@@ -70,9 +70,6 @@ public class EditLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.isLessonsDisplayed()) {
-            throw new CommandException(String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Lesson"));
-        }
         List<Lesson> lastShownList = model.getFilteredLessonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -87,8 +84,6 @@ public class EditLessonCommand extends Command {
         }
 
         model.setLesson(lessonToEdit, editedLesson);
-        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
-        model.setDisplayedListToLessons();
         model.refreshLists();
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS,
                                                Messages.format(editedLesson)), false, false, true);
