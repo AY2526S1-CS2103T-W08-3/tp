@@ -127,19 +127,16 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `findstudent KEYWORD [MORE_KEYWORDS]`
+Format: `findstudent KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Partial words will be matched e.g. `Han` will match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* All names containing `KEYWORD` as a substring will match.
 
 Examples:
 * `findstudent John` returns `john` and `John Doe`
-* `findstudent alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findstudent alex david'](images/findAlexDavidResult.png)
+* `findstudent john s` returns `John Smith`, `John Sigma`<br>
+  ![result for 'findstudent john s'](images/findstudentJohnSResult.png)
 
 ### Deleting a student : `deletestudent`
 
@@ -337,7 +334,7 @@ Action | Format, Examples
 **List Students** | `liststudent`
 **Add Student** | `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `addstudent n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
 **Edit Student** | `editstudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `editstudent 2 n/James Lee e/jameslee@example.com sn/improved performance`
-**Find Student** | `findstudent KEYWORD [MORE_KEYWORDS]`<br> e.g., `findstudent James Jake`
+**Find Student** | `findstudent KEYWORD`<br> e.g., `findstudent James T`
 **Delete Student** | `deletestudent NAME INDEX`<br> e.g., `deletestudent Betsy 1`
 **Clear Students** | `clear`
 **Add Lesson** | `addlesson [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
