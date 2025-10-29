@@ -23,6 +23,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.predicates.DayMatchesPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -113,6 +114,26 @@ public class DeleteLessonCommandTest {
         DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(UNIQUE_DAY, outOfBoundIndex);
 
         assertCommandFailure(deleteLessonCommand, model, Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_lessonDeleted_allAssociatedStudentsUpdated() {
+        Lesson lessonToDelete = model.getAddressBook().getLessonList().get(0);
+        Day day = lessonToDelete.getDay();
+
+        DeleteLessonCommand deleteLessonCommand = new DeleteLessonCommand(day, Index.fromOneBased(1));
+        model.setDisplayedListToLessons();
+        try {
+            deleteLessonCommand.execute(model);
+        } catch (Exception e) {
+            throw new AssertionError("Unexpected exception: " + e);
+        }
+
+        for (Person person : model.getAddressBook().getPersonList()) {
+            boolean lessonStillExists = person.getLessons().stream()
+                    .anyMatch(lesson -> lesson.getDay().equals(day));
+            assertFalse(lessonStillExists);
+        }
     }
 
     @Test
