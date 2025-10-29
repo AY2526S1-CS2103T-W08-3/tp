@@ -121,7 +121,8 @@ Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `editstudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `editstudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags. 
+* Editing of student information is only allowed when a list of students are displayed on the screen
 
 ### Locating persons by name: `findstudent`
 
@@ -220,6 +221,7 @@ Format: `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LE
 Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
 *  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd lesson to be `1400` and `Apple Store` respectively.
+* Editing of lesson information is only allowed when a list of lessons are displayed on the screen
 
 ### Assigning a student to a lesson : `assign`
 

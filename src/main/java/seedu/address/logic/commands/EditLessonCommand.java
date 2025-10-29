@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 
 import java.util.List;
 import java.util.Objects;
@@ -70,6 +71,11 @@ public class EditLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isLessonsDisplayed()) {
+            throw new CommandException(String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Lesson"));
+        }
+
         List<Lesson> lastShownList = model.getFilteredLessonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -84,6 +90,8 @@ public class EditLessonCommand extends Command {
         }
 
         model.setLesson(lessonToEdit, editedLesson);
+        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        model.setDisplayedListToLessons();
         model.refreshLists();
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS,
                                                Messages.format(editedLesson)), false, false, true);

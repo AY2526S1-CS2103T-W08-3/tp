@@ -71,6 +71,11 @@ public class EditStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isPersonsDisplayed()) {
+            throw new CommandException(String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -86,6 +91,7 @@ public class EditStudentCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDisplayedListToPersons();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
