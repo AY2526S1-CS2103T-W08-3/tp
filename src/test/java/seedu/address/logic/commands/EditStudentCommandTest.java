@@ -132,6 +132,15 @@ public class EditStudentCommandTest {
     }
 
     @Test
+    public void execute_studentsListNotDisplayed_failure() {
+        // Ensure wrong list (lessons) is displayed
+        model.setDisplayedListToLessons();
+        EditStudentCommand editStudentCommand = new EditStudentCommand(FIRST_INDEX, new EditPersonDescriptor());
+        seedu.address.logic.commands.CommandTestUtil.assertCommandFailure(editStudentCommand, model,
+                String.format(seedu.address.logic.Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
+    }
+
+    @Test
     public void equals() {
         final EditStudentCommand standardCommand = new EditStudentCommand(FIRST_INDEX, DESC_AMY);
 
