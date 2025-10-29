@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,8 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.LessonId;
+import seedu.address.model.lesson.exceptions.LessonNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
 
@@ -141,6 +144,19 @@ public class ModelManager implements Model {
     @Override
     public void setLesson(Lesson target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
+        Set<Person> assignedStudents = target.getStudents();
+
+        for (Person student : assignedStudents) {
+            if (student.hasLesson(target)) {
+                try {
+                    student.replaceLesson(target, editedLesson);
+                    addressBook.setPerson(student, student);
+                } catch (IllegalValueException e) {
+                    throw new LessonNotFoundException();
+                }
+            }
+        }
+
         addressBook.setLesson(target, editedLesson);
     }
 

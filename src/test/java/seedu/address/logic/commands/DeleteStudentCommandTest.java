@@ -20,6 +20,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
@@ -99,6 +100,27 @@ public class DeleteStudentCommandTest {
     }
 
     @Test
+    public void execute_studentDeleted_allAssociatedLessonsUpdated() {
+        Model testModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Person studentToDelete = testModel.getAddressBook().getPersonList().get(0);
+        Name studentName = studentToDelete.getName();
+
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(studentName, Index.fromOneBased(1));
+
+        try {
+            deleteStudentCommand.execute(testModel);
+        } catch (Exception e) {
+            throw new AssertionError("Unexpected exception: " + e);
+        }
+
+        for (Lesson lesson : testModel.getAddressBook().getLessonList()) {
+            boolean studentStillExists = lesson.getStudents().stream()
+                    .anyMatch(student -> student.getName().equals(studentName));
+            assertFalse(studentStillExists);
+        }
+    }
+
+    @Test
     public void equals() {
         DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(DUPLICATE_NAME, FIRST_INDEX);
         DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(DUPLICATE_NAME, SECOND_INDEX);
@@ -140,5 +162,14 @@ public class DeleteStudentCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    @Test
+    public void execute_studentsListNotDisplayed_failure() {
+        // Ensure wrong list (lessons) is displayed
+        model.setDisplayedListToLessons();
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(DUPLICATE_NAME, FIRST_INDEX);
+        seedu.address.logic.commands.CommandTestUtil.assertCommandFailure(deleteStudentCommand, model,
+                String.format(seedu.address.logic.Messages.MESSAGE_LIST_NOT_DISPLAYED, "Student"));
     }
 }

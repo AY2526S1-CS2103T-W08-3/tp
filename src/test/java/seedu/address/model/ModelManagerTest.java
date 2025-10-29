@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.TypicalLessons;
@@ -188,5 +189,93 @@ public class ModelManagerTest {
         assertEquals(2, modelManager.getFilteredLessonList().size());
         assertTrue(modelManager.getFilteredLessonList().contains(l1));
         assertTrue(modelManager.getFilteredLessonList().contains(l2));
+    }
+
+    @Test
+    public void setLesson_lessonWithAssignedStudents_updatesStudentsLessonSets() {
+        // Create a new lesson instance
+        Lesson originalLesson = new seedu.address.testutil.LessonBuilder()
+                .withLessonId(5001)
+                .withDay("MON")
+                .withStartTime("1400")
+                .withEndTime("1600")
+                .withVenue("Test Venue")
+                .withNote("Test Note")
+                .build();
+        modelManager.addLesson(originalLesson);
+
+        // Create new student instances
+        Person testAlice = new seedu.address.testutil.PersonBuilder()
+                .withUserId(6001)
+                .withName("Test Alice")
+                .withPhone("91234567")
+                .withEmail("testalice@test.com")
+                .withNote("Test student")
+                .build();
+        Person testBenson = new seedu.address.testutil.PersonBuilder()
+                .withUserId(6002)
+                .withName("Test Benson")
+                .withPhone("92345678")
+                .withEmail("testbenson@test.com")
+                .withNote("Another test student")
+                .build();
+
+        modelManager.addPerson(testAlice);
+        modelManager.addPerson(testBenson);
+
+        // Get the actual person objects from the model
+        seedu.address.model.person.Person actualAlice = modelManager.getFilteredPersonList().stream()
+                .filter(p -> p.isSamePerson(testAlice))
+                .findFirst()
+                .get();
+        seedu.address.model.person.Person actualBenson = modelManager.getFilteredPersonList().stream()
+                .filter(p -> p.isSamePerson(testBenson))
+                .findFirst()
+                .get();
+
+        // Get the actual lesson object from the model
+        Lesson actualOriginalLesson = modelManager.getFilteredLessonList().stream()
+                .filter(l -> l.isSameLesson(originalLesson))
+                .findFirst()
+                .get();
+
+        // Assign students to the lesson
+        modelManager.assign(actualAlice, actualOriginalLesson);
+        modelManager.assign(actualBenson, actualOriginalLesson);
+
+        // Verify students have the original lesson
+        assertTrue(actualAlice.hasLesson(actualOriginalLesson));
+        assertTrue(actualBenson.hasLesson(actualOriginalLesson));
+
+        // Create an edited version of the lesson with different details
+        Lesson editedLesson = new seedu.address.testutil.LessonBuilder()
+                .withLessonId(actualOriginalLesson.getLessonId().value)
+                .withDay("TUE")
+                .withStartTime("1500")
+                .withEndTime("1700")
+                .withVenue("New Venue")
+                .withNote("New Note")
+                .withStudents(actualAlice, actualBenson)
+                .build();
+
+        // Edit the lesson
+        modelManager.setLesson(actualOriginalLesson, editedLesson);
+
+        // Verify students no longer have the original lesson
+        assertFalse(actualAlice.hasLesson(actualOriginalLesson));
+        assertFalse(actualBenson.hasLesson(actualOriginalLesson));
+
+        // Verify students now have the edited lesson
+        assertTrue(actualAlice.hasLesson(editedLesson));
+        assertTrue(actualBenson.hasLesson(editedLesson));
+
+        // Verify the lesson in the model is updated (check by lesson details since both have same ID)
+        Lesson lessonInModel = modelManager.getFilteredLessonList().stream()
+                .filter(l -> l.getLessonId().equals(editedLesson.getLessonId()))
+                .findFirst()
+                .get();
+        assertEquals(editedLesson.getDay(), lessonInModel.getDay());
+        assertEquals(editedLesson.getVenue(), lessonInModel.getVenue());
+        assertEquals(editedLesson.getNote(), lessonInModel.getNote());
     }
 }
