@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.predicates.DayMatchesPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a lesson using a list filtered by the day that it is held
@@ -70,6 +71,10 @@ public class DeleteLessonCommand extends Command {
         }
 
         Lesson lessonToDelete = lastShownList.get(targetIndex.getZeroBased());
+        for (Person person: lessonToDelete.getStudents()) {
+            person.removeLesson(lessonToDelete);
+        }
+
         model.deleteLesson(lessonToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, Messages.format(lessonToDelete)),
                 false, false, true);
