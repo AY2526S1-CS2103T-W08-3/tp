@@ -145,6 +145,20 @@ public interface Model {
      */
     void updateFilteredLessonList(Predicate<Lesson> predicate);
 
+    //=========== Displayed List State ======================================================
+
+    /** Marks that the students list is currently displayed. */
+    void setDisplayedListToPersons();
+
+    /** Marks that the lessons list is currently displayed. */
+    void setDisplayedListToLessons();
+
+    /** Returns true if the students list is currently displayed. */
+    boolean isPersonsDisplayed();
+
+    /** Returns true if the lessons list is currently displayed. */
+    boolean isLessonsDisplayed();
+
     /** Returns an unmodifiable view of the filtered lesson list */
     ObservableList<Lesson> getFilteredLessonList();
 }

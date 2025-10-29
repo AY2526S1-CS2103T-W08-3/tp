@@ -29,6 +29,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Lesson> filteredLessons;
+    // Tracks which list is currently displayed (false = persons, true = lessons)
+    private boolean lessonsDisplayed = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -258,6 +260,28 @@ public class ModelManager implements Model {
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
         requireNonNull(predicate);
         filteredLessons.setPredicate(predicate);
+    }
+
+    //=========== Displayed List State ======================================================
+
+    @Override
+    public void setDisplayedListToPersons() {
+        lessonsDisplayed = false;
+    }
+
+    @Override
+    public void setDisplayedListToLessons() {
+        lessonsDisplayed = true;
+    }
+
+    @Override
+    public boolean isPersonsDisplayed() {
+        return !lessonsDisplayed;
+    }
+
+    @Override
+    public boolean isLessonsDisplayed() {
+        return lessonsDisplayed;
     }
 
     @Override

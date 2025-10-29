@@ -19,6 +19,7 @@ public class ListLessonCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        model.setDisplayedListToLessons();
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }
