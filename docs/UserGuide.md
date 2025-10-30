@@ -19,9 +19,10 @@ than  traditional point-and-click apps.
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer. Installation links for each operating system are provided below<br>
-* [Mac Users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
-* [Windows Users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
-* [Linux Users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+
+   * [Mac Users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+   * [Windows Users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+   * [Linux Users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W08-3/tp/releases/).
 
@@ -32,16 +33,12 @@ than  traditional point-and-click apps.
    run the application.<br>
    The app, containing some sample data will appear in a few seconds.<br>
 
-
 5. Below is a quick walkthrough of the EduLink UI.
 
 <u>Students page</u>
-
    ![Ui](images/UIstudents_annotated.png)
-
 <u>Lessons page</u>
-
-![Ui](images/UIlessons_annotated.png)
+    ![Ui](images/UIlessons_annotated.png)
 
 6. Refer to the [Features](#features) section below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
@@ -107,7 +104,7 @@ Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
 * `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`
 
-#### Results for `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`:
+Results for `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`:
 
 ![addstudent result](images/addBetsyCroweResult.png)
 
@@ -117,7 +114,7 @@ Shows a list of all students in the address book.
 
 Format: `liststudent`
 
-#### Results for `liststudent`:
+Results for `liststudent`:
 
 ![liststudent result](images/liststudentResult.png)
 
@@ -138,7 +135,7 @@ Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `editstudent 2 n/Betsy Crower t+/Physics` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-#### Results for `editstudent 2 n/Betsy Crower t+/Physics`:
+Results for `editstudent 2 n/Betsy Crower t+/Physics`:
 
 ![editstudent result](images/editstudentResult.png)
 
@@ -156,7 +153,7 @@ Examples:
 * `findstudent John` returns `john` and `John Doe`
 * `findstudent john s` returns `John Smith`, `John Sigma`<br>
 
-#### Results for `findstudent john s`:
+Results for `findstudent john s`:
 
 ![findstudent result](images/findstudentResult.png)
 
@@ -176,7 +173,7 @@ Examples:
 * `deletestudent n/David` brings up a filtered list of students containing the name 'David'. 
 Following that with `deletestudent n/David i/1` deletes the 1st student in that list.
 
-#### Results for `deletestudent n/Betsy i/2`:
+Results for `deletestudent n/Betsy i/2`:
 
 ![deletestudent result](images/deletestudentResult.png)
 
@@ -194,7 +191,7 @@ Examples:
 * `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 * `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English`
 
-#### Results for `addlesson d/Tue st/1500 et/1700 v/Toa Payoh Block 52 #01-23 ln/History`:
+Results for `addlesson d/Tue st/1500 et/1700 v/Toa Payoh Block 52 #01-23 ln/History`:
 
 ![addlesson result](images/addlessonResult.png)
 
@@ -204,7 +201,7 @@ Shows a list of all lessons in the address book.
 
 Format: `listlesson`
 
-#### Results for `listlesson`:
+Results for `listlesson`:
 
 ![listlesson result](images/listlessonResult.png)
 
@@ -222,7 +219,7 @@ Examples:
 * `findlesson MON` returns all lessons scheduled on Monday
 * `findlesson tue` returns all lessons scheduled on Tuesday
 
-#### Results for `findlesson MON`:
+Results for `findlesson MON`:
 
 ![findlesson result](images/findlessonResult.png)
 
@@ -241,7 +238,7 @@ Examples:
 * `deletelesson d/TUE` brings up a filtered list of lessons of the day `TUE`.
 Following that with `deletelesson d/TUE i/2` deletes the 2nd lesson in that list.
 
-#### Results for `deletelesson d/TUE i/2`:
+Results for `deletelesson d/TUE i/2`:
 
 ![deletelesson result](images/deletelessonResult.png)
 
@@ -261,7 +258,7 @@ Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
 *  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd lesson to be `1400` and `Apple Store` respectively.
 
-#### Results for `editlesson 3 v/Apple Store`:
+Results for `editlesson 3 v/Apple Store`:
 
 ![editlesson result](images/editlessonResult.png)
 
@@ -287,7 +284,7 @@ Examples:
 * `assign n/Bob i1/1 d/Mon` - Selects the 1st Bob and shows lessons on Monday
 * `assign n/Bob i1/1 d/Mon i2/2` - Instantly assigns the 1st Bob to the 2nd Monday lesson
 
-#### Results for `assign n/john i1/1 d/WED i2/1`:
+Results for `assign n/john i1/1 d/WED i2/1`:
 
 ![assign result](images/assignResult.png)
 
@@ -313,7 +310,7 @@ Examples:
 * `unassign n/Bob i1/1 d/Mon` - Selects the 1st Bob and shows lessons on Monday
 * `unassign n/Bob i1/1 d/Mon i2/2` - Instantly unassigns the 1st Bob from the 2nd Monday lesson
 
-#### Results for `unassign n/john i1/1 d/WED i2/1`:
+Results for `unassign n/john i1/1 d/WED i2/1`:
 
 ![unassign result](images/unassignResult.png)
 
@@ -331,7 +328,7 @@ Examples:
 * `filter d/Mon` brings up a filtered list of lessons of the day `MON`. Following that with
 `filter d/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
 
-#### Results for `filter d/mon 1`:
+Results for `filter d/mon 1`:
 
 ![filter by lesson result](images/filterbylessonResult.png)
 
@@ -349,7 +346,7 @@ Examples:
 * `filter n/John` brings up a filtered list of students containing the name `John`. Following that with
  `filter n/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
 
-#### Results for `filter n/alice 1`:
+Results for `filter n/alice 1`:
 
 ![filter by student result](images/filterbystudentResult.png)
 
