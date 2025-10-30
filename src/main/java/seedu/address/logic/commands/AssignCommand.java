@@ -33,7 +33,7 @@ public class AssignCommand extends Command {
             + PREFIX_DAY + "DAY "
             + PREFIX_INDEX_2 + "INDEX2 (must be positive integer)\n"
             + "NAME is required minimally.\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Bob " + PREFIX_INDEX_1 + "1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Alex " + PREFIX_INDEX_1 + "1 "
             + PREFIX_DAY + "Mon " + PREFIX_INDEX_2 + "2 (Full Example, Instantly assigns)";
     public static final String MESSAGE_LIST_PERSONS_WITH_NAME = "Here is the list of students "
             + "containing: \"%s\". Enter \"assign n/%s i1/{i1} d/%s \" to view lessons you can assign to "
