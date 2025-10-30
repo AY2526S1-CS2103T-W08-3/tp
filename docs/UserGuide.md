@@ -123,7 +123,7 @@ Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG]… [t-/TAG]…�
 * Editing student information is only allowed when a **list of students is currently displayed.**
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
     The index **must be a positive integer** 1, 2, 3, …​ that **corresponds to a student index**.
-* **At least one** of the optional fields must be provided.
+* **At least one** of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 * The `t+/` flag adds the specified tag while the `t-/` flag removes the specified tag.
 
@@ -202,16 +202,16 @@ Examples:
 
 Deletes the specified lesson from the address book.
 
-Format: `deletelesson DAY INDEX`
+Format: `deletelesson d/DAY i/INDEX`
 
-* Deletes the lesson of the specific `DAY` at the specified `INDEX`.
-* The index refers to the index number shown in the displayed lesson list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the lesson of the specific `DAY` at the specified `INDEX`. 
+* If the`DAY` parameter is present but not the `INDEX` parameter, a filtered list of lessons containing `DAY` will be displayed
+* The index refers to the index number shown in the displayed lesson list, which **must be a positive integer.**
 * Deleting of lesson information is only allowed when a list of lessons are displayed on the screen
 
 Examples:
-* `deletelesson TUE` brings up a filtered list of lessons of the day `TUE`.
-Following that with `deletelesson TUE 2` deletes the 2nd lesson in that list.
+* `deletelesson d/TUE` brings up a filtered list of lessons of the day `TUE`.
+Following that with `deletelesson d/TUE i/2` deletes the 2nd lesson in that list.
 
 ### Editing a lesson : `editlesson`
 
@@ -219,14 +219,15 @@ Edits an existing lesson in the address book.
 
 Format: `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]`
 
+* Editing of lesson information is only allowed when a **list of lessons are displayed on the screen.**
 * Edits the lesson at the specified `INDEX`. The index refers to the index number shown in the displayed lesson list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+**that corresponds to a lesson index**
+* At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
 *  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd lesson to be `1400` and `Apple Store` respectively.
-* Editing of lesson information is only allowed when a list of lessons are displayed on the screen
 
 ### Assigning a student to a lesson : `assign`
 
