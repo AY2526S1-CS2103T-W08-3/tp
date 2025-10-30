@@ -21,7 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NOTE_AM
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -40,8 +39,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditStudentCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE);
