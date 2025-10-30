@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,13 +25,17 @@ public class DeleteLessonCommand extends Command {
     public static final String COMMAND_WORD = "deletelesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a lesson identified by day using it's displayed index from the filtered name list .\n"
-            + "Parameters: DAY, INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " MON " + " 1";
+            + ": Deletes a lesson identified by day using it's displayed index from the filtered day list .\n"
+            + "Parameters: " + PREFIX_DAY + "DAY, " + PREFIX_INDEX + "INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DAY + "MON "
+            + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lesson: %1$s";
     public static final String MESSAGE_LIST_LESSONS_WITH_NAME = "Here are a list of lessons "
-            + "on the day: \"%s\". Enter \"deletelesson %s {i}\" to delete the i'th lesson in this list.";
+            + "on the day: \"%s\". Enter \"deletelesson "
+            + PREFIX_DAY + "%s "
+            + PREFIX_INDEX + "{ i }\" to delete the i'th lesson in this list.";
 
     private final Day day;
     private final Index targetIndex; //null if no target index provided to delete
