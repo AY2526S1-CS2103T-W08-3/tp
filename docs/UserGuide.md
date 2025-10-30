@@ -44,7 +44,6 @@ than  traditional point-and-click apps.
 ![Ui](images/UIlessons_annotated.png)
 
 6. Refer to the [Features](#features) section below for details of each command.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
