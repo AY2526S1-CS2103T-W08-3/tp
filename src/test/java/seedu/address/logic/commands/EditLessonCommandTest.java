@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_MATH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_MATH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertLessonCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showLessonAtIndex;
@@ -64,10 +64,10 @@ public class EditLessonCommandTest {
         Lesson lastLesson = model.getFilteredLessonList().get(indexLastLesson.getZeroBased());
 
         LessonBuilder lessonInList = new LessonBuilder(lastLesson);
-        Lesson editedLesson = lessonInList.withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_MATH).build();
+        Lesson editedLesson = lessonInList.withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_SCIENCE).build();
 
         EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder()
-                .withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_MATH).build();
+                .withDay(VALID_DAY_MATH).withStartTime(VALID_STARTTIME_SCIENCE).build();
         EditLessonCommand editLessonCommand = new EditLessonCommand(indexLastLesson, descriptor);
 
         String expectedMessage = String.format(EditLessonCommand.MESSAGE_EDIT_LESSON_SUCCESS,
@@ -147,6 +147,16 @@ public class EditLessonCommandTest {
         EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, new EditLessonDescriptor());
         assertCommandFailure(editLessonCommand, model,
                 String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Lesson"));
+    }
+
+    @Test
+    public void execute_endTimeBeforeStartTime_failure() {
+        EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder()
+                .withStartTime("1600").withEndTime("1400").build();
+        EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, descriptor);
+        model.setDisplayedListToLessons();
+
+        assertCommandFailure(editLessonCommand, model, Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
     }
 
     @Test

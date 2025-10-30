@@ -101,7 +101,8 @@ public class EditLessonCommand extends Command {
      * Creates and returns a {@code Lesson} with the details of {@code lessonToEdit}
      * edited with {@code editLessonDescriptor}.
      */
-    private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
+    private static Lesson createEditedLesson(Lesson lessonToEdit,
+            EditLessonDescriptor editLessonDescriptor) throws CommandException {
         assert lessonToEdit != null;
 
         Day updatedDay = editLessonDescriptor.getDay().orElse(lessonToEdit.getDay());
@@ -110,6 +111,10 @@ public class EditLessonCommand extends Command {
         Venue updatedVenue = editLessonDescriptor.getVenue().orElse(lessonToEdit.getVenue());
         Note updatedNote = editLessonDescriptor.getNote().orElse(lessonToEdit.getNote());
         Set<Person> existingStudents = lessonToEdit.getStudents();
+
+        if (updatedEndTime.isBefore(updatedStartTime)) {
+            throw new CommandException(Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
+        }
 
         return new Lesson(lessonToEdit.getLessonId(), updatedDay, updatedStartTime,
                           updatedEndTime, updatedVenue, updatedNote, existingStudents);
