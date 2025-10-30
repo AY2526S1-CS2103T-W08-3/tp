@@ -105,13 +105,21 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
-* `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
+* `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`
+
+#### Results for `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`:
+
+![addstudent result](images/addBetsyCroweResult.png)
 
 ### Listing all students : `liststudent`
 
 Shows a list of all students in the address book.
 
 Format: `liststudent`
+
+#### Results for `liststudent`:
+
+![liststudent result](images/liststudentResult.png)
 
 ### Editing a student : `editstudent`
 
@@ -130,6 +138,10 @@ Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `editstudent 2 n/Betsy Crower t+/Physics` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
+#### Results for `editstudent 2 n/Betsy Crower t+/Physics`:
+
+![editstudent result](images/editstudentResult.png)
+
 ### Locating persons by name: `findstudent`
 
 Finds persons whose names contain any of the given keywords.
@@ -144,8 +156,9 @@ Examples:
 * `findstudent John` returns `john` and `John Doe`
 * `findstudent john s` returns `John Smith`, `John Sigma`<br>
 
+#### Results for `findstudent john s`:
 
-  ![result for 'findstudent john s'](images/findstudentJohnSResult.png)
+![findstudent result](images/findstudentResult.png)
 
 ### Deleting a student : `deletestudent`
 
@@ -163,6 +176,10 @@ Examples:
 * `deletestudent n/David` brings up a filtered list of students containing the name 'David'. 
 Following that with `deletestudent n/David i/1` deletes the 1st student in that list.
 
+#### Results for `deletestudent n/Betsy i/2`:
+
+![deletestudent result](images/deletestudentResult.png)
+
 ### Adding a lesson : `addlesson`
 Adds a lesson to the address book.
 
@@ -177,11 +194,19 @@ Examples:
 * `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 * `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English`
 
+#### Results for `addlesson d/Tue st/1500 et/1700 v/Toa Payoh Block 52 #01-23 ln/History`:
+
+![addlesson result](images/addlessonResult.png)
+
 ### Listing all lessons : `listlesson`
 
 Shows a list of all lessons in the address book.
 
 Format: `listlesson`
+
+#### Results for `listlesson`:
+
+![listlesson result](images/listlessonResult.png)
 
 ### Locating lessons by day: `findlesson`
 
@@ -197,6 +222,10 @@ Examples:
 * `findlesson MON` returns all lessons scheduled on Monday
 * `findlesson tue` returns all lessons scheduled on Tuesday
 
+#### Results for `findlesson MON`:
+
+![findlesson result](images/findlessonResult.png)
+
 ### Deleting a lesson : `deletelesson`
 
 Deletes the specified lesson from the address book.
@@ -211,6 +240,10 @@ Format: `deletelesson d/DAY i/INDEX`
 Examples:
 * `deletelesson d/TUE` brings up a filtered list of lessons of the day `TUE`.
 Following that with `deletelesson d/TUE i/2` deletes the 2nd lesson in that list.
+
+#### Results for `deletelesson d/TUE i/2`:
+
+![deletelesson result](images/deletelessonResult.png)
 
 ### Editing a lesson : `editlesson`
 
@@ -228,6 +261,10 @@ Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
 *  `editlesson 2 et/1400 v/Apple Store` Edits the end time and venue of the 2nd lesson to be `1400` and `Apple Store` respectively.
 
+#### Results for `editlesson 3 v/Apple Store`:
+
+![editlesson result](images/editlessonResult.png)
+
 ### Assigning a student to a lesson : `assign`
 
 Assigns a student to a lesson in a step-by-step interactive process.
@@ -236,17 +273,23 @@ Format: `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
 
 * Assigns a student with the specified `NAME` to a lesson on the specified `DAY`.
 * The command works in an interactive manner:
-  1. First, provide the student's name (`n/NAME`) and lesson day (`d/DAY`)
+  1. First, provide the student's name (`n/NAME`)
   2. EduLink will display matching students. Select one using `i1/INDEX1`
-  3. EduLink will display matching lessons on that day. Select one using `i2/INDEX2`
+  3. Upon selecting the student, provide the lesson day (`d/DAY`)
+  4. EduLink will display matching lessons on that day. Select one using `i2/INDEX2`
 * You can also provide all parameters at once for instant assignment.
 * The indices **must be positive integers** 1, 2, 3, …​
 * The student must not already be assigned to the selected lesson.
 
 Examples:
-* `assign n/Bob d/Mon` - Shows all students named "Bob" and prompts for student selection
+* `assign n/Bob` - Shows all students named "Bob" and prompts for student selection
+* `assign n/Bob i1/1` - Selects the 1st Bob and prompts to include lesson parameters
 * `assign n/Bob i1/1 d/Mon` - Selects the 1st Bob and shows lessons on Monday
 * `assign n/Bob i1/1 d/Mon i2/2` - Instantly assigns the 1st Bob to the 2nd Monday lesson
+
+#### Results for `assign n/john i1/1 d/WED i2/1`:
+
+![assign result](images/assignResult.png)
 
 ### Unassigning a student from a lesson : `unassign`
 
@@ -256,17 +299,23 @@ Format: `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
 
 * Unassigns a student with the specified `NAME` from a lesson on the specified `DAY`.
 * The command works in an interactive manner:
-  1. First, provide the student's name (`n/NAME`) and lesson day (`d/DAY`)
+  1. First, provide the student's name (`n/NAME`)
   2. EduLink will display matching students. Select one using `i1/INDEX1`
-  3. EduLink will display matching lessons on that day. Select one using `i2/INDEX2`
+  3. Upon selecting the student, provide the lesson day (`d/DAY`)
+  4. EduLink will display matching lessons on that day. Select one using `i2/INDEX2`
 * You can also provide all parameters at once for instant unassignment.
 * The indices **must be positive integers** 1, 2, 3, …​
 * The student must currently be assigned to the selected lesson.
 
 Examples:
-* `unassign n/Bob d/Mon` - Shows all students named "Bob" and prompts for student selection
+* `unassign n/Bob` - Shows all students named "Bob" and prompts for student selection
+* `unassign n/Bob i1/1` - Selects the 1st Bob and prompts to include lesson parameters
 * `unassign n/Bob i1/1 d/Mon` - Selects the 1st Bob and shows lessons on Monday
 * `unassign n/Bob i1/1 d/Mon i2/2` - Instantly unassigns the 1st Bob from the 2nd Monday lesson
+
+#### Results for `unassign n/john i1/1 d/WED i2/1`:
+
+![unassign result](images/unassignResult.png)
 
 ### Filtering students by lesson : `filter`
 
@@ -282,6 +331,10 @@ Examples:
 * `filter d/Mon` brings up a filtered list of lessons of the day `MON`. Following that with
 `filter d/Mon 2` brings up a filtered list of students who are a part of the lesson at index `2` in the filtered lesson list.
 
+#### Results for `filter d/mon 1`:
+
+![filter by lesson result](images/filterbylessonResult.png)
+
 ### Filtering lessons by student : `filter`
 
 Shows a list of all lessons that contain the specified student.
@@ -295,6 +348,10 @@ Format: `filter n/NAME INDEX`
 Examples:
 * `filter n/John` brings up a filtered list of students containing the name `John`. Following that with
  `filter n/John 2` brings up a filtered list of lessons containing the student at index `2` in the filtered student list.
+
+#### Results for `filter n/alice 1`:
+
+![filter by student result](images/filterbystudentResult.png)
 
 ### Exiting the program : `exit`
 
@@ -344,7 +401,6 @@ Action | Format, Examples
 **Edit Student** | `editstudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `editstudent 2 n/James Lee e/jameslee@example.com sn/improved performance`
 **Find Student** | `findstudent KEYWORD`<br> e.g., `findstudent James T`
 **Delete Student** | `deletestudent NAME INDEX`<br> e.g., `deletestudent Betsy 1`
-**Clear Students** | `clear`
 **Add Lesson** | `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
 **Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
@@ -352,5 +408,7 @@ Action | Format, Examples
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
 **Assign Student to Lesson** | `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
 **Unassign Student from Lesson** | `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
+**Filter students by lesson** | `filter d/DAY INDEX`<br> e.g. `filter d/Mon 2`
+**Filter lessons by student** | `filter n/NAME INDEX`<br> e.g. `filter n/John 1`
 **Help** | `help`
 **Exit** | `exit`
