@@ -150,6 +150,16 @@ public class EditLessonCommandTest {
     }
 
     @Test
+    public void execute_endTimeBeforeStartTime_failure() {
+        EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder()
+                .withStartTime("1600").withEndTime("1400").build();
+        EditLessonCommand editLessonCommand = new EditLessonCommand(FIRST_INDEX, descriptor);
+        model.setDisplayedListToLessons();
+
+        assertCommandFailure(editLessonCommand, model, Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
+    }
+
+    @Test
     public void equals() {
         final EditLessonCommand standardCommand = new EditLessonCommand(FIRST_INDEX, DESC_MATH);
 
