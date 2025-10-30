@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteLessonCommand;
@@ -15,38 +19,42 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteLessonCommand
      * and returns a DeleteLessonCommand object for execution.
-     * @param args Expects args to be of the form " {name} {index}"
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public DeleteLessonCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        String[] argParts = trimmedArgs.split("\\s+");
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_INDEX);
 
-        // No arguments provided
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
-        }
-
-        // Case: first argument is a pure number → invalid name
-        if (argParts.length == 1 && argParts[0].matches("\\d+")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
-        }
-        // Reject input with more than one argument
-        if (argParts.length > 2) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE));
+        // Day is mandatory
+        if (!arePrefixesPresent(argMultimap, PREFIX_DAY)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteLessonCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Day day = ParserUtil.parseDay(argParts[0]);
-            if (argParts.length == 1) {
-                // No index provided, return command to list lessons on that day
-                return new DeleteLessonCommand(day, null);
-            }
-            Index index = ParserUtil.parseIndex(argParts[1]);
-            return new DeleteLessonCommand(day, index);
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage(), pe);
+        // No preamble allowed
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteLessonCommand.MESSAGE_USAGE));
         }
+
+        // Parse day
+        Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
+
+        // Parse index if provided, else leave null
+        Index targetIndex = null;
+        if (argMultimap.getValue(PREFIX_INDEX).isPresent()) {
+            targetIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        }
+
+        return new DeleteLessonCommand(day, targetIndex);
+    }
+
+    /**
+     * Returns true if all the prefixes contain non-empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
