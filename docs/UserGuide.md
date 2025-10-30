@@ -2,8 +2,14 @@
 layout: page
 title: User Guide
 ---
+![Logo](images/edulink_logo_full.svg)
 
-EduLink is a **desktop app for managing your students' contacts and other details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduLink can get your student management tasks done faster than traditional GUI apps.
+EduLink is a **desktop app designed for independent JC tutors who are fast typists**, to 
+aid in managing your students' details and their assigned lessons, 
+optimized for use via typed commands while still having the 
+benefits of a visual User Interface (UI). 
+If you can type fast, EduLink can get your student management tasks done faster 
+than  traditional point-and-click apps.
 
 * Table of Contents
 {:toc}
@@ -12,35 +18,32 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. Ensure you have Java `17` or above installed in your Computer. Installation links for each operating system are provided below<br>
+* [Mac Users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+* [Windows Users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+* [Linux Users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W08-3/tp/releases/).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W08-3/tp/releases/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your EduLink.
+3. Create an empty folder on your desktop and move the `.jar` file to it.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edulink.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Open a command terminal on your desktop. If the name of the folder containing the jar file is, for example,
+   _test-edulink_, input `cd test-edulink`, and then input the `java -jar edulink.jar` command to 
+   run the application.<br>
+   The app, containing some sample data will appear in a few seconds.<br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
-   * `liststudent` : Lists all students.
+5. Below is a quick walkthrough of the EduLink UI.
 
-   * `addstudent n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
+<u>Students page</u>
 
-   * `addlesson d/Tue st/1500 et/1700 v/Ang Mo Kio Block 52 #12-34 ln/English Lesson` : Adds a lesson with given fields to the Address Book.
+   ![Ui](images/UIstudents_annotated.png)
 
-   * `deletestudent Bob 1` : Deletes the 1st student named Bob shown in the current list.   
+<u>Lessons page</u>
 
-   * `deletelesson 1` : Deletes the lesson with the ID of 1 in the Lesson List.
+![Ui](images/UIlessons_annotated.png)
 
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +51,7 @@ EduLink is a **desktop app for managing your students' contacts and other detail
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Important notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -86,15 +89,18 @@ Format: `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…�
 A student can have any number of tags (including 0)
 </div>
 
-* EMAIL should be of the format local-part@domain and adhere to the following constraints:
-  * The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-  * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+* PHONE_NUMBER should only contain numbers, and it should be at least 3 digits long
+
+* EMAIL should be of the format _local-part@domain_ and adhere to the following constraints:
+  * The _local-part_ should only contain alphanumeric characters and the following special characters, excluding the parentheses, (+ _ . -). 
+  The local-part may not start or end with any special characters.
+  * This is followed by a '@' and then a _domain_ name. The _domain_ name is made up of _domain_ labels separated by periods.
 
 
-* The domain name must:
-  * end with a domain label at least 2 characters long
-  * have each domain label start and end with alphanumeric characters
-  * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+* The _domain_ name must:
+  * end with a _domain_ label at least 2 characters long
+  * have each _domain_ label start and end with alphanumeric characters
+  * have each _domain_ label consist of alphanumeric characters, separated only by hyphens, if any.
 
 Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
@@ -110,16 +116,18 @@ Format: `liststudent`
 
 Edits an existing student in the address book.
 
-Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG] [t-/TAG]…​`
+Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG]… [t-/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* Editing student information is only allowed when a list of students is currently displayed.
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
+    The index **must be a positive integer** 1, 2, 3, …​ that **corresponds to a student index**.
+* **At least one** of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The `t+/` flag adds the specified tag while the `t-/` flag removes the specified tag.
 
 Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `editstudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags. 
+*  `editstudent 2 n/Betsy Crower t+/good student` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags. 
 * Editing of student information is only allowed when a list of students are displayed on the screen
 
 ### Locating persons by name: `findstudent`

@@ -81,6 +81,12 @@ public class SampleDataUtil {
             sampleAb.addLesson(sampleLesson);
         }
 
+        // Assign the first student (Alex Yeoh) to the first lesson (LessonId 0)
+        Person alexYeoh = sampleAb.getPersonList().get(0);
+        Lesson firstLesson = sampleAb.getLessonList().get(0);
+        alexYeoh.addLesson(firstLesson);
+        firstLesson.addStudent(alexYeoh);
+
         // Essential for ensuring static ID fields are initialized correctly, change if sample data changes
         sampleAb.setInitialMaxUserId(6);
         sampleAb.setInitialMaxLessonId(6);
