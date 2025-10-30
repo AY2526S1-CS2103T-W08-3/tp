@@ -71,6 +71,8 @@ than  traditional point-and-click apps.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+##### Note: Pressing the 'up arrow' key on your keyboard restores the previous input into the command box, which can come in handy for certain commands!
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -89,9 +91,9 @@ Format: `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…�
 A student can have any number of tags (including 0)
 </div>
 
-* PHONE_NUMBER should only contain numbers, and it should be at least 3 digits long
+* `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long
 
-* EMAIL should be of the format _local-part@domain_ and adhere to the following constraints:
+* `EMAIL` should be of the format _local-part@domain_ and adhere to the following constraints:
   * The _local-part_ should only contain alphanumeric characters and the following special characters, excluding the parentheses, (+ _ . -). 
   The local-part may not start or end with any special characters.
   * This is followed by a '@' and then a _domain_ name. The _domain_ name is made up of _domain_ labels separated by periods.
@@ -118,7 +120,7 @@ Edits an existing student in the address book.
 
 Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG]… [t-/TAG]…​`
 
-* Editing student information is only allowed when a list of students is currently displayed.
+* Editing student information is only allowed when a **list of students is currently displayed.**
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
     The index **must be a positive integer** 1, 2, 3, …​ that **corresponds to a student index**.
 * **At least one** of the optional fields must be provided.
@@ -127,8 +129,7 @@ Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG]… [t-/TAG]…�
 
 Examples:
 *  `editstudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `editstudent 2 n/Betsy Crower t+/good student` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags. 
-* Editing of student information is only allowed when a list of students are displayed on the screen
+*  `editstudent 2 n/Betsy Crower t+/Physics` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `findstudent`
 
@@ -138,41 +139,40 @@ Format: `findstudent KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name is searched.
-* All names containing `KEYWORD` as a substring will match.
+* All names containing `KEYWORD` will be displayed.
 
 Examples:
 * `findstudent John` returns `john` and `John Doe`
 * `findstudent john s` returns `John Smith`, `John Sigma`<br>
+
+
   ![result for 'findstudent john s'](images/findstudentJohnSResult.png)
 
 ### Deleting a student : `deletestudent`
 
 Deletes the specified student from the address book.
 
-Format: `deletestudent NAME INDEX`
+Format: `deletestudent n/NAME i/INDEX`
 
 * Deletes the student with the specified `NAME` at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* If the`NAME` parameter is present but not the `INDEX` parameter, a filtered list of students containing `NAME` will be displayed
+* The index refers to the index number shown in the displayed student list, which **must be a positive integer.**
 * Deleting of student information is only allowed when a list of students are displayed on the screen
+* Pressing the 'up arrow' key to restore the previous input is useful for this command
 
 Examples:
-* `deletestudent David` brings up a filtered list of students containing the name 'David'. 
-Following that with `deletestudent David 1` deletes the 1st student in that list.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+* `deletestudent n/David` brings up a filtered list of students containing the name 'David'. 
+Following that with `deletestudent n/David i/1` deletes the 1st student in that list.
 
 ### Adding a lesson : `addlesson`
 Adds a lesson to the address book.
 
 Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
 
+* `DAY` must be a valid day of the week: MON, TUE, WED, THU, FRI, SAT, SUN (case-insensitive)
 * Adds a new lesson with the specified details.
-* START_TIME and END_TIME should be in 24-hour format (e.g. 1300, 0930).
+* `START_TIME` and `END_TIME` should be in 24-hour format (e.g. 1300, 0930).
+* `END_TIME` has to be later than `START_TIME`
 
 Examples:
 * `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
@@ -191,8 +191,7 @@ Finds and lists all lessons scheduled on a specific day.
 Format: `findlesson DAY`
 
 * Finds all lessons on the specified `DAY`.
-* `DAY` must be a valid day of the week (MON, TUE, WED, THU, FRI, SAT, SUN).
-* The search is case-insensitive.
+* `DAY` must be a valid day of the week: MON, TUE, WED, THU, FRI, SAT, SUN (case-insensitive)
 * Only accepts a single day parameter.
 
 Examples:
