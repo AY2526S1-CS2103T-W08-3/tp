@@ -31,27 +31,27 @@ public class SampleDataUtil {
             new Person(new UserId(0), new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"),
                 new Note("Struggling with calculus, needs extra help"), EMPTY_LESSON_SET,
-                getTagSet("friends")),
+                getTagSet("English")),
             new Person(new UserId(1), new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new Note("Excellent progress in algebra"), EMPTY_LESSON_SET,
-                getTagSet("colleagues", "friends")),
+                getTagSet("Mathematics", "Mandarin")),
             new Person(new UserId(2), new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 new Email("charlotte@example.com"),
                 new Note("Prefers evening classes"), EMPTY_LESSON_SET,
-                getTagSet("neighbours")),
+                getTagSet("Mathematics")),
             new Person(new UserId(3), new Name("David Li"), new Phone("91031282"),
                 new Email("lidavid@example.com"),
                 new Note("Preparing for final exams"), EMPTY_LESSON_SET,
-                getTagSet("family")),
+                getTagSet("Biology")),
             new Person(new UserId(4), new Name("Irfan Ibrahim"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Note("Interested in advanced topics"), EMPTY_LESSON_SET,
-                getTagSet("classmates")),
+                getTagSet("Biology")),
             new Person(new UserId(5), new Name("Roy Balakrishnan"), new Phone("92624417"),
                 new Email("royb@example.com"),
                 new Note("Needs help with essay writing"), EMPTY_LESSON_SET,
-                getTagSet("colleagues"))
+                getTagSet("Biology"))
         };
     }
 
@@ -80,6 +80,20 @@ public class SampleDataUtil {
         for (Lesson sampleLesson : getSampleLessons()) {
             sampleAb.addLesson(sampleLesson);
         }
+
+        Person firstPerson = sampleAb.getPersonList().get(0);
+        Lesson firstLesson = sampleAb.getLessonList().get(0);
+        firstPerson.addLesson(firstLesson);
+        firstLesson.addStudent(firstPerson);
+
+        Person secondPerson = sampleAb.getPersonList().get(1);
+        Lesson secondLesson = sampleAb.getLessonList().get(1);
+        secondPerson.addLesson((secondLesson));
+        secondLesson.addStudent(secondPerson);
+
+        Person thirdPerson = sampleAb.getPersonList().get(2);
+        thirdPerson.addLesson(secondLesson);
+        secondLesson.addStudent(thirdPerson);
 
         // Essential for ensuring static ID fields are initialized correctly, change if sample data changes
         sampleAb.setInitialMaxUserId(6);
