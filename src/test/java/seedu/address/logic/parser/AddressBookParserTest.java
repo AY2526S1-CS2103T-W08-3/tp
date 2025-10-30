@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddLessonCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.AssignCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditLessonCommand;
 import seedu.address.logic.commands.EditLessonCommand.EditLessonDescriptor;
@@ -83,11 +82,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand("unassign n/Alice d/Mon") instanceof UnassignCommand);
     }
 
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
 
     @Test
     public void parseCommand_delete() throws Exception {
