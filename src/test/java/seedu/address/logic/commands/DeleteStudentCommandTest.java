@@ -101,19 +101,18 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_studentDeleted_allAssociatedLessonsUpdated() {
-        Model testModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Person studentToDelete = testModel.getAddressBook().getPersonList().get(0);
+        Person studentToDelete = model.getAddressBook().getPersonList().get(0);
         Name studentName = studentToDelete.getName();
 
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(studentName, Index.fromOneBased(1));
 
         try {
-            deleteStudentCommand.execute(testModel);
+            deleteStudentCommand.execute(model);
         } catch (Exception e) {
             throw new AssertionError("Unexpected exception: " + e);
         }
 
-        for (Lesson lesson : testModel.getAddressBook().getLessonList()) {
+        for (Lesson lesson : model.getAddressBook().getLessonList()) {
             boolean studentStillExists = lesson.getStudents().stream()
                     .anyMatch(student -> student.getName().equals(studentName));
             assertFalse(studentStillExists);
