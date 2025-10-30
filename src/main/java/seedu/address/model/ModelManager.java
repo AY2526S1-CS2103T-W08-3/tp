@@ -18,6 +18,7 @@ import seedu.address.model.lesson.LessonId;
 import seedu.address.model.lesson.exceptions.LessonNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UserId;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -121,6 +122,18 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
+        Set<Lesson> assignedLessons = target.getLessons();
+
+        for (Lesson lesson : assignedLessons) {
+            if (lesson.hasStudent(target)) {
+                try {
+                    lesson.replaceStudent(target, editedPerson);
+                    addressBook.setLesson(lesson, lesson);
+                } catch (IllegalValueException e) {
+                    throw new PersonNotFoundException();
+                }
+            }
+        }
         addressBook.setPerson(target, editedPerson);
     }
 
