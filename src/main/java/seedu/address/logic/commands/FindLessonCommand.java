@@ -31,6 +31,7 @@ public class FindLessonCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredLessonList(predicate);
+        model.setDisplayedListToLessons();
         return new CommandResult(
                 String.format(Messages.MESSAGE_LESSONS_LISTED_OVERVIEW, model.getFilteredLessonList().size()),
                 false, false, true);

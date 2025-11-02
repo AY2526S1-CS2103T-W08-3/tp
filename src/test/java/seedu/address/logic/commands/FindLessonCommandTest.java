@@ -88,4 +88,24 @@ public class FindLessonCommandTest {
         String expected = FindLessonCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findLessonCommand.toString());
     }
+
+    @Test
+    public void execute_setsLessonsDisplayed() {
+        // Set displayed list to persons first
+        model.setDisplayedListToPersons();
+        assertFalse(model.isLessonsDisplayed());
+
+        // Execute findlesson command
+        DayMatchesPredicate predicate = new DayMatchesPredicate(Day.MON);
+        FindLessonCommand command = new FindLessonCommand(predicate);
+
+        try {
+            command.execute(model);
+        } catch (Exception e) {
+            throw new AssertionError("Unexpected exception: " + e);
+        }
+
+        // Verify that lessons are now displayed
+        assertTrue(model.isLessonsDisplayed());
+    }
 }
