@@ -185,6 +185,7 @@ Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
 * `DAY` must be a valid day of the week: MON, TUE, WED, THU, FRI, SAT, SUN (case-insensitive)
 * Adds a new lesson with the specified details.
 * `START_TIME` and `END_TIME` should be in 24-hour format (e.g. 1300, 0930).
+* The valid range of time is between ```0000``` to ```2359``` inclusive.
 * `END_TIME` has to be later than `START_TIME`
 
 Examples:
@@ -253,6 +254,7 @@ Format: `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LE
 **that corresponds to a lesson index**
 * At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
+* The valid range of time is between ```0000``` to ```2359``` inclusive.
 
 Examples:
 *  `editlesson 1 d/MON st/1200` Edits the day and start time of the 1st lesson to be `MON` and `1200` respectively.
