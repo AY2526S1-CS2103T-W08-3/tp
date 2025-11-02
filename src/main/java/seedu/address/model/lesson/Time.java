@@ -12,7 +12,8 @@ import java.time.format.DateTimeParseException;
  */
 public class Time {
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be in 24-hour format HHMM (e.g. 0930)";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Time should be in 24-hour format HHMM (e.g. 0930). Range: 0000 - 2359.";
 
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
 
@@ -35,6 +36,11 @@ public class Time {
      * Returns true if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
+        // Only allow "0000" to represent midnight
+        if (test.equals("2400")) {
+            return false;
+        }
+
         try {
             LocalTime.parse(test, INPUT_FORMATTER);
             return true;

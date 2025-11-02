@@ -157,4 +157,15 @@ public class AddLessonCommandParserTest {
         assertParseFailure(parser, DAY_DESC_MATH + STARTTIME_DESC_MATH + ENDTIME_DESC_SCIENCE
                 + VENUE_DESC_MATH + LESSON_NOTE_DESC_MATH, Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
     }
+
+    @Test
+    public void parse_invalidTime2400_failure() {
+        // 2400 is not allowed for start time
+        assertParseFailure(parser, DAY_DESC_MATH + " " + PREFIX_START_TIME + "2400" + ENDTIME_DESC_MATH
+                + VENUE_DESC_MATH + LESSON_NOTE_DESC_MATH, Time.MESSAGE_CONSTRAINTS);
+
+        // 2400 is not allowed for end time
+        assertParseFailure(parser, DAY_DESC_MATH + STARTTIME_DESC_MATH + " " + PREFIX_END_TIME + "2400"
+                + VENUE_DESC_MATH + LESSON_NOTE_DESC_MATH, Time.MESSAGE_CONSTRAINTS);
+    }
 }
