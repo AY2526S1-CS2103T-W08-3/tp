@@ -16,8 +16,8 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-    public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%1$d lessons listed!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d listed! (Persons)";
+    public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%1$d listed! (Lessons)";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NO_USERS_FOUND = "There are no persons matching the name: \"%s\".";
@@ -27,7 +27,8 @@ public class Messages {
             "This student has already been assigned this lesson";
     public static final String MESSAGE_STUDENT_NOT_ASSIGNED_LESSON =
             "This student has not been assigned this lesson";
-    public static final String MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME = "End time cannot be earlier than start time";
+    public static final String MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME =
+            "End time cannot be earlier than or the same as start time";
     public static final String MESSAGE_LIST_NOT_DISPLAYED = "%s list not displayed!";
 
     /**

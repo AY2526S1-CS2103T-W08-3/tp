@@ -22,6 +22,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.VENUE_DESC_SCIENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -138,5 +140,14 @@ public class EditLessonCommandParserTest {
         descriptor = new EditLessonDescriptorBuilder().withVenue(VALID_VENUE_MATH).build();
         expectedCommand = new EditLessonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_invalidTime2400_failure() {
+        // 2400 is not allowed for start time
+        assertParseFailure(parser, "1" + " " + PREFIX_START_TIME + "2400", Time.MESSAGE_CONSTRAINTS);
+
+        // 2400 is not allowed for end time
+        assertParseFailure(parser, "1" + " " + PREFIX_END_TIME + "2400", Time.MESSAGE_CONSTRAINTS);
     }
 }

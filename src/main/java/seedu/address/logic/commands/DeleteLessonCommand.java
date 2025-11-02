@@ -56,6 +56,7 @@ public class DeleteLessonCommand extends Command {
         if (!model.isLessonsDisplayed()) {
             throw new CommandException(String.format(Messages.MESSAGE_LIST_NOT_DISPLAYED, "Lesson"));
         }
+        model.setDisplayedListToLessons();
 
         model.updateFilteredLessonList(new DayMatchesPredicate(day));
         List<Lesson> lastShownList = model.getFilteredLessonList();
