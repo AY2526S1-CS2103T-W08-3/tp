@@ -340,6 +340,7 @@ Format: `filter n/NAME INDEX`
 
 * Filters the list of lessons that contain the student at `INDEX` when filtered by `NAME`.
 * `filter n/NAME` displays the list of all students with the specified `NAME`.
+* `NAME` must be one continuous string of characters without whitespace.
 * The student at `INDEX` in this list is taken to be the specified student for reference when filtering the lessons list.
 
 Examples:
