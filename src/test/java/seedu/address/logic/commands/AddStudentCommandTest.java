@@ -37,7 +37,7 @@ public class AddStudentCommandTest {
         assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-        assertEquals(true, modelStub.getPersonsDisplayed());
+        assertEquals(true, modelStub.isPersonsDisplayed());
     }
 
     @Test
@@ -128,7 +128,7 @@ public class AddStudentCommandTest {
             return new AddressBook();
         }
 
-        public boolean getPersonsDisplayed() {
+        public boolean isPersonsDisplayed() {
             return this.personsDisplayed;
         }
     }

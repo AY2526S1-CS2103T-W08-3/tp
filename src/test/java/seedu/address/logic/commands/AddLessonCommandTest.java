@@ -54,7 +54,7 @@ public class AddLessonCommandTest {
         assertEquals(String.format(AddLessonCommand.MESSAGE_SUCCESS, Messages.format(validLesson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validLesson), modelStub.lessonsAdded);
-        assertEquals(true, modelStub.getLessonsDisplayed());
+        assertEquals(true, modelStub.isLessonsDisplayed());
     }
 
     @Test
@@ -306,7 +306,7 @@ public class AddLessonCommandTest {
             return new AddressBook();
         }
 
-        public boolean getLessonsDisplayed() {
+        public boolean isLessonsDisplayed() {
             return this.lessonsDisplayed;
         }
     }
