@@ -312,9 +312,5 @@ public class AddLessonCommandTest {
         @Override
         public boolean isLessonsDisplayed() {
             return isLessonsDisplayed;
-
-        public boolean getLessonsDisplayed() {
-            return this.isLessonsDisplayed;
-        }
     }
 }
