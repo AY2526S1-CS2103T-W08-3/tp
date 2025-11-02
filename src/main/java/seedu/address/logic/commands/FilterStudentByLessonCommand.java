@@ -21,8 +21,8 @@ import seedu.address.model.person.predicates.StudentContainsLessonPredicate;
 public class FilterStudentByLessonCommand extends FilterCommand {
 
     public static final String MESSAGE_FILTER_BY_LESSON_SUCCESS = "Filtered students by lesson: %1$s";
-    public static final String MESSAGE_LIST_LESSONS_WITH_DAY = "Here are a list of lessons "
-            + "with day: \"%s\". Enter \"filter l/%s {i}\" to get a list "
+    public static final String MESSAGE_LIST_LESSONS_WITH_DAY = "Here is a list of lessons "
+            + "with day: \"%s\". Enter \"filter d/%s {i}\" to get a list "
             + "of students containing the i'th lesson in this list.";
     public static final String MESSAGE_NO_STUDENTS_FOUND = "There are no students containing the lesson: %1$s";
 
