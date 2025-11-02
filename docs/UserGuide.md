@@ -90,15 +90,17 @@ A student can have any number of tags (including 0)
 * `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long
 
 * `EMAIL` should be of the format _local-part@domain_ and adhere to the following constraints:
-  * The _local-part_ should only contain alphanumeric characters and the following special characters, excluding the parentheses, (+ _ . -). 
-  The local-part may not start or end with any special characters.
+  * The _local-part_ should only contain alphanumeric characters and the following special characters ```+``` ```_``` ```.``` ```-```. 
+  * Exception: The local-part may not start or end with any special characters.
   * This is followed by a '@' and then a _domain_ name. The _domain_ name is made up of _domain_ labels separated by periods.
+  * Example: If a domain name is ```example.com```, the domain labels are ```example``` and ```com```.
 
 
 * The _domain_ name must:
   * end with a _domain_ label at least 2 characters long
   * have each _domain_ label start and end with alphanumeric characters
   * have each _domain_ label consist of alphanumeric characters, separated only by hyphens, if any.
+* Duplicate students are allowed, they are handled by a unique auto-generated index.  
 
 Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
@@ -186,6 +188,7 @@ Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
 * Adds a new lesson with the specified details.
 * `START_TIME` and `END_TIME` should be in 24-hour format (e.g. 1300, 0930).
 * `END_TIME` has to be later than `START_TIME`
+* Duplicate lessons are allowed, they are handled by a unique auto-generated index.  
 
 Examples:
 * `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
