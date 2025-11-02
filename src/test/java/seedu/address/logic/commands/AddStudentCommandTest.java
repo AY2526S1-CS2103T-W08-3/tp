@@ -105,7 +105,6 @@ public class AddStudentCommandTest {
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
         private boolean isLessonsDisplayed = true;
-        private boolean isPersonsDisplayed = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -135,10 +134,6 @@ public class AddStudentCommandTest {
         @Override
         public boolean isPersonsDisplayed() {
             return isLessonsDisplayed;
-
-        public boolean getPersonsDisplayed() {
-            return this.isPersonsDisplayed;
-        }
     }
 
 }
