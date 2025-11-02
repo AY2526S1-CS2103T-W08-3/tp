@@ -37,6 +37,7 @@ public class AddStudentCommandTest {
         assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(true, modelStub.getPersonsDisplayed());
     }
 
     @Test
@@ -103,6 +104,7 @@ public class AddStudentCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private boolean personsDisplayed = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -117,8 +119,17 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void setDisplayedListToPersons() {
+            personsDisplayed = true;
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        public boolean getPersonsDisplayed() {
+            return this.personsDisplayed;
         }
     }
 
