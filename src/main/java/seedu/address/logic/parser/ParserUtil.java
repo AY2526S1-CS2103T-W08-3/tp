@@ -151,7 +151,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String venue} into a {@code Venye}
+     * Parses a {@code String venue} into a {@code Venue}
      * Leading and trailing whitespaces will be trimmed
      *
      * @throws ParseException if the given {@code venue} is invalid.

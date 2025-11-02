@@ -25,7 +25,7 @@ public class DeleteStudentCommand extends Command {
     public static final String COMMAND_WORD = "deletestudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a student identified by name using it's displayed index from the filtered name list .\n"
+            + ": Deletes a student identified by name using its displayed index from the filtered name list .\n"
             + "Parameters: " + PREFIX_NAME + "NAME, " + PREFIX_INDEX + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Bob "
