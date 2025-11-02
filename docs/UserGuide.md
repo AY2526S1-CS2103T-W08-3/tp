@@ -90,15 +90,17 @@ A student can have any number of tags (including 0)
 * `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long
 
 * `EMAIL` should be of the format _local-part@domain_ and adhere to the following constraints:
-  * The _local-part_ should only contain alphanumeric characters and the following special characters, excluding the parentheses, (+ _ . -). 
-  The local-part may not start or end with any special characters.
+  * The _local-part_ should only contain alphanumeric characters and the following special characters ```+``` ```_``` ```.``` ```-```. 
+  * Exception: The local-part may not start or end with any special characters.
   * This is followed by a '@' and then a _domain_ name. The _domain_ name is made up of _domain_ labels separated by periods.
+  * Example: If a domain name is ```example.com```, the domain labels are ```example``` and ```com```.
 
 
 * The _domain_ name must:
   * end with a _domain_ label at least 2 characters long
   * have each _domain_ label start and end with alphanumeric characters
   * have each _domain_ label consist of alphanumeric characters, separated only by hyphens, if any.
+* Duplicate students are allowed, they are handled by a unique auto-generated index.  
 
 Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
@@ -186,6 +188,7 @@ Format: `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`
 * Adds a new lesson with the specified details.
 * `START_TIME` and `END_TIME` should be in 24-hour format (e.g. 1300, 0930).
 * `END_TIME` has to be later than `START_TIME`
+* Duplicate lessons are allowed, they are handled by a unique auto-generated index.  
 
 Examples:
 * `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
@@ -266,7 +269,7 @@ Results for `editlesson 3 v/Apple Store`:
 
 Assigns a student to a lesson in a step-by-step interactive process.
 
-Format: `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
+Format: `assign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`
 
 * Assigns a student with the specified `NAME` to a lesson on the specified `DAY`.
 * The command works in an interactive manner:
@@ -292,7 +295,7 @@ Results for `assign n/john i1/1 d/WED i2/1`:
 
 Unassigns a student from a lesson in a step-by-step interactive process.
 
-Format: `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
+Format: `unassign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`
 
 * Unassigns a student with the specified `NAME` from a lesson on the specified `DAY`.
 * The command works in an interactive manner:
@@ -403,8 +406,8 @@ Action | Format, Examples
 **Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
 **Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
-**Assign Student to Lesson** | `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
-**Unassign Student from Lesson** | `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
+**Assign Student to Lesson** | `assign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
+**Unassign Student from Lesson** | `unassign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
 **Filter students by lesson** | `filter d/DAY INDEX`<br> e.g. `filter d/Mon 2`
 **Filter lessons by student** | `filter n/NAME INDEX`<br> e.g. `filter n/John 1`
 **Help** | `help`
