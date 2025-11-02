@@ -282,7 +282,7 @@ public class AddLessonCommandTest {
      */
     private class ModelStubAcceptingLessonAdded extends ModelStub {
         final ArrayList<Lesson> lessonsAdded = new ArrayList<>();
-        private boolean lessonsDisplayed = false;
+        private boolean isLessonsDisplayed = false;
 
         @Override
         public void addLesson(Lesson lesson) {
@@ -298,7 +298,7 @@ public class AddLessonCommandTest {
 
         @Override
         public void setDisplayedListToLessons() {
-            lessonsDisplayed = true;
+            isLessonsDisplayed = true;
         }
 
         @Override
@@ -307,7 +307,7 @@ public class AddLessonCommandTest {
         }
 
         public boolean getLessonsDisplayed() {
-            return this.lessonsDisplayed;
+            return this.isLessonsDisplayed;
         }
     }
 }

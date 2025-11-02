@@ -104,7 +104,7 @@ public class AddStudentCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
-        private boolean personsDisplayed = false;
+        private boolean isPersonsDisplayed = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -120,7 +120,7 @@ public class AddStudentCommandTest {
 
         @Override
         public void setDisplayedListToPersons() {
-            personsDisplayed = true;
+            isPersonsDisplayed = true;
         }
 
         @Override
@@ -129,7 +129,7 @@ public class AddStudentCommandTest {
         }
 
         public boolean getPersonsDisplayed() {
-            return this.personsDisplayed;
+            return this.isPersonsDisplayed;
         }
     }
 
