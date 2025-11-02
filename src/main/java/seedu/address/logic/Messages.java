@@ -27,7 +27,7 @@ public class Messages {
             "This student has already been assigned this lesson";
     public static final String MESSAGE_STUDENT_NOT_ASSIGNED_LESSON =
             "This student has not been assigned this lesson";
-    public static final String MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME = "End time cannot be earlier than start time";
+    public static final String MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME = "End time cannot be earlier than or the same as start time";
     public static final String MESSAGE_LIST_NOT_DISPLAYED = "%s list not displayed!";
 
     /**

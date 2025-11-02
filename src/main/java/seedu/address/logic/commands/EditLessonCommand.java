@@ -112,7 +112,7 @@ public class EditLessonCommand extends Command {
         Note updatedNote = editLessonDescriptor.getNote().orElse(lessonToEdit.getNote());
         Set<Person> existingStudents = lessonToEdit.getStudents();
 
-        if (updatedEndTime.isBefore(updatedStartTime)) {
+        if (updatedEndTime.isBeforeandEquals(updatedStartTime)) {
             throw new CommandException(Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
         }
 

@@ -69,10 +69,10 @@ public class Time {
     }
 
     /**
-     * Returns true if this Time is strictly before the other Time.
+     * Returns true if this Time is before or equal to the other Time.
      */
-    public boolean isBefore(Time other) {
+    public boolean isBeforeandEquals(Time other) {
         requireNonNull(other);
-        return time.isBefore(other.time);
+        return time.isBefore(other.time) || time.equals(other.time);
     }
 }
