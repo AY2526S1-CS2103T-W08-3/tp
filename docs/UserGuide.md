@@ -269,7 +269,7 @@ Results for `editlesson 3 v/Apple Store`:
 
 Assigns a student to a lesson in a step-by-step interactive process.
 
-Format: `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
+Format: `assign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`
 
 * Assigns a student with the specified `NAME` to a lesson on the specified `DAY`.
 * The command works in an interactive manner:
@@ -295,7 +295,7 @@ Results for `assign n/john i1/1 d/WED i2/1`:
 
 Unassigns a student from a lesson in a step-by-step interactive process.
 
-Format: `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`
+Format: `unassign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`
 
 * Unassigns a student with the specified `NAME` from a lesson on the specified `DAY`.
 * The command works in an interactive manner:
@@ -406,8 +406,8 @@ Action | Format, Examples
 **Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
 **Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
-**Assign Student to Lesson** | `assign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
-**Unassign Student from Lesson** | `unassign [n/NAME] [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
+**Assign Student to Lesson** | `assign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
+**Unassign Student from Lesson** | `unassign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`
 **Filter students by lesson** | `filter d/DAY INDEX`<br> e.g. `filter d/Mon 2`
 **Filter lessons by student** | `filter n/NAME INDEX`<br> e.g. `filter n/John 1`
 **Help** | `help`
