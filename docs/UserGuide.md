@@ -91,7 +91,7 @@ A student can have any number of tags (including 0)
 
 * `EMAIL` should be of the format _local-part@domain_ and adhere to the following constraints:
   * The _local-part_ should only contain alphanumeric characters and the following special characters ```+``` ```_``` ```.``` ```-```. 
-  * Exception: The local-part may not start or end with any special characters.
+  * Exceptions: The local-part may not start or end with any special characters, and there should not be consecutive occurrences of these characters.
   * This is followed by a '@' and then a _domain_ name. The _domain_ name is made up of _domain_ labels separated by periods.
   * Example: If a domain name is ```example.com```, the domain labels are ```example``` and ```com```.
 
