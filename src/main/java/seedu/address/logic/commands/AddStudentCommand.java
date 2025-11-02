@@ -64,6 +64,7 @@ public class AddStudentCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.setDisplayedListToPersons();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
