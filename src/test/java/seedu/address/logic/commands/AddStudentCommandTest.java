@@ -119,11 +119,6 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void setDisplayedListToPersons() {
-            isPersonsDisplayed = true;
-        }
-
-        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
@@ -134,6 +129,10 @@ public class AddStudentCommandTest {
         @Override
         public boolean isPersonsDisplayed() {
             return isLessonsDisplayed;
+        }
+        public boolean getPersonsDisplayed() {
+            return !isLessonsDisplayed;
+        }
     }
 
 }
