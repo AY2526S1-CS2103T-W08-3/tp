@@ -670,8 +670,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case ends.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
@@ -686,12 +684,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Typing-first interface**: A design approach where users primarily interact with the system through typed commands instead of mouse-driven GUI.
 * **Student Record**: The collection of information tied to a student, including contact details, fee notes, and lessons/strengths/weaknesses notes
-* **Group**: A collection of students, grouped by subject, level or class (e.g. "H2 Math, J2 Tuesday Class")
-* **Fee Note**: A short record indicating the amount due and due date for tuition payments.
-* **Archive**: Action of removing graduated students from the active list while still keeping their past data for reference.
 
 --------------------------------------------------------------------------------------------------------------------
 
