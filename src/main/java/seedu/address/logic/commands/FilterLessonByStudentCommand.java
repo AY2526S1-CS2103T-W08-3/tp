@@ -22,7 +22,7 @@ public class FilterLessonByStudentCommand extends FilterCommand {
 
     public static final String MESSAGE_FILTER_BY_STUDENT_SUCCESS = "Filtered lessons by student: %1$s";
     public static final String MESSAGE_LIST_STUDENTS_WITH_NAME = "Here are a list of students "
-            + "with name: \"%s\". Enter \"filter s/%s {i}\" to get a list "
+            + "with name: \"%s\". Enter \"filter n/%s {i}\" to get a list "
             + "of lessons containing the i'th student in this list.";
     public static final String MESSAGE_NO_LESSONS_FOUND = "There are no lessons containing the student: %1$s";
 
