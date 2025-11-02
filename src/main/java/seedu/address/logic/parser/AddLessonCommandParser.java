@@ -45,7 +45,7 @@ public class AddLessonCommandParser implements Parser<AddLessonCommand> {
         Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
         Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
         Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
-        if (endTime.isBefore(startTime)) {
+        if (endTime.isBeforeandEquals(startTime)) {
             throw new ParseException(Messages.MESSAGE_END_TIME_CANNOT_BEFORE_START_TIME);
         }
         Venue venue = argMultimap.getValue(PREFIX_VENUE).isPresent()
