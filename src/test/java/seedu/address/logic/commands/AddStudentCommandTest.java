@@ -31,7 +31,7 @@ public class AddStudentCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
-        modelStub.setDisplayedListToPersons();
+
         CommandResult commandResult = new AddStudentCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
@@ -104,7 +104,7 @@ public class AddStudentCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
-        private boolean isLessonsDisplayed = true;
+        private boolean personsDisplayed = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -127,13 +127,9 @@ public class AddStudentCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
-        @Override
-        public void setDisplayedListToPersons() {
-            isLessonsDisplayed = false;
-        }
-        @Override
-        public boolean isPersonsDisplayed() {
-            return isLessonsDisplayed;
+
+        public boolean getPersonsDisplayed() {
+            return this.personsDisplayed;
         }
     }
 
