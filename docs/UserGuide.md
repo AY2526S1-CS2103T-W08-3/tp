@@ -102,6 +102,7 @@ A student can have any number of tags (including 0)
   * have each _domain_ label consist of alphanumeric characters, separated only by hyphens, if any.
 * Duplicate students are allowed, they are handled by a unique auto-generated index.  
 
+* `Tag` should be alphanumeric and maximally be 50 characters long, does not support white spaces.
 Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
 * `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`
@@ -124,7 +125,7 @@ Results for `liststudent`:
 
 Edits an existing student in the address book.
 
-Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t+/TAG]… [t-/TAG]…​`
+Format: `editstudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sn/STUDENT_NOTE] [t+/TAG]… [t-/TAG]…​`
 
 * Editing student information is only allowed when a **list of students is currently displayed.**
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. 
@@ -401,13 +402,13 @@ Action | Format, Examples
 --------|------------------
 **List Students** | `liststudent`
 **Add Student** | `addstudent n/NAME p/PHONE_NUMBER e/EMAIL [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `addstudent n/James Ho p/22224444 e/jamesho@example.com sn/needs help with math t/friend t/colleague`
-**Edit Student** | `editstudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t/TAG]…​`<br> e.g., `editstudent 2 n/James Lee e/jameslee@example.com sn/improved performance`
+**Edit Student** | `editstudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [sn/STUDENT_NOTE] [t+/TAG] [t-/TAG]…​`<br> e.g., `editstudent 2 n/James Lee e/jameslee@example.com sn/improved performance`
 **Find Student** | `findstudent KEYWORD`<br> e.g., `findstudent James T`
-**Delete Student** | `deletestudent NAME INDEX`<br> e.g., `deletestudent Betsy 1`
+**Delete Student** | `deletestudent n/NAME i/INDEX`<br> e.g., `deletestudent n/Betsy i/1`
 **Add Lesson** | `addlesson d/DAY st/START_TIME et/END_TIME [v/VENUE] [ln/LESSON_NOTE]`<br> e.g., `addlesson d/Mon st/0800 et/1000 v/Room 204 ln/Mathematics`
 **List Lessons** | `listlesson`
 **Find Lessons** | `findlesson DAY` <br> e.g., `findlesson MON`
-**Delete Lesson** | `deletelesson DAY INDEX`<br> e.g., `deletelesson TUE 2`
+**Delete Lesson** | `deletelesson d/DAY i/INDEX`<br> e.g., `deletelesson d/TUE i/2`
 **Edit Lesson** | `editlesson INDEX [d/DAY] [st/START_TIME] [et/END_TIME] [v/VENUE] [ln/LESSON_NOTE]` <br> e.g., `editlesson 2 d/MON st/1200 et/1500 v/Apple Store`
 **Assign Student to Lesson** | `assign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `assign n/Bob i1/1 d/Mon i2/2`
 **Unassign Student from Lesson** | `unassign n/NAME [i1/INDEX1] [d/DAY] [i2/INDEX2]`<br> e.g., `unassign n/Bob i1/1 d/Mon i2/2`

@@ -48,7 +48,7 @@ public class AddLessonCommandTest {
                 new Venue("Blk 123 Computing Dr 1"),
                 new Note("Algebra basics")
         );
-
+        modelStub.setDisplayedListToLessons();
         CommandResult commandResult = new AddLessonCommand(validLesson).execute(modelStub);
 
         assertEquals(String.format(AddLessonCommand.MESSAGE_SUCCESS, Messages.format(validLesson)),
@@ -297,17 +297,19 @@ public class AddLessonCommandTest {
         }
 
         @Override
-        public void setDisplayedListToLessons() {
-            isLessonsDisplayed = true;
-        }
-
-        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
-
+        @Override
+        public void setDisplayedListToLessons() {
+            isLessonsDisplayed = true;
+        }
+        @Override
+        public boolean isLessonsDisplayed() {
+            return isLessonsDisplayed;
+        }
         public boolean getLessonsDisplayed() {
-            return this.isLessonsDisplayed;
+            return isLessonsDisplayed;
         }
     }
 }
