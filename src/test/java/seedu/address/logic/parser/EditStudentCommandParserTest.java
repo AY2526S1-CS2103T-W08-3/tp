@@ -91,6 +91,22 @@ public class EditStudentCommandParserTest {
     }
 
     @Test
+    public void parse_emptyTagValue_failure() {
+        // empty t+/ prefix
+        assertParseFailure(parser, "1 t+/", seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS);
+
+        // empty t-/ prefix
+        assertParseFailure(parser, "1 t-/", seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS);
+
+        // multiple empty t+/ prefixes
+        assertParseFailure(parser, "1 t+/ t+/", seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS);
+
+        // valid field with empty t+/
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + " t+/",
+                seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = SECOND_INDEX;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB

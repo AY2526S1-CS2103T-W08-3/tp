@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric "
-             + "and should be maximally be 50 characters long. Tag does not support white spaces.";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric (spaces allowed) "
+             + "and should be maximally be 50 characters long.";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s]+";
 
     public final String tagName;
 
@@ -30,7 +30,11 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX) && test.length() <= 50;
+        // Check length, matches regex, and contains at least one alphanumeric character
+        return test.length() > 0
+                && test.length() <= 50
+                && test.matches(VALIDATION_REGEX)
+                && test.matches(".*\\p{Alnum}.*");
     }
 
     @Override

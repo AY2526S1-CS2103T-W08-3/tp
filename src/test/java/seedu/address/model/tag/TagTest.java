@@ -34,6 +34,18 @@ public class TagTest {
     public void isValidTagName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+
+        // invalid tag names
+        assertFalse(Tag.isValidTagName("")); // empty string
+        assertFalse(Tag.isValidTagName("   ")); // only spaces
+        assertFalse(Tag.isValidTagName("friend@")); // contains non-alphanumeric character
+
+        // valid tag names
+        assertTrue(Tag.isValidTagName("friend")); // alphabets only
+        assertTrue(Tag.isValidTagName("friend123")); // alphanumeric
+        assertTrue(Tag.isValidTagName("best friend")); // with space
+        assertTrue(Tag.isValidTagName("close friend group")); // with multiple spaces
+        assertTrue(Tag.isValidTagName("12345")); // numbers only
     }
 
     @Test
