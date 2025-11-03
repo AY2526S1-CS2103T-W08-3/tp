@@ -102,7 +102,7 @@ A student can have any number of tags (including 0)
   * have each _domain_ label consist of alphanumeric characters, separated only by hyphens, if any.
 * Duplicate students are allowed, they are handled by a unique auto-generated index.  
 
-* `Tag` should be alphanumeric and maximally be 50 characters long, does not support white spaces.
+* `Tag` should be alphanumeric and maximally be 50 characters long.
 Examples:
 * `addstudent n/John Doe p/98765432 e/johnd@example.com sn/birthday boy`
 * `addstudent n/Betsy Crowe t/friend e/betsycrowe@example.com p/93847234 t/student`
