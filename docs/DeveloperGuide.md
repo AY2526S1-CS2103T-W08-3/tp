@@ -690,82 +690,131 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-[//]: # (TODO next iteration)
+## **Appendix: Instructions for manual testing**
 
-[//]: # (## **Appendix: Instructions for manual testing**)
+Given below are instructions to test the app manually.
 
-[//]: # ()
-[//]: # (Given below are instructions to test the app manually.)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 
-[//]: # ()
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;)
+testers are expected to do more *exploratory* testing.
 
-[//]: # (testers are expected to do more *exploratory* testing.)
+</div>
 
-[//]: # ()
-[//]: # (</div>)
 
-[//]: # ()
-[//]: # (### Launch and shutdown)
+### Launch and shutdown
 
-[//]: # ()
-[//]: # (1. Initial launch)
+1. Initial launch
 
-[//]: # ()
-[//]: # (   1. Download the jar file and copy into an empty folder)
+   1. Download the jar file and copy into an empty folder.
+   2. Open a command terminal and `cd` into the folder with the jar file.
+   3. Run `java -jar edulink.jar` to start the application. Ensure that you are using Java 17.<br>
+      * Expected: Shows the GUI with a set of sample students.
 
-[//]: # ()
-[//]: # (   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.)
+2. Saving window preferences
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2. Re-launch the app by running `java -jar edulink.jar` in the correct folder with a command terminal.<br>
+      * Expected: The most recent window size and location is retained.
 
-[//]: # ()
-[//]: # (1. Saving window preferences)
+### Viewing help
 
-[//]: # ()
-[//]: # (   1. Resize the window to an optimum size. Move the window to a different location. Close the window.)
+**Test case:** `help`  
+**Expected:** A copyable URL to the application UserGuide is shown in a window pop-up.
 
-[//]: # ()
-[//]: # (   1. Re-launch the app by double-clicking the jar file.<br>)
+### Adding a student
 
-[//]: # (       Expected: The most recent window size and location is retained.)
+**Test case:**  
+`addstudent n/John Doe p/98765432 e/johnd@example.com`  
+**Expected:** Student is added successfully. Confirmation message displays student details.
 
-[//]: # ()
-[//]: # (1. _{ more test cases …​ }_)
+### Listing all students
 
-[//]: # ()
-[//]: # (### Deleting a person)
+**Test case:** `liststudent`  
+**Expected:** Displays all students in the system.
 
-[//]: # ()
-[//]: # (1. Deleting a person while all persons are being shown)
+### Editing a student
 
-[//]: # ()
-[//]: # (   1. Prerequisites: List all persons using the `liststudent` command. Multiple persons in the list.)
+**Prerequisites:** At least one student exists.  
+**Test case:** `editstudent 1 p/91234567 e/johndoe@example.com`  
+**Expected:** Student’s phone and email are updated. Success message displays updated details.
 
-[//]: # ()
-[//]: # (   1. Test case: `deletestudent Bob 1`<br>)
+### Finding a student
+ 
+**Test case:** `findstudent John`  
+**Expected:** Displays all students whose names contain “John”.
 
-[//]: # (      Expected: First contact named Bob is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.)
+### Deleting a student
 
-[//]: # ()
-[//]: # (   1. Test case: `deletestudent Bob 0`<br>)
+**Test case:**
+1. `deletestudent n/Betsy`  
+   **Expected:** Displays filtered list of students named Betsy.
+2. `deletestudent n/Betsy i/1`  
+   **Expected:** First Betsy in the filtered list is deleted. Confirmation message shown.
 
-[//]: # (      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.)
+### Adding a lesson
 
-[//]: # ()
-[//]: # (   1. Other incorrect delete commands to try: `deletestudent`, `deletestudent Bob x`, `...` &#40;where x is larger than the list size&#41;<br>)
+**Test case:**  
+`addlesson d/Mon st/0800 et/1000 v/21 Lower Kent Ridge Road ln/Mathematics`  
+**Expected:** Lesson added successfully. Confirmation message displays details.
 
-[//]: # (      Expected: Similar to previous.)
+### Listing all lessons
 
-[//]: # ()
-[//]: # (1. _{ more test cases …​ }_)
+**Test case:** `listlesson`  
+**Expected:** Displays all lessons.
 
-[//]: # ()
-[//]: # (### Saving data)
+### Finding a lesson
 
-[//]: # ()
-[//]: # (1. Dealing with missing/corrupted data files)
+**Test case:** `findlesson Mon`  
+**Expected:** Displays all lessons scheduled on Monday.
 
-[//]: # ()
-[//]: # (   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_)
+### Deleting a lesson
 
-[//]: # ()
-[//]: # (1. _{ more test cases …​ }_)
+**Test case:**
+1. `deletelesson d/Tue`  
+   **Expected:** Displays list of Tuesday lessons.
+2. `deletelesson d/Tue i/1`  
+   **Expected:** First Tuesday lesson is deleted. Success message shown.
+
+### Editing a lesson
+ 
+**Test case:** `editlesson 1 d/Mon v/Apple Store`  
+**Expected:** Lesson updated successfully. Success message displays updated details.
+
+### Assigning a student to a lesson
+
+**Prerequisites:**  
+At least one student and one lesson exist.  
+**Test case:**
+1. `assign n/Bob`  
+   **Expected:** Shows matching students named Bob.
+2. `assign n/Bob i1/1`  
+   **Expected:** Prompts to specify lesson day.
+3. `assign n/Bob i1/1 d/Mon`  
+   **Expected:** Displays Monday lessons.
+4. `assign n/Bob i1/1 d/Mon i2/2`  
+   **Expected:** Assigns selected student to selected lesson. Success message shown.
+
+### Filtering Students by Lesson
+
+**Test case:**
+1. `filter d/Mon`  
+   **Expected:** Displays all Monday lessons.
+2. `filter d/Mon 1`  
+   **Expected:** Displays list of students in the 1st Monday lesson.
+
+### Filtering Lessons by Student
+
+**Test case:**
+1. `filter n/John`  
+   **Expected:** Displays all students named John.
+2. `filter n/John 1`  
+   **Expected:** Displays all lessons that contain the selected student.
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+   1. Launch the application by running `java -jar edulink.jar` in the correct folder using the command terminal.
+   2. Run the `liststudent` command.
+   3. Close the app by running the `exit` command.
+   4. Edit the `[JAR file location]/data/addressbook.json` file by deleting `"userId" : 0` in line 3 to simulate corrupted data.
+   5. Re-launch the application again as in the first step.
+      * Expected: No students will be loaded. An error status will be shown in the terminal, and an empty address book will be initialized. 
