@@ -648,9 +648,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Tutor chooses to filter lessons by a day.
-2. Edulink validates the supplied day.
+2. EduLink validates the supplied day.
 2. EduLink searches for all lessons scheduled on the specific day.
-3. Edulink displays all matching lessons.
+3. EduLink displays all matching lessons.
 
    Use case ends.
 
